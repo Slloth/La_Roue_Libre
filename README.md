@@ -9,6 +9,7 @@ un certain nombre de dépendance sont déjà installer :
 * GIT (Si vous voulez utilisez GIT installer dans le conteneur plutot que celui de votre machine, paramètrer user.name et user.email)
 * npm
 * friendsofphp/php-cs-fixer
+* spatie/phpunit-watcher
 * symfony/webpack-encore-bundle
 ###### dépendance npm
 * sass-loader
