@@ -1,6 +1,6 @@
 {   
-    "name": "symfony/defautsymfonyapli",
-    "description": "DefautSymfonyApli package",
+    "name": "noah_fiquet/defaut_symfony_apli",
+    "description": "Une application symfony conteneurisé par defaut",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
