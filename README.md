@@ -2,9 +2,25 @@
 
 DefautSymfonyApli est un environement de développement conteneurisé pour une application symfony
 
+un certain nombre de dépendance sont déjà installer :
+
+###### dépendance composer
+* Symfony CLI
+* GIT (Si vous voulez utilisez GIT installer dans le conteneur plutot que celui de votre machine, paramètrer user.name et user.email)
+* npm
+* friendsofphp/php-cs-fixer
+* symfony/webpack-encore-bundle
+###### dépendance npm
+* sass-loader
+* sass
+* postcss-loader
+* autoprefixer
+* bootstrap 5
+* @popperjs/core
+
 Créer par FIQUET Noah inspiréer du travaille de Yoandev => https://yoandev.co
 
-La taille total des conteneurs est de 1.25 GB
+La taille total des conteneurs est de 1.6 GB
 
 # Pré-requis
 
@@ -26,7 +42,7 @@ Docker =>   https://www.docker.com/get-started
 
 3. `./install.sh`
 
-##### L'installation peux prendre quelques minutes
+###### L'installation peux prendre quelques minutes
 
 ### Si vous voulez lancer le serveur web interne de Symfony utiliser cette commande :
 
@@ -39,19 +55,17 @@ Docker =>   https://www.docker.com/get-started
 * MailDev                 8081 => http://localhost:8081
 * Serveur Web Symfony     8000 => http://localhost:8000
 
+### Modification des ports
+
+Si vous souhaitez les modifiers, les ports se trouve dans le fichier **docker-compose.yml**
 
 # Démarrage
 
 ### Voici les étapes si vous avez déja installer l'application et que vous souhaitez la relancer:
 
 1. Vérifiez bien que docker est démarré sur votre machine
-2. d'être dans le répertoire du projet symfony
+2. Étre dans le répertoire du projet symfony
 3. `docker-compose up -d`
-
-# Modification des ports
-
-Si vous souhaitez les modifiers, les ports se trouve dans le fichier **docker-compose.yml**
-
 
 # Éteindre les conteneurs
 
