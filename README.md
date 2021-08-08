@@ -11,6 +11,7 @@ un certain nombre de dépendance sont déjà installer :
 * friendsofphp/php-cs-fixer
 * spatie/phpunit-watcher
 * symfony/webpack-encore-bundle
+* orm-fixtures
 ###### dépendance npm
 * sass-loader
 * sass
