@@ -12,6 +12,7 @@ un certain nombre de dépendance sont déjà installer :
 * spatie/phpunit-watcher
 * symfony/webpack-encore-bundle
 * orm-fixtures
+* fakerphp/faker
 ###### dépendance npm
 * sass-loader
 * sass

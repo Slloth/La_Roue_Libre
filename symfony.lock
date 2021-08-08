@@ -118,6 +118,9 @@
     "evenement/evenement": {
         "version": "v3.0.1"
     },
+    "fakerphp/faker": {
+        "version": "v1.15.0"
+    },
     "friendsofphp/php-cs-fixer": {
         "version": "3.0",
         "recipe": {
