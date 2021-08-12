@@ -116,4 +116,5 @@ jobs:
         run: |
           cp phpunit.xml.dist phpunit.xml
           ./vendor/bin/phpunit --testsuite='main'
+          symfony console d:s:u --force --env=test
           php bin/phpunit
