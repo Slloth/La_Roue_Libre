@@ -13,6 +13,7 @@ un certain nombre de dépendance sont déjà installer :
 * symfony/webpack-encore-bundle
 * orm-fixtures
 * fakerphp/faker
+* phpstan\phpstan
 ###### dépendance npm
 * sass-loader
 * sass

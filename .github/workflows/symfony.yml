@@ -102,8 +102,8 @@ jobs:
         run: vendor/bin/php-cs-fixer fix config && vendor/bin/php-cs-fixer fix src
 
       ## —— Static analysis ✨ —————————————————————————————————————————————————
-      #- name: Static analysis of PHP code (PHPStan)
-       # run: make static-analysis
+      - name: Static analysis of PHP code (PHPStan)
+        run: vendor/bin/phpstan analyse
        # if: matrix.php-versions == '7.4'
 
       ## —— Tests ✅ ———————————————————————————————————————————————————————————
@@ -116,4 +116,5 @@ jobs:
         run: |
           cp phpunit.xml.dist phpunit.xml
           ./vendor/bin/phpunit --testsuite='main'
+          php bin/console d:s:u --force --env=test
           php bin/phpunit
