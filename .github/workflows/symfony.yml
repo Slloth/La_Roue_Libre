@@ -114,5 +114,7 @@ jobs:
 
       - name: Run functionnal and unit tests
         run: |
-          symfony console d:s:u --force --env=test
+          cp phpunit.xml.dist phpunit.xml
+          ./vendor/bin/phpunit --testsuite='main'
+          php bin/console d:s:u --force --env=test
           php bin/phpunit
