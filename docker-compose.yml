@@ -21,7 +21,7 @@ services:
             - db-defautSymfonyApli:/var/lib/mysql
         environment:
             MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-            MYSQL_DATABASE: defautSymfonyApli
+            MYSQL_DATABASE: db_defautSymfonyApli
         ports:
             # To allow the host machine to access the ports below, modify the lines below.
             # For example, to allow the host to connect to port 3306 on the container, you would change
