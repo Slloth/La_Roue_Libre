@@ -22,19 +22,16 @@ class PageRepository extends ServiceEntityRepository
     // /**
     //  * @return Page[] Returns an array of Page objects
     //  */
-    /*
-    public function findByExampleField($value)
+    public function findAllPublic()
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('p.status = :status')
+            ->andWhere('p.publicatedAt <= :date')
+            ->setParameters(['status' => 'Publique','date' => new \DateTime()])
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Page

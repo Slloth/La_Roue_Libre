@@ -18,6 +18,13 @@ class PageTest extends KernelTestCase
         $this->validator = $kernel->getContainer()->get("validator");
 
         $this->em = $kernel->getContainer()->get('doctrine')->getManager();
+
+        $this->deleteTableUser();
+    }
+
+    protected function tearDown(): void
+    {
+        $this->deleteTableUser(); 
     }
 
     public function testEntityPageIsValide()
@@ -28,10 +35,41 @@ class PageTest extends KernelTestCase
                 ->setContent("je suis un longtext")
                 ->setStatus("Publique")
                 ->setPublicatedAt(new DateTime("now"));
-        dd(new DateTime());
+        $this->getValidationErrors($page,0);
+    }
+
+    public function testEntityPageIsNotValide()
+    {
+        $page = new Page();
+        $page   ->setName("page 1")
+                ->setSlug("page-1")
+                ->setContent("je suis un longtext")
+                ->setStatus("Publique");
+        $errors = $this->getValidationErrors($page,1);
+
+        $this->assertEquals("Cette valeur ne doit pas être vide.",$errors[0]->getMessage());
+    }
+
+    private function deleteTableUser(): void
+    {
+        $request = $this->em->getConnection()->prepare("DELETE FROM pages;");
+
+        $request->executeQuery();
+    }
+
+    public function testEntityPageInsertInDatabase(): void
+    {
+        $page = new Page();
+        $page   ->setName("page 1")
+                ->setSlug("page-1")
+                ->setContent("je suis un longtext")
+                ->setStatus("Publique")
+                ->setPublicatedAt(new DateTime("now"))
+        ;
         $this->em->persist($page);
         $this->em->flush();
-        $this->getValidationErrors($page,0);
+        $result = $this->em->getRepository(Page::class);
+        $this->assertCount(1,$result->findAll());
     }
 
     /**

@@ -46,14 +46,13 @@ class Page
 
     /**
      * @ORM\Column(type="datetime_immutable")
-     * @Assert\NotBlank
      */
-    #[Assert\DateTime]
     private $createdAt;
-
+        
     /**
      * @ORM\Column(type="datetime")
      * @Assert\NotBlank
+     * @Assert\Type("DateTime")
      */
     private $publicatedAt;
 
@@ -115,12 +114,12 @@ class Page
         return $this;
     }
 
-    public function getCreationAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreationAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -158,5 +157,14 @@ class Page
         $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     *
+     * @return void
+     */
+    public function onPreUpdate(){
+        $this->updatedAt = new \DateTimeImmutable();
     }
 }
