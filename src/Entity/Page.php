@@ -2,9 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\PageRepository;
+use DateTime;
+use DateTimeImmutable;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\PageRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -19,47 +22,47 @@ class Page
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      */
-    private $name;
+    private string $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      */
-    private $slug;
+    private string $slug;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $content;
+    private string $content;
 
     /**
      * @ORM\Column(type="string", length=15)
      * @Assert\NotBlank
      */
-    private $status;
+    private string $status;
 
     /**
      * @ORM\Column(type="datetime_immutable")
      */
-    private $createdAt;
+    private DateTimeImmutable $createdAt;
         
     /**
      * @ORM\Column(type="datetime")
      * @Assert\NotBlank
      * @Assert\Type("DateTime")
      */
-    private $publicatedAt;
+    private DateTimeInterface $publicatedAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $updatedAt;
+    private DateTimeInterface $updatedAt;
 
     public function getId(): ?int
     {

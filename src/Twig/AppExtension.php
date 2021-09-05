@@ -2,13 +2,14 @@
 
 namespace App\Twig;
 
+use App\Entity\Page;
+use Twig\TwigFunction;
 use App\Repository\PageRepository;
 use Twig\Extension\AbstractExtension;
-use Twig\TwigFunction;
 
 class AppExtension extends AbstractExtension
 {
-    private $pageRepository;
+    private PageRepository $pageRepository;
 
     public function __construct(PageRepository $pageRepository){
         $this->pageRepository = $pageRepository;
@@ -22,7 +23,12 @@ class AppExtension extends AbstractExtension
         ];
     }
 
-    public function getPages()
+    /**
+     * Undocumented function
+     *
+     * @return array<Page>|null
+     */
+    public function getPages(): ?array
     {
         return $this->pageRepository->findAllPublic();
     }

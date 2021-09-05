@@ -6,10 +6,13 @@ use DateTime;
 use App\Entity\Page;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\Validator\ConstraintViolationList;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 class PageTest extends KernelTestCase
 {
+    private ?ValidatorInterface $validator;
     private ?EntityManager $em;
 
     protected function setUp(): void{
@@ -27,7 +30,7 @@ class PageTest extends KernelTestCase
         $this->deleteTableUser(); 
     }
 
-    public function testEntityPageIsValide()
+    public function testEntityPageIsValide(): void
     {
         $page = new Page();
         $page   ->setName("page 1")
@@ -38,7 +41,7 @@ class PageTest extends KernelTestCase
         $this->getValidationErrors($page,0);
     }
 
-    public function testEntityPageIsNotValide()
+    public function testEntityPageIsNotValide(): void
     {
         $page = new Page();
         $page   ->setName("page 1")

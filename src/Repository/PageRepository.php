@@ -19,10 +19,10 @@ class PageRepository extends ServiceEntityRepository
         parent::__construct($registry, Page::class);
     }
 
-    // /**
-    //  * @return Page[] Returns an array of Page objects
-    //  */
-    public function findAllPublic()
+    /**
+    * @return Page[]|null Returns an array of Page objects
+    */
+    public function findAllPublic(): ?array
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.status = :status')
