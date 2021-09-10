@@ -26,7 +26,7 @@ class PageController extends AbstractController
     #[Route('/page/{slug}', methods: ['GET'], name: 'page')]
     public function renderPage(string $slug, PageRepository $pageRepository, Request $request): Response
     {
-        $page = $pageRepository->findOneBy(['slug'=> $slug, 'status' => 'Publique']);
+        $page = $pageRepository->findOnePublic($slug);
         
         $currentURL = substr($request->getRequestUri(),6);
         

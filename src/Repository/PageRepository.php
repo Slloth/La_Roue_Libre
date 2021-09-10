@@ -20,6 +20,8 @@ class PageRepository extends ServiceEntityRepository
     }
 
     /**
+    * Returns all public Page 
+    * 
     * @return Page[]|null Returns an array of Page objects
     */
     public function findAllPublic(): ?array
@@ -30,6 +32,23 @@ class PageRepository extends ServiceEntityRepository
             ->setParameters(['status' => 'Publique','date' => new \DateTime()])
             ->getQuery()
             ->getResult()
+        ;
+    }
+    /**
+     * Return one public Page
+     *
+     * @param string $slug
+     * @return Page|null
+     */
+    public function findOnePublic(string $slug): ?Page
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.slug = :slug')
+            ->andWhere('p.status = :status')
+            ->andWhere('p.publicatedAt <= :date')
+            ->setParameters(['slug' => $slug ,'status' => 'Publique','date' => new \DateTime()])
+            ->getQuery()
+            ->getOneOrNullResult()
         ;
     }
 
