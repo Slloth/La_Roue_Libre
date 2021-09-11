@@ -17,6 +17,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use FM\ElfinderBundle\Form\Type\ElFinderType;
 
 class ArticleCrudController extends AbstractCrudController
 {
@@ -37,6 +38,7 @@ class ArticleCrudController extends AbstractCrudController
             SlugField::new('slug')->setTargetFieldName('name'),
             AssociationField::new('user',"Utilisateur")->hideOnForm(),
             AssociationField::new('category',"Catégorie(s)"),
+            //TextField::new('thumbnailFile')->setFormType(ElFinderType::class)->onlyOnForms(),
             TextField::new('thumbnailFile')->setFormType(VichImageType::class)->onlyOnForms(),
             ImageField::new('thumbnail',"Miniature")->setBasePath("/uploads/images")->onlyOnIndex(),
             TextEditorField::new('content','Contenu')->setFormType(CKEditorType::class)

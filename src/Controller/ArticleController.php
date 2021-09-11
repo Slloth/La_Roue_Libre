@@ -21,8 +21,12 @@ class ArticleController extends AbstractController
     {
         $articles = $articleRepository->findAllPublic();
         $articles = $paginator->paginate($articles,$request->query->getInt('page',1),12);
+        
+        $currentURL = "articles";
+
         return $this->render('article/index.html.twig', [
-            'articles' => $articles
+            'articles' => $articles,
+            'currentURL' => $currentURL
         ]);
     }
 

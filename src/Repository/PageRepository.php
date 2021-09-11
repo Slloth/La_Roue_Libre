@@ -27,9 +27,10 @@ class PageRepository extends ServiceEntityRepository
     public function findAllPublic(): ?array
     {
         return $this->createQueryBuilder('p')
+            ->andWhere('p.slug != :accueil')
             ->andWhere('p.status = :status')
             ->andWhere('p.publicatedAt <= :date')
-            ->setParameters(['status' => 'Publique','date' => new \DateTime()])
+            ->setParameters(['status' => 'Publique','date' => new \DateTime(),'accueil' => 'accueil'])
             ->getQuery()
             ->getResult()
         ;

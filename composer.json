@@ -21,6 +21,7 @@
         "friendsofsymfony/ckeditor-bundle": "^2.3",
         "helios-ag/fm-elfinder-bundle": "^10.1",
         "knplabs/knp-paginator-bundle": "^5.6",
+        "knplabs/knp-time-bundle": "^1.16",
         "phpdocumentor/reflection-docblock": "^5.2",
         "sensio/framework-extra-bundle": "^6.1",
         "symfony/asset": "5.3.*",
@@ -53,11 +54,11 @@
         "symfonycasts/reset-password-bundle": "^1.9",
         "symfonycasts/verify-email-bundle": "^1.5",
         "twig/extra-bundle": "^2.12|^3.0",
+        "twig/string-extra": "^3.3",
         "twig/twig": "^2.12|^3.0",
         "vich/uploader-bundle": "^1.18"
     },
     "require-dev": {
-        "knplabs/knp-time-bundle": "^1.16",
         "phpstan/phpstan": "^0.12.94",
         "phpunit/phpunit": "^9.5",
         "spatie/phpunit-watcher": "^1.23",
@@ -68,8 +69,7 @@
         "symfony/phpunit-bridge": "^5.3",
         "symfony/stopwatch": "^5.3",
         "symfony/var-dumper": "^5.3",
-        "symfony/web-profiler-bundle": "^5.3",
-        "twig/string-extra": "^3.3"
+        "symfony/web-profiler-bundle": "^5.3"
     },
     "config": {
         "optimize-autoloader": true,
