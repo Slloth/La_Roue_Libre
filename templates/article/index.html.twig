@@ -9,7 +9,7 @@
             <div class="col-3 mb-5">
                 <a href="{{ path('article', {'slug': article.slug })}}" target="_blank">
                     <div class="card bg-dark text-white">
-                    <img class="card-img img-thumbnail" src="{{ vich_uploader_asset(article,'thumbnailFile')}}" alt="{{article.thumbnail}}">
+                    <img class="card-img img-thumbnail" style="min-height:360px;" src="{{ vich_uploader_asset(article,'thumbnailFile')}}" alt="{{article.thumbnail}}">
                         <div class="card-img-overlay" style="background-color:#0007;">
                             <h5 class="card-title">{{article.name|raw}}</h5>
                             <p class="card-text">{{article.content|u.truncate(150,'...',false)|raw}}</p>
