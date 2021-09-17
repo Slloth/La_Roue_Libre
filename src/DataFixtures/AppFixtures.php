@@ -39,7 +39,7 @@ class AppFixtures extends Fixture
                         ->setStatus('Publique')
                         ->setCreatedAt(new DateTimeImmutable($this->generateDateTime()))
                         ->setPublicatedAt(new \DateTime($this->generateDateTime()))
-                        ->setThumbnail('84dc53c8f550b3d0bddafe9db5abc413-613b55a60ce43292322754.jpg')
+                        ->setThumbnail('placeholder.jpg')
                         ->setUser($user);
             $manager->persist($article);
         }

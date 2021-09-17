@@ -9,7 +9,7 @@ services:
             - "8000:8000"
         volumes:
             - ./docker/php/vhosts:/etc/apache2/sites-enabled
-            - ./:/var/www/DefautSymfonyApli
+            - ./:/var/www/DefautSymfonyApli:cached
         restart: always
         networks:
             - dev
