@@ -23,7 +23,6 @@ class ArticleController extends AbstractController
         $articles = $paginator->paginate($articles,$request->query->getInt('page',1),12);
         
         $currentURL = "articles";
-
         return $this->render('article/index.html.twig', [
             'articles' => $articles,
             'currentURL' => $currentURL

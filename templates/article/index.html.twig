@@ -18,6 +18,11 @@
                         </div>
                     </div>
                 </a>
+                <div class="bg-light p-1">
+                    {% for category in article.category %}
+                        <span class="btn btn-outline-warning btn-sm">{{ category.name }}</span>
+                    {% endfor %}
+                </div>
             </div>
         {% endfor %}
     </div>
