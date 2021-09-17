@@ -92,11 +92,17 @@
           <h5 class="text-uppercase">DefautSymfonyApli</h5>
 
           <ul class="list-unstyled mb-0">
+            <li>
+              <a href="{{ path('home') }}" class="text-white">Accueil</a>
+            </li>
             {% for page in pages() %}
             <li>
               <a href="{{ path('page', {'slug': page.slug }) }}" class="text-white">{{ page.name }}</a>
             </li>
             {% endfor %}
+            <li>
+              <a href="{{ path('articles') }}" class="text-white">Articles</a>
+            </li>
             <!--<li>
               <a href="" target="_blank" class="text-white">site_map</a>
             </li>-->

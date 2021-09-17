@@ -19,22 +19,38 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
-    // /**
-    //  * @return Article[] Returns an array of Article objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+    * Returns all public Article 
+    * 
+    * @return Article[]|null Returns an array of Article objects
+    */
+    public function findAllPublic(): ?array
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.status = :status')
+            ->andWhere('p.publicatedAt <= :date')
+            ->setParameters(['status' => 'Publique','date' => new \DateTime()])
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    /**
+     * Return one public Article
+     *
+     * @param string $slug
+     * @return Article|null
+     */
+    public function findOnePublic(string $slug): ?Article
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.slug = :slug')
+            ->andWhere('p.status = :status')
+            ->andWhere('p.publicatedAt <= :date')
+            ->setParameters(['slug' => $slug ,'status' => 'Publique','date' => new \DateTime()])
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 
     /*
     public function findOneBySomeField($value): ?Article
