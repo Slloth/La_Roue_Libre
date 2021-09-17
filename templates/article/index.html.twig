@@ -3,31 +3,40 @@
 {% block title %}Articles{% endblock %}
 
 {% block body %}
-<div class="container pt-5 pb-5">
+<div class="container-fluid pt-5 pb-5">
     <div class="row">
-        {% for article in articles %}
-            <div class="col-3 mb-5">
-                <a href="{{ path('article', {'slug': article.slug })}}" target="_blank">
-                    <div class="card bg-dark text-white">
-                    <img class="card-img img-thumbnail" style="min-height:360px;" src="{{ vich_uploader_asset(article,'thumbnailFile')}}" alt="{{article.thumbnail}}">
-                        <div class="card-img-overlay" style="background-color:#0007;">
-                            <h5 class="card-title">{{article.name|raw}}</h5>
-                            <p class="card-text">{{article.content|u.truncate(150,'...',false)|raw}}</p>
-                            <p class="card-text">Publié {{article.publicatedAt|ago}}</p>
-                            <p class="card-text">Dernière mise à jours {{article.createdAt|ago}}</p>
-                        </div>
+        <div class="col-xl-2 p-5">
+            {% include "article/__navbarSearch.html.twig" %}
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                {% for article in articles %}
+                    <div class="col-3 mb-5">
+                        <a href="{{ path('article', {'slug': article.slug })}}" target="_blank">
+                            <div class="card bg-dark text-white">
+                            <img class="card-img img-thumbnail" style="min-height:360px;" src="{{ vich_uploader_asset(article,'thumbnailFile')}}" alt="{{article.thumbnail}}">
+                                <div class="card-img-overlay" style="background-color:#0007;">
+                                    <h5 class="card-title">{{article.name|raw}}</h5>
+                                    <p class="card-text">{{article.content|u.truncate(150,'...',false)|raw}}</p>
+                                    <p class="card-text">Publié {{article.publicatedAt|ago}}</p>
+                                    <p class="card-text">Dernière mise à jours {{article.createdAt|ago}}</p>
+                                </div>
+                            </div>
+                        </a>
+                        {% if article.category is not empty %}
+                            <div class="bg-light p-1">
+                                {% for category in article.category %}
+                                    <span class="btn btn-outline-warning btn-sm">{{ category.name }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
                     </div>
-                </a>
-                <div class="bg-light p-1">
-                    {% for category in article.category %}
-                        <span class="btn btn-outline-warning btn-sm">{{ category.name }}</span>
-                    {% endfor %}
-                </div>
+                {% endfor %}
             </div>
-        {% endfor %}
-    </div>
-    <div class="text-light navigation">
-        {{ knp_pagination_render(articles,'base/pagination.html.twig') }}
+            <div class="text-light navigation">
+                {{ knp_pagination_render(articles,'base/pagination.html.twig') }}
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
