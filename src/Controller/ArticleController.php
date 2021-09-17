@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\SearchArticleType;
 use App\Repository\ArticleRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,12 +20,22 @@ class ArticleController extends AbstractController
         Request $request
         ): Response
     {
+
         $articles = $articleRepository->findAllPublic();
-        $articles = $paginator->paginate($articles,$request->query->getInt('page',1),12);
+
+        $form = $this->createForm(SearchArticleType::class);
+        $search = $form->handleRequest($request);
         
+        if($form->isSubmitted() && $form->isValid()){
+            if($search->get("search")->getData() !== null || !empty($search->get("categories")->getData()[0]) ){
+                $articles = $articleRepository->searchArticle($search);
+            }
+        }
+
         $currentURL = "articles";
         return $this->render('article/index.html.twig', [
-            'articles' => $articles,
+            'articles' => $paginator->paginate($articles,$request->query->getInt('page',1),12),
+            'form' => $form->createView(),
             'currentURL' => $currentURL
         ]);
     }
