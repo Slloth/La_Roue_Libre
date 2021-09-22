@@ -3,10 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
+use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=CommentRepository::class)
+ * @ORM\HasLifecycleCallbacks()
+ * @Table(name="comments")
  */
 class Comment
 {
@@ -123,5 +126,25 @@ class Comment
         $this->page = $page;
 
         return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     *
+     * @return void
+     */
+    public function onPrePresist()
+    {
+        $this->createdAt = new \DateTimeImmutable();
+    }
+
+    /**
+     * @ORM\PreUpdate
+     *
+     * @return void
+     */
+    public function onPreUpdate()
+    {
+        $this->updatedAt = new \DateTimeImmutable();
     }
 }
