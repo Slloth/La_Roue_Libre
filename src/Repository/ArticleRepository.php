@@ -56,6 +56,8 @@ class ArticleRepository extends ServiceEntityRepository
     {
         if($search){
             $query = $this->createQueryBuilder("a")
+                ->select('a','c')
+                ->leftjoin('a.category',"c")
                 ->andWhere('a.status = :status')
                 ->setParameter("status","Publique")
                 ;
@@ -71,8 +73,6 @@ class ArticleRepository extends ServiceEntityRepository
             if(!empty($search->get("categories")->getData()[0]))
             {
                 $query = $query
-                    ->select('a','c')
-                    ->join('a.category',"c")
                     ->andWhere('c.id IN (:categories)')
                     ->setParameter('categories', $search->get("categories")->getData())
                 ;
