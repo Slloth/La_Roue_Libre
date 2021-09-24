@@ -67,7 +67,6 @@ class ArticleRepository extends ServiceEntityRepository
                 $query = $query
                     ->andWhere("MATCH_AGAINST(a.name,a.content) AGAINST(:search boolean)>0")
                     ->setParameter("search", $search->get("search")->getData())
-                    
                 ;
             }
             if(!empty($search->get("categories")->getData()[0]))

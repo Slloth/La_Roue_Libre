@@ -4,7 +4,12 @@
 
 {% block body %}
 <div class="container pt-5 pb-5">
-    {{ page.content|raw}}
+    <div>
+        {{ page.content|raw}}
+    </div>
+    <div>
+        {% include "page/__comment.html.twig" %}
+    </div>
 </div>
 
 {% endblock %}

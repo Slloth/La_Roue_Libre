@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 
 class CommentCrudController extends AbstractCrudController
 {
@@ -22,6 +23,7 @@ class CommentCrudController extends AbstractCrudController
     {
         return [
             TextEditorField::new('content',"Contenu"),
+            BooleanField::new('isChecked', "Commentaire vérifié ?"),
             AssociationField::new('user',"Utilisateur"),
             AssociationField::new('article',"Associé à cette article"),
             AssociationField::new('page',"Associé à cette page"),
