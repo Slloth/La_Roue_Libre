@@ -2,24 +2,23 @@
 
 namespace App\Controller;
 
-use App\Entity\Comment;
-use App\Entity\Page;
 use App\Form\CommentType;
 use App\Repository\CommentRepository;
 use App\Repository\PageRepository;
+use App\Service\CommentService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PageController extends AbstractController
 {
-    public function __construct(private CommentRepository $commentRepository, private PageRepository $pageRepository)
+    public function __construct(private CommentRepository $commentRepository, private PageRepository $pageRepository, private CommentService $commentService)
     {
         $commentRepository;
         $pageRepository;
+        $commentService;
     }
     
     #[Route('/', methods: ['GET','POST'], name: 'home')]
@@ -33,12 +32,20 @@ class PageController extends AbstractController
             throw new NotFoundHttpException("Aucune page Accueil n'as été trouvé, veulliez vous rendre sur " .$adminRoute . " Pour en créer une.");
         }
 
+        $form = $this->createForm(CommentType::class);
+
+        $formRequest = $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $this->commentService->comment($formRequest,$home);
+            return $this->redirectToRoute('home');
+        }
         $currentURL = "accueil";
 
         return $this->render('page/index.html.twig', [
             'page' => $home,
             'commentsList' => $this->commentRepository->findBy(["page" => $home,"isChecked" => true]),
-            'form' => $this->comment($home,$request),
+            'form' => $form->createView(),
             'currentURL' => $currentURL
         ]);
     }
@@ -48,40 +55,22 @@ class PageController extends AbstractController
     {
         $page = $this->pageRepository->findOnePublic($slug);
         
+        $form = $this->createForm(CommentType::class);
+
+        $formRequest = $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $this->commentService->comment($formRequest,$page);
+            return $this->redirectToRoute('page',["slug" => $page->getSlug()]);
+        }
+
         $currentURL = substr($request->getRequestUri(),6);
         
         return $this->render('page/index.html.twig', [
             'page' => $page,
             'commentsList' => $this->commentRepository->findBy(["page" => $page,"isChecked" => true]),
-            'form' =>$this->comment($page,$request),
+            'form' => $form->createView(),
             'currentURL' => $currentURL
         ]);
-    }
-
-    private function comment(Page $page, Request $request): FormView
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $form = $this->createForm(CommentType::class);
-
-        $formView = $form->createView();
-
-        $commentForm = $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid()){
-            $comment = new Comment();
-            
-            $comment->setContent($commentForm->get("content")->getData())
-                    ->setPage($page)
-                    //->setParent()
-                    ->setIsChecked(false)
-                    ;
-            
-            $em->persist($comment);
-            $em->flush();
-
-            unset($form);
-        }
-        return $formView;
     }
 }

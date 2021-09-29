@@ -18,8 +18,11 @@ class CommentType extends AbstractType
                 'label' => false
             ])
             ->add('envoyer',SubmitType::class,[
+                'row_attr' => [
+                    "class" =>"d-grid gap-2"
+                ],
                 'attr' =>[
-                    'class' => "btn btn-outline-success my-2 my-sm-0"
+                    'class' => "btn btn-outline-success"
                 ]
             ])
         ;

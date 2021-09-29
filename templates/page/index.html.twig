@@ -4,11 +4,11 @@
 
 {% block body %}
 <div class="container pt-5 pb-5">
-    <div>
+    <div class="mb-5 pb-5">
         {{ page.content|raw}}
     </div>
-    <div>
-        {% include "page/__comment.html.twig" %}
+    <div class="mt-5 pt-5">
+        {% include "base/__comment.html.twig" %}
     </div>
 </div>
 
