@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\Comment;
 use App\Entity\Page;
+use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
@@ -11,18 +12,24 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 class CommentService
 {
 
-    public function __construct(private EntityManagerInterface $em, private FlashBagInterface $flash)
+    public function __construct(
+        private EntityManagerInterface $em, 
+        private FlashBagInterface $flash, 
+        private CommentRepository $commentRepository
+        )
     {
         $em;
         $flash;
+        $commentRepository;
     }
 
     public function comment(FormInterface $commentForm, Page $page)
-    {       
+    {
+        $parentId = $commentForm->get("parentId")->getData();
         $comment = new Comment();
         $comment->setContent($commentForm->get("content")->getData())
                 ->setPage($page)
-                //->setParent()
+                ->setParent($this->commentRepository->find($parentId))
                 ->setIsChecked(false)
                 ;
         

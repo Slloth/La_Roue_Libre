@@ -4,7 +4,7 @@
         {{ message }}
     </div>
 {% endfor %}
-<div class="row justify-content-lg-center ">
+<div class="row justify-content-lg-center">
     <div class="col-lg-4 ">
         {{ form_row(form.content) }}
     </div>
@@ -13,12 +13,54 @@
     </div>
 </div>
 {{ form_end(form) }}
-<div class="">
+<div class="mt-5">
     <ul style="list-style: none;">
         {% for comment in commentsList %}
-            <li>
-                {{ comment.content }}
-            </li>
+            {% if comment.parent == null %}
+                <li class="mb-4">
+                    <div class="card bg-secondary text-dark">
+                        <div class="card-header">
+                            <span class="align-middle">
+                                {{ comment.user }}
+                            </span>
+                            <span style="float: right;">
+                                {{ comment.createdAt|ago }}
+                                <a href="#addComment" data-reply="" data-id="{{ comment.id }}"><button class="btn btn-outline-warning btn-sm">Répondre</button></a>
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text col-10">{{ comment.content|raw }}</p>
+                        </div>
+                    </div>
+                    {% for reply in comment.replies %}
+                        <li class="mb-4">
+                            <div class="card bg-secondary text-dark ml-5">
+                                <div class="card-header">
+                                    <span class="align-middle">
+                                        {{ reply.user }}
+                                    </span>
+                                    <span style="float: right;">
+                                        {{ reply.createdAt|ago }}
+                                        <a href="#addComment" data-reply="" data-id="{{ reply.id }}"><button class="btn btn-outline-warning btn-sm">Répondre</button></a>
+                                    </span>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text col-10">{{ reply.content|raw }}</p>
+                                </div>
+                            </div>
+                     </li>
+                    {% endfor %}
+                </li>
+            {% endif %}
         {% endfor %}
     </ul>
 </div>
+<script>
+    window.onload = () =>{
+        document.querySelectorAll("[data-reply]").forEach(element => {
+            element.addEventListener("click", function(){
+                document.querySelector("#comment_parentId").value = this.dataset.id;
+            });
+        });
+    }
+</script>

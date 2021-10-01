@@ -27,6 +27,7 @@ class CommentCrudController extends AbstractCrudController
             AssociationField::new('user',"Utilisateur"),
             AssociationField::new('article',"Associé à cette article"),
             AssociationField::new('page',"Associé à cette page"),
+            AssociationField::new('parent',"Réponse à"),
             DateTimeField::new('createdAt',"Date de création"),
             DateTimeField::new('updatedAt',"Date de dernière mise à jours"),
         ];
@@ -43,6 +44,7 @@ class CommentCrudController extends AbstractCrudController
     {
         return $actions ->remove(Crud::PAGE_INDEX, Action::NEW)
                         ->remove(Crud::PAGE_INDEX, Action::EDIT)
+                        ->add(Crud::PAGE_INDEX,Action::DETAIL)
                         ;
     }
 }
