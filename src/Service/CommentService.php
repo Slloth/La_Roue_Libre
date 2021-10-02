@@ -29,9 +29,11 @@ class CommentService
         $comment = new Comment();
         $comment->setContent($commentForm->get("content")->getData())
                 ->setPage($page)
-                ->setParent($this->commentRepository->find($parentId))
                 ->setIsChecked(false)
                 ;
+        if($parentId !== null){
+            $comment->setParent($this->commentRepository->find($parentId));
+        }
         
         $this->em->persist($comment);
         $this->em->flush();

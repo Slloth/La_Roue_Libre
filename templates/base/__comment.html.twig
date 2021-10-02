@@ -5,10 +5,11 @@
     </div>
 {% endfor %}
 <div class="row justify-content-lg-center">
-    <div class="col-lg-4 ">
+    <div class="col-lg-4">
+        <p id="replyAt"></p>
         {{ form_row(form.content) }}
     </div>
-    <div class="col-lg-2">
+    <div class="col-lg-2 align-self-end">
         {{ form_row(form.envoyer) }}
     </div>
 </div>
@@ -17,6 +18,7 @@
     <ul style="list-style: none;">
         {% for comment in commentsList %}
             {% if comment.parent == null %}
+            <h5>Commentaire {{ loop.index }}</h5>
                 <li class="mb-4">
                     <div class="card bg-secondary text-dark">
                         <div class="card-header">
@@ -29,19 +31,19 @@
                             </span>
                         </div>
                         <div class="card-body">
-                            <p class="card-text col-10">{{ comment.content|raw }}</p>
+                            <p class="card-text col-10" id="commentContent_{{ comment.id }}">{{ comment.content|raw }}</p>
                         </div>
                     </div>
+                    <!-- Les Réponses des commentaires -->
                     {% for reply in comment.replies %}
-                        <li class="mb-4">
-                            <div class="card bg-secondary text-dark ml-5">
+                        <li class="mb-4 d-flex justify-content-end">
+                            <div class="card bg-secondary text-dark w-75">
                                 <div class="card-header">
                                     <span class="align-middle">
-                                        {{ reply.user }}
+                                        Réponse de {{ reply.user }}
                                     </span>
                                     <span style="float: right;">
                                         {{ reply.createdAt|ago }}
-                                        <a href="#addComment" data-reply="" data-id="{{ reply.id }}"><button class="btn btn-outline-warning btn-sm">Répondre</button></a>
                                     </span>
                                 </div>
                                 <div class="card-body">
@@ -55,12 +57,3 @@
         {% endfor %}
     </ul>
 </div>
-<script>
-    window.onload = () =>{
-        document.querySelectorAll("[data-reply]").forEach(element => {
-            element.addEventListener("click", function(){
-                document.querySelector("#comment_parentId").value = this.dataset.id;
-            });
-        });
-    }
-</script>
