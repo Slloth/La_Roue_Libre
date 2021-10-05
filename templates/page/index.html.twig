@@ -4,12 +4,13 @@
 
 {% block body %}
 <div class="container pt-5 pb-5">
-    <div class="mb-5 pb-5">
+    <section class="mb-5 pb-5">
         {{ page.content|raw}}
-    </div>
-    <div class="mt-5 pt-5" id="addComment">
-        {% include "base/__comment.html.twig" %}
-    </div>
+    </section>
+    <section class="mt-5 pt-5" id="addComment">
+        <h4>Liste des Commentaires</h4>
+        {% include "partial/__comment.html.twig" %}
+    </section>
 </div>
 
 {% endblock %}
