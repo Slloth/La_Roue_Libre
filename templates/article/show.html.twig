@@ -5,6 +5,6 @@
 {% block body %}
 <div class="container pt-5 pb-5">
     {{ article.content|raw}}
+    {% include "partial/__comment.html.twig" %}
 </div>
-
 {% endblock %}

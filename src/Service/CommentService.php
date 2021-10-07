@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\Article;
 use App\Entity\Comment;
 use App\Entity\Page;
 use App\Repository\CommentRepository;
@@ -23,14 +24,29 @@ class CommentService
         $commentRepository;
     }
 
-    public function comment(FormInterface $commentForm, Page $page)
+    /**
+     * Undocumented function
+     *
+     * @param FormInterface $commentForm
+     * @param Page $page
+     * @param Article $article
+     * @return void
+     */
+    public function comment(FormInterface $commentForm, Page $page = null, Article $article = null)
     {
         $parentId = $commentForm->get("parentId")->getData();
         $comment = new Comment();
-        $comment->setContent($commentForm->get("content")->getData())
-                ->setPage($page)
-                ->setIsChecked(false)
-                ;
+        $comment->setContent($commentForm->get("content")->getData());
+        
+        if($page){
+            $comment->setPage($page);
+        }
+        if($article)
+        {
+            $comment->setArticle($article);
+        }
+        $comment->setIsChecked(false);
+
         if($parentId !== null){
             $comment->setParent($this->commentRepository->find($parentId));
         }
