@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Form\CommentType;
 use App\Form\SearchArticleType;
 use App\Repository\ArticleRepository;
+use App\Repository\CommentRepository;
+use App\Service\CommentService;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -40,12 +43,31 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/article/{slug}',methods: ['GET'], name: 'article')]
-    public function show(string $slug, ArticleRepository $articleRepository): Response
+    #[Route('/article/{slug}',methods: ['GET','POST'], name: 'article')]
+    public function show(
+        string $slug, 
+        ArticleRepository $articleRepository, 
+        CommentRepository $commentRepository, 
+        CommentService $commentService, 
+        Request $request
+        ): Response
     {
         $article = $articleRepository->findOnePublic($slug);
+
+        $form = $this->createForm(CommentType::class);
+
+        $formRequest = $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $commentService->comment($formRequest,null,$article);
+            return $this->redirectToRoute('article',["slug" => $article->getSlug()]);
+        }
+
+
         return $this->render('article/show.html.twig', [
-            'article' => $article
+            'article' => $article,
+            'commentsList' => $commentRepository->findBy(["article" => $article,"isChecked" => true]),
+            'form' => $form->createView(),
         ]);
     }
 }

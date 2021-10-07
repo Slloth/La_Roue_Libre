@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Entity\Comment;
 use App\Entity\Page;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,6 +35,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('User', 'fas fa-users', User::class); 
         yield MenuItem::linkToCrud('Page', 'fas fa-columns', Page::class);
         yield MenuItem::linkToCrud('Article', 'fas fa-newspaper', Article::class);
-        yield MenuItem::linkToCrud('Category', 'fas fa-tag', Category::class);
+        yield MenuItem::linkToCrud('Categorie', 'fas fa-tag', Category::class);
+        yield MenuItem::linkToCrud('Commentaire', 'fas fa-comments', Comment::class);
     }
 }

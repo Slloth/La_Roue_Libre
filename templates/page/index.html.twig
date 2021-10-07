@@ -1,10 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ page.name|raw}}{% endblock %}
+{% block title %}{{ page.name|raw }}{% endblock %}
 
 {% block body %}
 <div class="container pt-5 pb-5">
-    {{ page.content|raw}}
+    <section class="mb-5 pb-5">
+        {{ page.content|raw}}
+    </section>
+    {% include "partial/__comment.html.twig" %}
 </div>
 
 {% endblock %}
