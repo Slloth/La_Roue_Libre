@@ -16,7 +16,8 @@ class MediaType extends AbstractType
                 'label' => false,
                 'attr' => [
                     "class"=> "btn btn-primary p-5",
-                    "value" => "MultiMedia"
+                    "value" => "Ouvrir le serveur",
+                    "readonly" => "readonly"
                 ]
             ])
         ;
