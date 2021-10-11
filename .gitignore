@@ -5,6 +5,7 @@
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
+/public/uploads/.tmb/
 /public/uploads/images/*
 !/public/uploads/images/placeholder.jpg
 /var/

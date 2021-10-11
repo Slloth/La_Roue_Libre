@@ -38,8 +38,7 @@ class ArticleCrudController extends AbstractCrudController
             SlugField::new('slug')->setTargetFieldName('name'),
             AssociationField::new('user',"Utilisateur")->hideOnForm(),
             AssociationField::new('category',"Catégorie(s)"),
-            //TextField::new('thumbnailFile')->setFormType(ElFinderType::class)->onlyOnForms(),
-            TextField::new('thumbnailFile')->setFormType(VichImageType::class)->onlyOnForms(),
+            TextField::new('thumbnailFile','Miniature')->setFormType(VichImageType::class)->onlyOnForms(),
             ImageField::new('thumbnail',"Miniature")->setBasePath("/uploads/images")->onlyOnIndex(),
             TextEditorField::new('content','Contenu')->setFormType(CKEditorType::class)
         ];
