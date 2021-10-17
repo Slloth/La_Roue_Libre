@@ -11,9 +11,11 @@
         </div>
     </a>
     {% if article.category is not empty %}
-        <div class="bg-light p-1">
+        <div class="bg-light d-flex flex-wrap rounded justify-content-evenly">
             {% for category in article.category %}
-                <span class="btn btn-outline-warning btn-sm">{{ category.name }}</span>
+                <div class="rounded px-1 categories-article" style="border:3px solid {{ category.color }}">
+                    {{ category.name }}
+                </div>
             {% endfor %}
         </div>
     {% endif %}
