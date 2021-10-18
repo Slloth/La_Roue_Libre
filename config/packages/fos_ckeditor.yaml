@@ -5,7 +5,9 @@ twig:
         - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
 fos_ck_editor:
     configs:
-        my_config:
+        private_config:
             toolbar: full
             filebrowserBrowseRoute: elfinder
-            filebrowserBrowseRouteParameters: [] 
+            filebrowserBrowseRouteParameters: []
+        public_config:
+            toolbar: full

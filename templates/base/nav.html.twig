@@ -26,6 +26,9 @@
           <a class="nav-link {% if currentURL is defined and currentURL == "articles" %} active {% endif %}" aria-current="page" href="{{ path('articles') }}">Articles</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link {% if currentURL is defined and currentURL == "contact" %} active {% endif %}" aria-current="page" href="{{ path('contact') }}">Contact</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li>
       </ul>
