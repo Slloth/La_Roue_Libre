@@ -16,13 +16,26 @@ class ContactType extends AbstractType
     {
         $builder
             ->add('fromEmail', EmailType::class,[
-                "label" => "Email"
+                "label" => false,
+                "row_attr" => [
+                    "class" => "mb-5"
+                ],
+                "attr" =>[
+                    "placeholder" => "Votre email"
+                ]
             ])
             ->add('content',CKEditorType::class,[
-                "label" => "Votre message",
-                "config_name" => "public_config"
+                "label" => false,
+                "config_name" => "public_config",
             ])
-            ->add('Envoyer',SubmitType::class)
+            ->add('Envoyer',SubmitType::class,[
+                'row_attr' => [
+                    "class" =>"d-grid gap-2 mt-5"
+                ],
+                'attr' =>[
+                    'class' => "btn btn-success py-3"
+                ]
+            ])
         ;
     }
 
