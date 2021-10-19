@@ -25,14 +25,14 @@ class CommentService
     }
 
     /**
-     * Undocumented function
+     * Effectue l'enregistrement des données du formulaire de commentaire en base de données
      *
      * @param FormInterface $commentForm
      * @param Page $page
      * @param Article $article
      * @return void
      */
-    public function comment(FormInterface $commentForm, Page $page = null, Article $article = null)
+    public function persistComment(FormInterface $commentForm, Page $page = null, Article $article = null)
     {
         $parentId = $commentForm->get("parentId")->getData();
         $comment = new Comment();

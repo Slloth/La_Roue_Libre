@@ -59,7 +59,7 @@ class ArticleController extends AbstractController
         $formRequest = $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $commentService->comment($formRequest,null,$article);
+            $commentService->persistComment($formRequest,null,$article);
             return $this->redirectToRoute('article',["slug" => $article->getSlug()]);
         }
 

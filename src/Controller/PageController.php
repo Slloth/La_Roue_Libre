@@ -37,7 +37,7 @@ class PageController extends AbstractController
         $formRequest = $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $this->commentService->comment($formRequest,$home);
+            $this->commentService->persistComment($formRequest,$home);
             return $this->redirectToRoute('home');
         }
         $currentURL = "accueil";
@@ -60,7 +60,7 @@ class PageController extends AbstractController
         $formRequest = $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $this->commentService->comment($formRequest,$page);
+            $this->commentService->persistComment($formRequest,$page);
             return $this->redirectToRoute('page',["slug" => $page->getSlug()]);
         }
 
