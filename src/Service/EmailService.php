@@ -28,6 +28,7 @@ class EmailService
         $mailer;
         $em;
         $flash;
+        #$_ENV["EMAIL_SITE"]
     }
     /**
      * Enregistre un email en base de données d'un utilisateur pour nous
@@ -38,8 +39,7 @@ class EmailService
     public function emailToUs(FormInterface $form): void
     {
         $email = $this->createEmail($form);
-        $email  ->setToEmail($_ENV["EMAIL_SITE"])
-                ->setSubject("Contact")
+        $email  ->setSubject("Contact")
                 ->setFromEmail($form->get("fromEmail")->getData());
         $this->persistEmail($email);
     }
@@ -54,8 +54,7 @@ class EmailService
     {
         $email = $this->createEmail($form);
         $email  ->setFromEmail($form->get("fromEmail")->getData())
-                ->setSubject("")
-                ->setToEmail($_ENV["EMAIL_SITE"]);
+                ->setSubject("");
         $this->persistEmail($email);
     }
 
