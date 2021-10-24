@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
+use phpDocumentor\Reflection\PseudoTypes\False_;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -68,6 +69,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user")
      */
     private $comments;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isSubscribedToNewsletter;
 
     public function __construct()
     {
@@ -189,6 +195,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function onPrePresist(){
         $this->createdAt = new \DateTimeImmutable();
+        $this->isSubscribedToNewsletter = false;
     }
 
     public function isVerified(): bool
@@ -266,5 +273,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString()
     {
         return $this->getEmail();   
+    }
+
+    public function getIsSubscribedToNewsletter(): ?bool
+    {
+        return $this->isSubscribedToNewsletter;
+    }
+
+    public function setIsSubscribedToNewsletter(bool $isSubscribedToNewsletter): self
+    {
+        $this->isSubscribedToNewsletter = $isSubscribedToNewsletter;
+
+        return $this;
     }
 }

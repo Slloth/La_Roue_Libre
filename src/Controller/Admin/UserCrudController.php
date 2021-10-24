@@ -27,7 +27,8 @@ class UserCrudController extends AbstractCrudController
             EmailField::new('email')->hideOnForm(),
             TextField::new('username',"Nom de l'utilisateur"),
             ArrayField::new('roles',"Rôles"),
-            BooleanField::new('isVerified',"Compte Vérifié ?")->hideOnForm()
+            BooleanField::new('isVerified',"Compte Vérifié ?")->hideOnForm(),
+            BooleanField::new('isSubscribedToNewsletter',"Abonné à la newsletter")->hideOnForm()
         ];
     }
 

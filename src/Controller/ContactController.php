@@ -18,7 +18,7 @@ class ContactController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
-            $emailService->emailToUs($form);
+            $emailService->persistEmail($form);
             return $this->redirectToRoute("contact");
         }
         $currentURL = "contact";

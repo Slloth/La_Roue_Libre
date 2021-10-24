@@ -2,6 +2,12 @@
 {% block content_title %}Envoie de email{% endblock %}
 {% block content %}
     <div class="d-flex justify-content-center align-items-center">
-        
+        {% include "partial/__flashMessages.html.twig" %}
+        {{ form_start(form) }}
+        {{ form_row(form.subject) }}
+        {{ form_widget(form.content) }}
+        {{ form_row(form.Envoyer) }}
+        <div class="visually-hidden">{{ form_row(form.emailFrom, {'required': false } ) }}</div>
+        {{ form_end(form) }}
     </div>
 {% endblock %}

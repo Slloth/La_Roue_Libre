@@ -27,7 +27,8 @@ class AppFixtures extends Fixture
         $user   ->setEmail('fiquet.noah@gmail.com')
                 ->setRoles(["ROLE_ADMIN"])
                 ->setCreatedAt(new \DateTimeImmutable())
-                ->setIsVerified(true);
+                ->setIsVerified(true)
+                ->setIsSubscribedToNewsletter(false);
         $password = $this->hasher->hashPassword($user,'Nono19970628');
         $user->setPassword($password);
 
