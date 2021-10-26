@@ -7,6 +7,7 @@ use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,17 +16,26 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('fromEmail', EmailType::class,[
+            ->add('emailFrom', EmailType::class,[
                 "label" => false,
                 "row_attr" => [
-                    "class" => "mb-5"
+                    "class" => "mb-3"
                 ],
                 "attr" =>[
                     "placeholder" => "Votre email"
                 ]
             ])
+            ->add('subject', TextType::class,[
+                "label" => false,   
+                "row_attr" => [
+                    "class" => "mb-3"
+                ],
+                "attr" =>[
+                    "placeholder" => "Le sujet de votre mail"
+                ]
+            ])
             ->add('content',CKEditorType::class,[
-                "label" => false,
+                "label" => false, 
                 "config_name" => "public_config",
             ])
             ->add('Envoyer',SubmitType::class,[

@@ -146,6 +146,12 @@
 						<tr>
 							<td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
 								<div style="font-family:helvetica;font-size:20px;line-height:1;text-align:left;color:#000000;">{{ body|raw }}</div>
+								{% if unSubscribe is defined %}
+									<div>
+										<p>Si vous voullez vous désaboner de la newsletter cliquez sur ce lien</p>
+										{{ unSubscribe }}
+									</div>
+								{% endif %}
 							</td>
 						</tr>
 						<tr>

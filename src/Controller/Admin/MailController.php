@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Form\ContactType;
 use App\Service\EmailService;
@@ -9,22 +9,22 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ContactController extends AbstractController
+class MailController extends AbstractController
 {
-    #[Route('/contact', name: 'contact')]
+    #[Route('/admin/mail', name: 'admin_mail')]
     public function index(Request $request, EmailService $emailService): Response
     {
         $form = $this->createForm(ContactType::class);
+
+        $form->get("emailFrom")->setData($_ENV["EMAIL_SITE"]);
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $emailService->persistEmail($form);
-            return $this->redirectToRoute("contact");
+        
+        if($form->isSubmitted() && $form->isValid()){
+            $emailService->persistEmail($form,$request->getSchemeAndHttpHost());
+            return $this->redirectToRoute("admin");
         }
-        $currentURL = "contact";
-        return $this->render('contact/index.html.twig', [
+        return $this->render('admin/mail/index.html.twig', [
             'form' => $form->createView(),
-            'currentURL' => $currentURL
         ]);
     }
 }

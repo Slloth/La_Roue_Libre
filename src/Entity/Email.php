@@ -3,8 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EmailRepository;
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=EmailRepository::class)
@@ -23,7 +23,17 @@ class Email
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $fromEmail;
+    private $emailTo;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $emailFrom;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $subject;
 
     /**
      * @ORM\Column(type="text")
@@ -40,29 +50,43 @@ class Email
      */
     private $isSend;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $toEmail;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $subject;
-
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getFromEmail(): ?string
+    public function getEmailTo(): ?string
     {
-        return $this->fromEmail;
+        return $this->emailTo;
     }
 
-    public function setFromEmail(string $fromEmail): self
+    public function setEmailTo(string $emailTo): self
     {
-        $this->fromEmail = $fromEmail;
+        $this->emailTo = $emailTo;
+
+        return $this;
+    }
+
+    public function getEmailFrom(): ?string
+    {
+        return $this->emailFrom;
+    }
+
+    public function setEmailFrom(string $emailFrom): self
+    {
+        $this->emailFrom = $emailFrom;
+
+        return $this;
+    }
+
+    public function getSubject(): ?string
+    {
+        return $this->subject;
+    }
+
+    public function setSubject(string $subject): self
+    {
+        $this->subject = $subject;
 
         return $this;
     }
@@ -102,37 +126,12 @@ class Email
 
         return $this;
     }
-
     /**
-     * @ORM\PrePersist
-     *
-     * @return void
-     */
+    * @ORM\PrePersist
+    *
+    * @return void
+    */
     public function onPrePresist(){
         $this->createdAt = new \DateTimeImmutable();
-    }
-
-    public function getToEmail(): ?string
-    {
-        return $this->toEmail;
-    }
-
-    public function setToEmail(string $toEmail): self
-    {
-        $this->toEmail = $toEmail;
-
-        return $this;
-    }
-
-    public function getSubject(): ?string
-    {
-        return $this->subject;
-    }
-
-    public function setSubject(string $subject): self
-    {
-        $this->subject = $subject;
-
-        return $this;
     }
 }
