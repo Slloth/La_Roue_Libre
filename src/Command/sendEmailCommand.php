@@ -4,7 +4,6 @@ namespace App\Command;
 
 use Error;
 use App\Service\EmailService;
-use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Console\Attribute\AsCommand;

@@ -4,33 +4,34 @@ namespace App\Service;
 
 use App\Entity\Email;
 use App\Repository\EmailRepository;
-use App\Repository\UserRepository;
+use App\Repository\NewsletterRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Error;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Component\Console\Exception\CommandNotFoundException;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Console\Exception\CommandNotFoundException;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 
-class EmailService 
+class EmailService
 {
+    private $host;
     public function __construct
     (
         private EmailRepository $emailRepository,
-        private UserRepository $userRepository,
+        private NewsletterRepository $newsletterRepository,
         private MailerInterface $mailer,
         private EntityManagerInterface $em,
-        private FlashBagInterface $flash
+        private FlashBagInterface $flash,
+        private UrlGeneratorInterface $urlGenerator,
     )
     {
         $emailRepository;
-        $userRepository;
+        $newsletterRepository;
         $mailer;
         $em;
         $flash;
+        $urlGenerator;
     }
     /**
      * Enregistre un email en base de données d'un utilisateur pour nous
@@ -38,8 +39,9 @@ class EmailService
      * @param FormInterface $form
      * @return void
      */
-    public function persistEmail(FormInterface $form): void
+    public function persistEmail(FormInterface $form,string $host): void
     {
+        $this->host = $host;
         $email = new Email();
 
         $email  ->setEmailFrom($form->get("emailFrom")->getData())
@@ -74,11 +76,10 @@ class EmailService
 
             if($mail->getEmailFrom() === $mail->getEmailTo()){
 
-                foreach($this->userRepository->findBy(["isSubscribedToNewsletter" => true]) as $test)
+                foreach($this->newsletterRepository->findBy(["isVerify" => true]) as $newsletter)
                 {
-                    $email->addBcc($test->getEmail());
+                    $email  ->addBcc($newsletter->getEmail());
                 }
-                //dd($email);
             }
             $this->mailer->send($email);
             $mail->setIsSend(true);

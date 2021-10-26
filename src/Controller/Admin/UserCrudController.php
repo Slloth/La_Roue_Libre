@@ -28,7 +28,6 @@ class UserCrudController extends AbstractCrudController
             TextField::new('username',"Nom de l'utilisateur"),
             ArrayField::new('roles',"Rôles"),
             BooleanField::new('isVerified',"Compte Vérifié ?")->hideOnForm(),
-            BooleanField::new('isSubscribedToNewsletter',"Abonné à la newsletter")->hideOnForm()
         ];
     }
 
@@ -42,6 +41,6 @@ class UserCrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
-        return $actions->remove(Crud::PAGE_INDEX, Action::NEW);
+        return $actions ->remove(Crud::PAGE_INDEX, Action::NEW);
     }
 }

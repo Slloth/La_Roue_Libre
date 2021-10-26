@@ -70,11 +70,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $comments;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isSubscribedToNewsletter;
-
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -273,17 +268,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString()
     {
         return $this->getEmail();   
-    }
-
-    public function getIsSubscribedToNewsletter(): ?bool
-    {
-        return $this->isSubscribedToNewsletter;
-    }
-
-    public function setIsSubscribedToNewsletter(bool $isSubscribedToNewsletter): self
-    {
-        $this->isSubscribedToNewsletter = $isSubscribedToNewsletter;
-
-        return $this;
     }
 }
