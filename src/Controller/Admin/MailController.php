@@ -16,7 +16,7 @@ class MailController extends AbstractController
     {
         $form = $this->createForm(ContactType::class);
 
-        $form->get("emailFrom")->setData($_ENV["EMAIL_SITE"]);
+        $form->get("emailFrom")->setData($_ENV["EMAIL_ADDRESS"]);
         $form->handleRequest($request);
         
         if($form->isSubmitted() && $form->isValid()){
