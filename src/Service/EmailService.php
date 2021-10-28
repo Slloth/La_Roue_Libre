@@ -45,7 +45,7 @@ class EmailService
         $email = new Email();
 
         $email  ->setEmailFrom($form->get("emailFrom")->getData())
-                ->setEmailTo($_ENV["EMAIL_SITE"])
+                ->setEmailTo($_ENV["EMAIL_ADDRESS"])
                 ->setSubject($form->get("subject")->getData())
                 ->setContent($form->get("content")->getData())
                 ->setIsSend(false);

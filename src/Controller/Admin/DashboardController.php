@@ -41,6 +41,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Article', 'fas fa-newspaper', Article::class);
         yield MenuItem::linkToCrud('Categorie', 'fas fa-tag', Category::class);
         yield MenuItem::linkToCrud('Commentaire', 'fas fa-comments', Comment::class);
+        yield MenuItem::linkToRoute('Envrionnement', 'fas fa-cogs', 'admin_env');
         yield MenuItem::section("Application","fas fa-window-maximize");
         yield MenuItem::linkToRoute("Envoie d'email", 'fas fa-envelope', 'admin_mail');
         yield MenuItem::linkToRoute('MultiMédias', 'fas fa-images','admin_media');
