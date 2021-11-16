@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 
 class EmailService
 {
-    private $host;
     public function __construct
     (
         private EmailRepository $emailRepository,
@@ -39,9 +38,8 @@ class EmailService
      * @param FormInterface $form
      * @return void
      */
-    public function persistEmail(FormInterface $form,string $host): void
+    public function persistEmail(FormInterface $form): void
     {
-        $this->host = $host;
         $email = new Email();
 
         $email  ->setEmailFrom($form->get("emailFrom")->getData())
