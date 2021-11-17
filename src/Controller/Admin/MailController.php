@@ -20,7 +20,7 @@ class MailController extends AbstractController
         $form->handleRequest($request);
         
         if($form->isSubmitted() && $form->isValid()){
-            $emailService->persistEmail($form,$request->getSchemeAndHttpHost());
+            $emailService->persistEmail($form);
             return $this->redirectToRoute("admin");
         }
         return $this->render('admin/mail/index.html.twig', [
