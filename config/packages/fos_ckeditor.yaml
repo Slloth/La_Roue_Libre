@@ -4,6 +4,7 @@ twig:
     form_themes:
         - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
 fos_ck_editor:
+    default_config: private_config
     configs:
         private_config:
             toolbar: full
