@@ -3,8 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Newsletter;
-use App\Form\NewsletterType;
+use App\Form\SubscribeType;
 use App\Repository\NewsletterRepository;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -14,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Mailer\MailerInterface;
 
-class NewsletterController extends AbstractController
+class SubscribeNewsletterController extends AbstractController
 {
 
     public function __construct(private EntityManagerInterface $em ,private NewsletterRepository $newsletterRepository)
@@ -27,7 +28,7 @@ class NewsletterController extends AbstractController
     public function register(Request $request, MailerInterface $mailer): Response
     {
         $newsletter = new Newsletter();
-        $form = $this->createForm(NewsletterType::class);
+        $form = $this->createForm(SubscribeType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -35,11 +36,16 @@ class NewsletterController extends AbstractController
             $newsletter->setIsVerify(false);
 
             $this->em = $this->getDoctrine()->getManager();
-            $this->em->persist($newsletter);
-            $this->em->flush();
-    
+            try{
+                $this->em->persist($newsletter);
+                $this->em->flush();
+            }
+            catch(UniqueConstraintViolationException $e){
+                $this->addFlash('danger', 'Cette Email est déjà inscrit à la newsletter.');
+                return $this->redirectToRoute('home');
+            }
             $mailer->send((new TemplatedEmail())
-                    ->from(new Address($_ENV["EMAIL_SITE"], 'Mail Bot'))
+                    ->from(new Address($_ENV["EMAIL_ADDRESS"], 'Mail Bot'))
                     ->to($newsletter->getEmail())
                     ->subject('Please Confirm your Email')
                     ->context([
@@ -77,8 +83,12 @@ class NewsletterController extends AbstractController
         return $this->redirectToRoute('home');
     }
 
-    #[Route('/newsletter/unsubscribe', name: 'newsletter_unsubscribe')]
-    public function unSubscribe(Request $request,){
-        $newsletter = $this->newsletterRepository->find($request->get("email"));
+    #[Route('/newsletter/unsubscribe/{id}', name: 'newsletter_unsubscribe')]
+    public function unSubscribe($id){
+        $emailNewsletter = $this->newsletterRepository->find($id);
+        $this->em->remove($emailNewsletter);
+        $this->em->flush();
+        $this->addFlash("warning","Votre adresse email : ".$emailNewsletter->getEmail()." à bien été désinscrit de la newsletter");
+        return $this->redirectToRoute('home');
     }
 }
