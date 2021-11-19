@@ -2,11 +2,12 @@
 
 namespace App\Form;
 
-use App\Entity\Newsletter;
+use App\Entity\Email;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,26 +16,43 @@ class NewsletterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class,[
-                'label' => "Adresse Email"
-            ])
-            ->add('agreeTerms', CheckboxType::class,[
-                "mapped" => false,
-                "label" => "Acceptez les terms"
-            ])
-            ->add('Souscrire', SubmitType::class,[
-                'attr' => [
-                    "class" => "btn btn-outline-light mb-4"
+            ->add('emailFrom', EmailType::class,[
+                "label" => false,
+                "row_attr" => [
+                    "class" => "mb-3"
+                ],
+                "attr" =>[
+                    "placeholder" => "Votre email"
                 ]
-            ]);
+            ])
+            ->add('subject', TextType::class,[
+                "label" => false,   
+                "row_attr" => [
+                    "class" => "mb-3"
+                ],
+                "attr" =>[
+                    "placeholder" => "Le sujet de votre mail"
+                ]
+            ])
+            ->add('content',CKEditorType::class,[
+                "label" => false, 
+                "config_name" => "private_config",
+            ])
+            ->add('Envoyer',SubmitType::class,[
+                'row_attr' => [
+                    "class" =>"d-grid gap-2 mt-5"
+                ],
+                'attr' =>[
+                    'class' => "btn btn-success py-3"
+                ]
+            ])
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Newsletter::class,
-            //'csrf_protection' => false
+            'data_class' => Email::class,
         ]);
     }
 }
