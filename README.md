@@ -14,6 +14,14 @@ un certain nombre de dépendance sont déjà installer :
 * orm-fixtures
 * fakerphp/faker
 * phpstan\phpstan
+* easycorp/easyadmin-bundle
+* friendsofsymfony/ckeditor-bundle
+* helios-ag/fm-elfinder-bundle
+* knplabs/knp-paginator-bundle
+* knplabs/knp-time-bundle
+* vich/uploader-bundle
+* twig/string-extra
+* twig/extra-bundle
 ###### dépendance npm
 * sass-loader
 * sass
@@ -24,7 +32,7 @@ un certain nombre de dépendance sont déjà installer :
 
 Créer par FIQUET Noah inspiréer du travaille de Yoandev => https://yoandev.co
 
-La taille total des conteneurs est de 1.6 GB
+La taille total des conteneurs est de 1.72 GB
 
 # Pré-requis
 
@@ -40,17 +48,19 @@ Docker =>   https://www.docker.com/get-started
 
 ### Lorsque Git & Docker sont installées sur votre machine, vous n'avez plus qu'a lancer les commandes suivantes :
 
-1. `git clone https://github.com/Slloth/DefautSymfonyApli.git .`
+1. `git clone https://github.com/Slloth/DefautSymfonyApli.git .` ou `git clone https://github.com/Slloth/DefautSymfonyApli.git myproject`
 
 2. `docker-compose up -d`
 
-3. `./install.sh`
+3. Créer un fichier .env.local et y ajouter la rubrique (#.env.local exemple) provenant de .env
+
+4. `./install.sh`
 
 ###### L'installation peux prendre quelques minutes
 
 ### Si vous voulez lancer le serveur web interne de Symfony utiliser cette commande :
 
-4. (Optionnelle) `docker exec -it www_docker_symfony symfony serve -d`
+5. (Optionnelle) `docker exec -it www_docker_symfony symfony serve -d`
 
 # Liste des ports
 
@@ -73,8 +83,10 @@ Si vous souhaitez les modifiers, les ports se trouve dans le fichier **docker-co
 
 # Éteindre les conteneurs
 
-Une fois que vous avez terminé, utiliser la commande => `docker-compose down`
+Une fois que vous avez terminé, utiliser la commande. => `docker-compose down`
 
-Puis démarrer un Terminal et utilisé la commande => `wsl --shutdown`
+# Tips
+
+Lorsque vous quittez docker utilisez la commande suivante dans un terminal. => `wsl --shutdown`
 
 Sinon le processus Vmmem va continuer de tourner et il peux consommé beaucoup de ressources.
