@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Problème serveur</h1>
     <p>Le serveur à rencontré un problème, veuillez contactez l'administrateur</p>
-    <p>Le code est : {{status_code}}</p>
-    <p>Le texte est : {{status_text}}</p>
-    <p>détails est : {{exception.message}}</p>
+    <p>Le code erreur : {{status_code}}</p>
+    <p>Le texte : {{status_text}}</p>
+    <p>détails : {{exception.message}}</p>
 {% endblock %}
