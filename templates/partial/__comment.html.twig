@@ -25,6 +25,9 @@
                                 <div class="card bg-secondary text-dark">
                                     <div class="card-header">
                                         <span class="align-middle">
+                                            {% if comment.user == null %}
+                                                Utilisateur anonyme
+                                            {% endif %}
                                             {{ comment.user }}
                                         </span>
                                         <span style="float: right;">
