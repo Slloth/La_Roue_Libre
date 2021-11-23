@@ -28,7 +28,7 @@ class AppFixtures extends Fixture
                 ->setRoles(["ROLE_ADMIN"])
                 ->setCreatedAt(new \DateTimeImmutable())
                 ->setIsVerified(true);
-        $password = $this->hasher->hashPassword($user,'Nono19970628');
+        $password = $this->hasher->hashPassword($user,'123456789');
         $user->setPassword($password);
 
         $manager->persist($user);
