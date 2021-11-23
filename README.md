@@ -52,15 +52,19 @@ Docker =>   https://www.docker.com/get-started
 
 2. `docker-compose up -d`
 
-3. Créer un fichier .env.local et y ajouter la rubrique (#.env.local exemple) provenant de .env
+3. Modifier la rubrique (# Compte administrateur) pour y enregistrer le compte administrateur du site
 
-4. `./install.sh`
+4. Créer un fichier .env.local et y ajouter la rubrique (#.env.local exemple) provenant de .env
+
+5. `./install.sh`
+
+6. (Optionnelle) Vous pouvez supprimez la rubrique (# Compte administrateur) dans le .env
 
 ###### L'installation peux prendre quelques minutes
 
 ### Si vous voulez lancer le serveur web interne de Symfony utiliser cette commande :
 
-5. (Optionnelle) `docker exec -it www_docker_symfony symfony serve -d`
+7. (Optionnelle) `docker exec -it www_docker_symfony symfony serve -d`
 
 # Liste des ports
 
