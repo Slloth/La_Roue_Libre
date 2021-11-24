@@ -46,7 +46,7 @@ class UserTest extends KernelTestCase
     public function testEntityUserEmailIsValide(): void
     {
         $user = new User();
-        $user   ->setEmail("a@b.c")
+        $user   ->setEmail("test@test.com")
                 ->setPassword("password")
                 ->setIsVerified(true)
                 ->setCreatedAt(new DateTimeImmutable())
@@ -66,7 +66,7 @@ class UserTest extends KernelTestCase
                 ->setPassword("password")
                 ->setCreatedAt(new DateTimeImmutable())
         ;
-        $errors = $this->getValidationErrors($user,1);
+        $errors = $this->getValidationErrors($user,2);
 
         $this->assertEquals("Cette valeur n'est pas une adresse email valide.",$errors[0]->getMessage());
     }
