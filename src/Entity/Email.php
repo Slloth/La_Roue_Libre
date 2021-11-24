@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\EmailRepository;
 use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EmailRepository::class)
@@ -23,16 +24,28 @@ class Email
     /**
      * @ORM\Column(type="string", length=255)
      */
+    #[Assert\Email(
+        message: 'L\'email : {{ value }} n\'est pas un email valide',
+    )]
     private $emailTo;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
+    #[Assert\Email(
+        message: 'L\'email : {{ value }} n\'est pas un email valide',
+    )]
     private $emailFrom;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
+    #[Assert\Length(
+        min: 3,
+        max: 255,
+        minMessage: 'Votre titre doit contenir au minimum {{ limit }} caractères',
+        maxMessage: 'Votre titre doit contenir au maximum {{ limit }} caractères',
+    )]
     private $subject;
 
     /**

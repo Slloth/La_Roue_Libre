@@ -10,6 +10,7 @@ use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -29,6 +30,12 @@ class Article
     /**
      * @ORM\Column(type="string", length=255)
      */
+    #[Assert\Length(
+        min: 3,
+        max: 255,
+        minMessage: 'Votre titre doit contenir au minimum {{ limit }} caractères',
+        maxMessage: 'Votre titre doit contenir au maximum {{ limit }} caractères',
+    )]
     private $name;
 
     /**

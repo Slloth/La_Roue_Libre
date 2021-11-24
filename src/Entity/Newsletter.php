@@ -23,9 +23,11 @@ class Newsletter
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\Email
      * @Assert\NotBlank
      */
+    #[Assert\Email(
+        message: 'L\'email : {{ value }} n\'est pas un email valide',
+    )]
     private $email;
 
     /**

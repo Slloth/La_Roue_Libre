@@ -29,6 +29,12 @@ class Page
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      */
+    #[Assert\Length(
+        min: 3,
+        max: 255,
+        minMessage: 'Votre titre doit contenir au minimum {{ limit }} caractères',
+        maxMessage: 'Votre titre doit contenir au maximum {{ limit }} caractères',
+    )]
     private string $name;
 
     /**
