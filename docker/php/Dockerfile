@@ -1,4 +1,4 @@
-FROM php:8.0.9-apache
+FROM php:8.1.0-apache
 
 # Instalation
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf \

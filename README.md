@@ -1,12 +1,12 @@
 # Présentation
 
-DefautSymfonyApli est un environement de développement conteneurisé pour une application symfony
+DefautSymfonyApli est un environement de développement conteneurisé pour une application symfony.
 
-un certain nombre de dépendance sont déjà installer :
+Un certain nombre de dépendance sont déjà installer :
 
 ###### dépendance composer
 * Symfony CLI
-* GIT (Si vous voulez utilisez GIT installer dans le conteneur plutot que celui de votre machine, paramètrer user.name et user.email)
+* GIT (Si vous voulez utilisez GIT installer dans le conteneur plutot que celui de votre machine, paramètrer le user.name et user.email)
 * npm
 * friendsofphp/php-cs-fixer
 * spatie/phpunit-watcher
@@ -38,7 +38,7 @@ La taille total des conteneurs est de 1.72 GB
 
 un minimum de connaissance sur l'utilisation de docker => https://docs.docker.com & Symfony => https://symfony.com/doc/current/index.html
 
-Insataller Git & Docker sur votre machine, les autres pré-requis sont conteneurisés.
+Installer Git & Docker sur votre machine, les autres pré-requis sont conteneurisés.
 
 Git =>      https://git-scm.com/downloads
 Docker =>   https://www.docker.com/get-started
@@ -52,9 +52,9 @@ Docker =>   https://www.docker.com/get-started
 
 2. `docker-compose up -d`
 
-3. Modifier la rubrique (# Compte administrateur) pour y enregistrer le compte administrateur du site
+3. Modifier la rubrique (# Compte administrateur) provenant du .env pour y enregistrer le compte administrateur du site
 
-4. Créer un fichier .env.local et y ajouter la rubrique (#.env.local exemple) provenant de .env
+4. Créer un fichier .env.local et y ajouter la rubrique (#.env.local exemple) provenant du .env
 
 5. `./install.sh`
 

@@ -6,7 +6,6 @@ services:
         container_name: www_docker_symfony
         ports:
             - "80:80"
-            - "8000:8000"
         volumes:
             - ./docker/php/vhosts:/etc/apache2/sites-enabled
             - ./:/var/www/DefautSymfonyApli:cached
