@@ -31,7 +31,5 @@ RUN  curl -sS https://get.symfony.com/cli/installer | bash \
 
 RUN mkdir /var/www/var && mkdir /var/www/vendor
 
-VOLUME /symfony/var
-VOLUME /symfony/vendor
 
 WORKDIR /var/www/DefautSymfonyApli
