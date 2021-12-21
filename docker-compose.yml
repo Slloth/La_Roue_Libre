@@ -8,7 +8,9 @@ services:
             - "80:80"
         volumes:
             - ./docker/php/vhosts:/etc/apache2/sites-enabled
-            - ./:/var/www/DefautSymfonyApli:cached
+            - ./:/var/www/DefautSymfonyApli:delegated
+            - var:/var/www/var
+            - vendor:/var/www/vendor
         restart: always
         networks:
             - dev
@@ -61,3 +63,5 @@ networks:
 
 volumes: 
     db-defautSymfonyApli:
+    vendor:
+    var:
