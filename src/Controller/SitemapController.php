@@ -33,7 +33,6 @@ class SitemapController extends AbstractController
         $urls[] = ["loc" => $this->generateUrl('app_reset_password')];
         $urls[] = ["loc" => $this->generateUrl('newsletter_register')];
         $urls[] = ["loc" => $this->generateUrl('newsletter_verify_email')];
-        $urls[] = ["loc" => $this->generateUrl('newsletter_unsubscribe')];
         $urls[] = ["loc" => $this->generateUrl('contact')];
         $urls[] = ["loc" => $this->generateUrl('articles')];
 
