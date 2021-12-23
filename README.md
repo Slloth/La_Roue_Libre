@@ -94,5 +94,3 @@ Une fois que vous avez terminé, utiliser la commande. => `docker-compose down`
 Lorsque vous quittez docker utilisez la commande suivante dans un terminal. => `wsl --shutdown`
 
 Sinon le processus Vmmem va continuer de tourner et il peux consommer beaucoup de ressources.
-
-JE SUIS UN TEST
