@@ -29,7 +29,5 @@ RUN  curl -sS https://get.symfony.com/cli/installer | bash \
 \
     &&  pecl install apcu && docker-php-ext-enable apcu
 
-RUN mkdir /var/www/var && mkdir /var/www/vendor
-
 
 WORKDIR /var/www/DefautSymfonyApli
