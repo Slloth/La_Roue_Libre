@@ -50,7 +50,7 @@ class EnvController extends AbstractController
     {
         $fields = [];
         if(file_exists($path)){
-            // Recupère toutes les lignes ne commencent pas par un #
+            // Recupère toutes les lignes ne commençant pas par un #
             $file = new SplFileObject($path);
             while ($line = $file->fgets()){
                 if(!empty($line) || $line !== "#")
