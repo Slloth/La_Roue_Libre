@@ -2,17 +2,18 @@
 
 namespace App\DataFixtures;
 
+use Faker\Factory;
+use App\Entity\Page;
 use App\Entity\User;
+use DateTimeImmutable;
 use App\Entity\Article;
 use App\Entity\Category;
-use App\Entity\Page;
-use DateTimeImmutable;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Faker\Factory;
 
-class AppFixtures extends Fixture
+class AppFixtures extends Fixture implements FixtureGroupInterface
 {
     private $hasher;
     private $faker;
@@ -24,7 +25,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $user = new User();
-        $user   ->setEmail('fiquet.noah@gmail.com')
+        $user   ->setEmail('admin@test.com')
                 ->setRoles(["ROLE_ADMIN"])
                 ->setCreatedAt(new \DateTimeImmutable())
                 ->setIsVerified(true);
@@ -82,5 +83,10 @@ class AppFixtures extends Fixture
 
     private function generateDateTime():string {
         return $this->faker->dateTimeBetween(new \DateTime("2021-01-01"),new \DateTime("2021-12-30"))->format("Y/m/d H:i:s");
+    }
+
+    public static function getGroups():array
+    {
+        return ["dev"];
     }
 }
