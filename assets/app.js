@@ -15,3 +15,4 @@ import { Tooltip, Toast, Popover } from 'bootstrap';
 import './bootstrap';
 
 import './comment';
+import './images/banniere2v5.png';

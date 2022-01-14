@@ -1,37 +1,27 @@
 <!-- Footer -->
-<footer class="bg-dark text-center txt-lg-start text-white">
+<footer class="text-center txt-lg-start bg-light">
   <!-- Grid container -->
   <div class="container p-4">
     <!-- Section: Social media -->
     <section class="mb-4">
       <!-- Facebook -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"
         ><i class="fab fa-facebook-f"></i
       ></a>
 
       <!-- Twitter -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"
         ><i class="fab fa-twitter"></i
       ></a>
 
-      <!-- Google -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="fab fa-google"></i
-      ></a>
-
       <!-- Instagram -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"
         ><i class="fab fa-instagram"></i
       ></a>
 
       <!-- Linkedin -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"
         ><i class="fab fa-linkedin-in"></i
-      ></a>
-
-      <!-- Github -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="fab fa-github"></i
       ></a>
     </section>
     <!-- Section: Social media -->
@@ -45,9 +35,25 @@
     <!-- Section: Text -->
     <section class="mb-4">
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
-        repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
-        eum harum corrupti dicta, aliquam sequi voluptate quas.
+        PROPRIÉTÉ Ce site est édité par La Roue Libre Le Havre, association loi 1901, basée au 3 Rue Bonnivet, 76600 Le Havre / 09 84 11 52 95 / rouelibre.lehavre@gmail.com <br>
+        Le.la représentant.e légal.e et responsable de publication est le.la président.e de l’association.<br>
+        SIRET : 793 933 474 00017 / APE : 9529Z<br>
+        CRÉDITS Création du site : Noah Fiquet & Hugo Labbé<br>
+        Création des formulaires & interfaces: Hugo Labbé<br>
+        Webmaster : Caroline Chicot, chargée de communication de La Roue Libre, larouelibre.communication@gmail.com<br>
+        Hébergeur : SAS OVH, 2 rue Kellermann – BP 80157 – 59100 ROUBAIX.<br>
+        Plateforme utilisée : Php - Symfony.<br>
+        PROPRIÉTÉ INTELLECTUELLE<br>
+        Toute reproduction totale ou partielle du contenu du site est prohibée, au sens de l’article L.713-2 du Code de la propriété intellectuelle. Sauf mention contraire, les droits des photographies et documents présents sur le site sont la propriété exclusive de La Roue Libre.<br>
+
+        RESPONSABILITÉ<br>
+
+        La Roue Libre met tout en œuvre pour assurer l’exactitude et la mise à jour de l’ensemble des informations fournies sur son site mais ne peut garantir que celles-ci soient toujours complètes et dépourvues de toute erreur.<br>
+        La Roue Libre se réserve le droit de corriger ou de modifier, à tout moment et sans préavis, le contenu de ce site. Toute tentative de transfert d’information vers un site tiers ou de modification des informations contenues sur ce site est interdite et peut entraîner des poursuites civiles ou pénales de la part de La Roue Libre.<br>
+        La Roue Libre ne pourra être tenu responsable de l’ensemble des liens hypertextes ou de tout autre élément informatique utilisé, directement ou indirectement, à partir du « site », l’existence d’un lien n’ayant pas pour effet de transférer la responsabilité de La Roue Libre.<br>
+        La Roue Libre ne garantit pas et ne prend aucun engagement concernant des sites tiers et ne sera pas responsable de leur contenu.<br>
+        La Roue Libre ne peut pas garantir que le serveur accueillant le «site» est exempt de virus et que les fichiers accessibles par téléchargement sur ce site web ou tout autre site tiers sont dépourvus de virus ou d’erreurs de fonctionnement. Dans la mesure où des virus peuvent être transmis via Internet, nous recommandons aux utilisateurs de prendre les mesures nécessaires afin de protéger leur ordinateur contre toute intrusion, contre tout problème technique qui pourrait endommager les composants de l’ordinateur de l’utilisateur ou des données qui pourraient y être stockées.<br>
+        En tout état de cause La Roue Libre ou un de ses sous-traitants ne pourra être responsable d’un dommage quelconque pouvant se produire lors de la connexion et de la navigation sur le site.<br>
       </p>
     </section>
     <!-- Section: Text -->
@@ -62,48 +68,27 @@
 
           <ul class="list-unstyled mb-0">
             <li>
-              <a href="{{ path('home') }}" class="text-white">Accueil</a>
+              <a href="{{ path('home') }}" class="text-dark">Accueil</a>
             </li>
             {% for page in pages() %}
             <li>
-              <a href="{{ path('page', {'slug': page.slug }) }}" class="text-white">{{ page.name }}</a>
+              <a href="{{ path('page', {'slug': page.slug }) }}" class="text-dark">{{ page.name }}</a>
             </li>
             {% endfor %}
             <li>
-              <a href="{{ path('articles') }}" class="text-white">Articles</a>
+              <a href="{{ path('articles') }}" class="text-dark">Articles</a>
             </li>
             <li>
-              <a href="{{ path('contact') }}" class="text-white">Contact</a>
+              <a href="{{ path('contact') }}" class="text-dark">Contact</a>
             </li>
             <!--<li>
               <a href="" target="_blank" class="text-white">site_map</a>
             </li>-->
             <li>
-              <a href="{{ path('app_register') }}" class="text-white">Inscription</a>
+              <a href="{{ path('app_register') }}" class="text-dark">Inscription</a>
             </li>
             <li>
-              <a href="{{ path('app_login') }}" class="text-white">connexion</a>
-            </li>
-          </ul>
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase">Links</h5>
-
-          <ul class="list-unstyled mb-0">
-            <li>
-              <a href="#!" class="text-white">Link 1</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 2</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 3</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 4</a>
+              <a href="{{ path('app_login') }}" class="text-dark">connexion</a>
             </li>
           </ul>
         </div>
@@ -115,16 +100,16 @@
 
           <ul class="list-unstyled mb-0">
             <li>
-              <a href="#!" class="text-white">Link 1</a>
+              <a href="#!" class="text-dark">Link 1</a>
             </li>
             <li>
-              <a href="#!" class="text-white">Link 2</a>
+              <a href="#!" class="text-dark">Link 2</a>
             </li>
             <li>
-              <a href="#!" class="text-white">Link 3</a>
+              <a href="#!" class="text-dark">Link 3</a>
             </li>
             <li>
-              <a href="#!" class="text-white">Link 4</a>
+              <a href="#!" class="text-dark">Link 4</a>
             </li>
           </ul>
         </div>
@@ -136,16 +121,37 @@
 
           <ul class="list-unstyled mb-0">
             <li>
-              <a href="#!" class="text-white">Link 1</a>
+              <a href="#!" class="text-dark">Link 1</a>
             </li>
             <li>
-              <a href="#!" class="text-white">Link 2</a>
+              <a href="#!" class="text-dark">Link 2</a>
             </li>
             <li>
-              <a href="#!" class="text-white">Link 3</a>
+              <a href="#!" class="text-dark">Link 3</a>
             </li>
             <li>
-              <a href="#!" class="text-white">Link 4</a>
+              <a href="#!" class="text-dark">Link 4</a>
+            </li>
+          </ul>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Links</h5>
+
+          <ul class="list-unstyled mb-0">
+            <li>
+              <a href="#!" class="text-dark">Link 1</a>
+            </li>
+            <li>
+              <a href="#!" class="text-dark">Link 2</a>
+            </li>
+            <li>
+              <a href="#!" class="text-dark">Link 3</a>
+            </li>
+            <li>
+              <a href="#!" class="text-dark">Link 4</a>
             </li>
           </ul>
         </div>
@@ -160,7 +166,7 @@
   <!-- Copyright -->
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
     © 2020 Copyright:
-    <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
   </div>
   <!-- Copyright -->
 </footer>

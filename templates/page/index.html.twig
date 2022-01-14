@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ page.name|raw }}{% endblock %}
+{% block title %}{{ page.name|raw }}{% endblock title %}
 
 {% block body %}
-<div class="container pt-5 pb-5">
-    <section class="mb-5 pb-5">
-        {% include "partial/__flashMessages.html.twig" %}
-        {{ page.content|raw}}
-    </section>
-    {% include "partial/__comment.html.twig" %}
-</div>
+    <div class = "container pt-5 pb-5">
+        <section class = "mb-5 pb-5">
+            {% include "partial/__flashMessages.html.twig" %}
+            {{ page.content|raw}}
+        </section>
+        {% include "partial/__comment.html.twig" %}
+    </div>
 
-{% endblock %}
+{% endblock body %}

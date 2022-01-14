@@ -15,7 +15,8 @@
     </head>
     <body>
         {% include "base/nav.html.twig" %}
-         <main class="bg-dark text-light min-vh-100 text-break">
+        <div class="row justify-content-lg-center"> <img src="{{ asset('build/images/banniere2v5.png') }}"/> </div>
+        <main class="min-vh-100 text-break">
             {% block body %}{% endblock %}
         </main>
         {% include "base/footer.html.twig" %}
