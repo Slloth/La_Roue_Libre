@@ -2,13 +2,13 @@
 
 namespace App\Controller\Admin;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use SplFileObject;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
 
-class AdherentController extends AbstractController
+
+class AdherentController extends EasyAdminController
 {
     #[Route('/admin/adherent', name: 'admin_adherent')]
     public function index(): Response
@@ -35,13 +35,5 @@ class AdherentController extends AbstractController
         }
         //dd($fields);
         return $fields;
-    }
-
-    public function configureFilters(Filters $filters): Filters
-    {
-        return $filters
-            ->add('nom')
-            ->add('date')
-        ;
     }
 }
