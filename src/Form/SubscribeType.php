@@ -11,7 +11,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SubscribeType extends AbstractType
-{
+{ 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -20,11 +20,11 @@ class SubscribeType extends AbstractType
             ])
             ->add('agreeTerms', CheckboxType::class,[
                 "mapped" => false,
-                "label" => "Acceptez les terms"
+                "label" => "Acceptez les terms",
             ])
             ->add('Souscrire', SubmitType::class,[
                 'attr' => [
-                    "class" => "btn btn-outline-light mb-4"
+                    "class" => "btn btn-outline-dark mb-4"
                 ]
             ]);
         ;

@@ -29,6 +29,7 @@ class ArticleRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')
             ->andWhere('p.status = :status')
             ->andWhere('p.publicatedAt <= :date')
+            ->addOrderBy('p.publicatedAt','DESC')
             ->setParameters(['status' => 'Publique','date' => new \DateTime()])
             ->getQuery()
             ->getResult()
