@@ -1,4 +1,5 @@
 fm_elfinder:
+    assets_path: /assets # chemin des fichiers JS
     instances:
         default:
             locale: fr # Langue
@@ -7,7 +8,7 @@ fm_elfinder:
             theme: smoothness # Thème à utiliser
             path_prefix: http://test.la-roue-libre.com/
             connector:
-                debug: true # Désactive le débug
+                debug: false # Désactive le débug
                 roots:
                     uploads:
                         show_hidden: false # Masque les fichiers cachés
