@@ -19,3 +19,9 @@
 #subscribe_agreeTerms{
     border-color: black;
 }
+
+tbody, td, tfoot, th, thead, tr
+{
+    border: solid;
+    border-color: inherit;
+}
