@@ -51,48 +51,62 @@ class AdherentController extends AbstractController
                             {
                                 $result[] = $line;
                             } 
+                        }
                     }
                 }
+                $records[1] = $result;
             }
-            $records[1] = $result;
+            //dd($records);
+            return $records;
         }
-        //dd($records);
-        return $records;
-    }
         
-    private function readFileAdh($path): Array
-    {
-        $fields = [];
-        $drapeau = false;
-        $headers = [];
-        $i = 0;
-        if(file_exists($path)){
-
-            // On ouvre le fichier
-            $file = new SplFileObject($path);
-
-            // On affiche pas la dernière ligne qui sera toujours une ligne vide
-            while (!$file->eof()){
-                if(!$drapeau)
-                {
-                    // On Récupère les en-têtes
-                    $headers = explode("\t",$file->fgets());
-                    $drapeau = true;
+        private function readFileAdh($path): Array
+        {
+            $fields = [];
+            $drapeau = false;
+            $headers = [];
+            $i = 0;
+            if(file_exists($path)){
+    
+                // On ouvre le fichier
+                $file = new SplFileObject($path);
+    
+                // On affiche pas la dernière ligne qui sera toujours une ligne vide
+                while (!$file->eof()){
+                    if(!$drapeau)
+                    {
+                        // On Récupère les en-têtes
+                        $headers = explode("\t",$file->fgets());
+                        $drapeau = true;
+                    }
+                    // On récupère les valeurs
+                    $tmp = explode("\t",$file->fgets());
+    
+                    for($j=0; $j< count($headers);$j++)
+                    {
+                        // On créer un nouveau tableau qui lie chaque valeur à son en-tête
+                        $fields[$i][$headers[$j]] = $tmp[$j];
+                    }
+                    $i++;
                 }
-                // On récupère les valeurs
-                $tmp = explode("\t",$file->fgets());
+                // On ferme la connexion au fichier
+                $file = null;
+            }
+            return [$headers,$fields];
+        }
 
-                for($j=0; $j< count($headers);$j++)
-                {
-                    // On créer un nouveau tableau qui lie chaque valeur à son en-tête
-                    $fields[$i][$headers[$j]] = $tmp[$j];
+        private function unique_multidim_array($array, $key) {
+            $temp_array = array();
+            $i = 0;
+            $key_array = array();
+        
+            foreach($array as $val) {
+                if (!in_array($val[$key], $key_array)) {
+                    $key_array[$i] = $val[$key];
+                    $temp_array[$i] = $val;
                 }
                 $i++;
             }
-            // On ferme la connexion au fichier
-            $file = null;
+            return $temp_array;
         }
-        return [$headers,$fields];
-    }
-
 }
