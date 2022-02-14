@@ -3,6 +3,7 @@
 {% block content_title %}Hello AdherentController!{% endblock %}
 
 {% block main %}
+<<<<<<< HEAD
     <table class="datagrid text-center">
         <thead>
             <tr>
@@ -20,5 +21,27 @@
                 <tr>
             {% endfor %}
         </tbody>
+=======
+    <table class="datagrid">
+        {% for items in test %}
+            {% if loop.index == 1 %}
+                <thead>
+                    <tr>
+                        {% for item in items %}
+                            <td>{{ item }}</td>
+                        {% endfor %}
+                    </tr>
+                </thead>
+            {% else %}
+                <tbody>
+                    <tr>
+                    {% for item in items %}
+                        <td>{{ item }}</td>
+                    {% endfor %}
+                    <tr>
+                </tbody>
+            {% endif %}
+        {% endfor %}
+>>>>>>> 35551aca20b2b9df1470cf834effd88560cd75f1
     </table>
 {% endblock %}
