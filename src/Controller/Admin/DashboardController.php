@@ -36,7 +36,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section("Administration","fas fa-users-cog");
         yield MenuItem::linkToCrud('Utilisateur', 'fas fa-users', User::class)->setPermission("ROLE_ADMIN");
         yield MenuItem::section("Contenu","fas fa-blog");
-        yield MenuItem::linkToRoute('Adhérent', 'fas fa-users', 'admin_adherent');
         yield MenuItem::linkToCrud('Newsletter', 'fas fa-users', Newsletter::class);
         yield MenuItem::linkToCrud('Page', 'fas fa-columns', Page::class);
         yield MenuItem::linkToCrud('Article', 'fas fa-newspaper', Article::class);
