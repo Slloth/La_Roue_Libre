@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Adherent;
+use App\Repository\AdherentRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -22,7 +23,6 @@ class AdherentCrudController extends AbstractCrudController
         return Adherent::class;
     }
 
-    
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -30,7 +30,9 @@ class AdherentCrudController extends AbstractCrudController
             TextField::new('nom','Nom'),
             TelephoneField::new('telephone', 'Téléphopne'),
             EmailField::new('email', 'Email'),
-            AssociationField::new('souscriptionAdhesions', 'Dernière adhésion'),
+            AssociationField::new('souscriptionAdhesions', 'Dernière adhésion')->setQueryBuilder(
+                fn (AdherentRepository $repository) => $repository->findLastInscription()
+            ),
             DateTimeField::new('CreatedAt', 'Date création adhésion')
         ];
     }

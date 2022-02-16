@@ -22,19 +22,17 @@ class AdherentRepository extends ServiceEntityRepository
     // /**
     //  * @return Adherent[] Returns an array of Adherent objects
     //  */
-    /*
-    public function findByExampleField($value)
+    
+    public function findLastInscription()
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('a.inscription_at', 'ASC')
+            ->setMaxResults(1)
             ->getQuery()
-            ->getResult()
+            ->getOneOrNullResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Adherent

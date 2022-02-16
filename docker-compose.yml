@@ -5,7 +5,7 @@ services:
         build: docker/php
         container_name: www_docker_symfony
         ports:
-            - "81:80"
+            - "80:80"
         volumes:
             - ./docker/php/vhosts:/etc/apache2/sites-enabled
             - ./:/var/www/La_Roue_Libre:delegated
