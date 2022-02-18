@@ -3,11 +3,12 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Adherent;
-use App\Repository\AdherentRepository;
+use App\Repository\SouscriptionAdhesionRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
@@ -30,9 +31,7 @@ class AdherentCrudController extends AbstractCrudController
             TextField::new('nom','Nom'),
             TelephoneField::new('telephone', 'Téléphopne'),
             EmailField::new('email', 'Email'),
-            AssociationField::new('souscriptionAdhesions', 'Dernière adhésion')->setQueryBuilder(
-                fn (AdherentRepository $repository) => $repository->findLastInscription()
-            ),
+            ArrayField::new('souscriptionAdhesions', 'Adhésions'),
             DateTimeField::new('CreatedAt', 'Date création adhésion')
         ];
     }
@@ -46,9 +45,7 @@ class AdherentCrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
-        return $actions ->remove(Crud::PAGE_INDEX, Action::NEW)
-                        ->remove(Crud::PAGE_INDEX, Action::EDIT)
-                        ->add(Crud::PAGE_INDEX,Action::DETAIL)
+        return $actions ->add(Crud::PAGE_INDEX, Action::DETAIL)
                         ;
     }
     

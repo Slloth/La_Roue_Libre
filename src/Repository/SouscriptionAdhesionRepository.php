@@ -19,22 +19,9 @@ class SouscriptionAdhesionRepository extends ServiceEntityRepository
         parent::__construct($registry, SouscriptionAdhesion::class);
     }
 
-    // /**
-    //  * @return SouscriptionAdhesion[] Returns an array of SouscriptionAdhesion objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+    ///**
+   // * @return SouscriptionAdhesion Returns an array of SouscriptionAdhesion objects
+    //*/
 
     /*
     public function findOneBySomeField($value): ?SouscriptionAdhesion

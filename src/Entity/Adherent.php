@@ -44,6 +44,11 @@ class Adherent
      */
     private $CreatedAt;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Prenom;
+
     public function __construct()
     {
         $this->souscriptionAdhesions = new ArrayCollection();
@@ -128,6 +133,18 @@ class Adherent
     public function setCreatedAt(\DateTimeImmutable $CreatedAt): self
     {
         $this->CreatedAt = $CreatedAt;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->Prenom;
+    }
+
+    public function setPrenom(string $Prenom): self
+    {
+        $this->Prenom = $Prenom;
 
         return $this;
     }

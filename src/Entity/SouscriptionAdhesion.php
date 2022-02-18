@@ -74,4 +74,9 @@ class SouscriptionAdhesion
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->getInscriptionAt()->format("d/m/Y");
+    }
 }

@@ -18,22 +18,7 @@ class AdherentRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Adherent::class);
     }
-
-    // /**
-    //  * @return Adherent[] Returns an array of Adherent objects
-    //  */
     
-    public function findLastInscription()
-    {
-        return $this->createQueryBuilder('a')
-            ->orderBy('a.inscription_at', 'ASC')
-            ->setMaxResults(1)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    
-
     /*
     public function findOneBySomeField($value): ?Adherent
     {
