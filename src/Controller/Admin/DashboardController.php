@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Adherent;
 use App\Entity\Article;
 use App\Entity\Category;
 use App\Entity\Comment;
@@ -35,6 +36,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::section("Administration","fas fa-users-cog");
         yield MenuItem::linkToCrud('Utilisateur', 'fas fa-users', User::class)->setPermission("ROLE_ADMIN");
+        yield MenuItem::section("Adhérents","fas fa-blog");
+        yield MenuItem::linkToCrud('Adherent', 'fas fa-users', Adherent::class);
         yield MenuItem::section("Contenu","fas fa-blog");
         yield MenuItem::linkToCrud('Newsletter', 'fas fa-users', Newsletter::class);
         yield MenuItem::linkToCrud('Page', 'fas fa-columns', Page::class);
