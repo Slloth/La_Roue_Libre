@@ -18,3 +18,4 @@ import './comment';
 import './images/banniere2v5.png';
 import './images/bandeau.png';
 import './images/favicon.ico';
+import './images/Logo.png';
