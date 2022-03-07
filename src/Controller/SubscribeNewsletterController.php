@@ -45,9 +45,9 @@ class SubscribeNewsletterController extends AbstractController
                 return $this->redirectToRoute('home');
             }
             $mailer->send((new TemplatedEmail())
-                    ->from(new Address($_ENV["EMAIL_ADDRESS"], 'Mail Bot'))
+                    ->from(new Address($_ENV["EMAIL_ADDRESS"], 'La Roue Libre'))
                     ->to($newsletter->getEmail())
-                    ->subject('Please Confirm your Email')
+                    ->subject('S\'il vous plait confirmez votre email')
                     ->context([
                         'signedUrl' => $request->getSchemeAndHttpHost().$this->generateUrl(
                             "newsletter_verify_email",
