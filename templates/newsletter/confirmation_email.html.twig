@@ -1,12 +1,13 @@
-<img class="mw-100" src="{{ asset('build/images/banniere2v5.png') }}"/>
+<div style="display:flex;flex-direction:column;align-items:center">
+    <img style="width:100px;height:100px;justify-content:center;" src="{{ absolute_url(asset('build/images/Logo.png')) }}" alt="Logo de La Roue Libre"/>
 
-<h1>Bonjour, veulliez confirmez votre Email pour reçevoir la newsletter</h1>
+    <h1>Bonjour, veulliez confirmez votre Email pour reçevoir la newsletter</h1>
 
-<p>
-    S'il vous plait confirmez votre adresse Email en cliquant sur le lien suivant: <br><br>
-    <a href="{{ signedUrl }}">Je confirme mon email</a>.
-</p>
+    <p>
+        S'il vous plait confirmez votre adresse Email en cliquant sur le lien suivant: <a href="{{ signedUrl }}">{{ signedUrl }}</a>.
+    </p>
 
-<p>
-    Merci de votre confiance
-</p>
+    <p>
+        Merci de votre confiance
+    </p>
+</div>
