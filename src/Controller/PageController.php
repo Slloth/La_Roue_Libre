@@ -54,7 +54,6 @@ class PageController extends AbstractController
     public function renderPage(string $slug, Request $request): Response
     {
         $page = $this->pageRepository->findOnePublic($slug);
-        
         $form = $this->createForm(CommentType::class);
 
         $formRequest = $form->handleRequest($request);
