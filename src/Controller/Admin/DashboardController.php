@@ -8,6 +8,7 @@ use App\Entity\Category;
 use App\Entity\Comment;
 use App\Entity\Newsletter;
 use App\Entity\Page;
+use App\Entity\SouscriptionAdhesion;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -38,6 +39,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Utilisateur', 'fas fa-users', User::class)->setPermission("ROLE_ADMIN");
         yield MenuItem::section("Adhérents","fas fa-blog");
         yield MenuItem::linkToCrud('Adherent', 'fas fa-users', Adherent::class);
+        yield MenuItem::linkToCrud('SouscriptionAdhesion', 'fas fa-users', SouscriptionAdhesion::class);
         yield MenuItem::section("Contenu","fas fa-blog");
         yield MenuItem::linkToCrud('Newsletter', 'fas fa-users', Newsletter::class);
         yield MenuItem::linkToCrud('Page', 'fas fa-columns', Page::class);

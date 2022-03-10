@@ -29,7 +29,7 @@ class SouscriptionAdhesion
     private $adherents;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Adhesion::class, inversedBy="souscriptionAdhesions")
+     * @ORM\ManyToOne(targetEntity=Adhesion::class, inversedBy="souscriptionAdhesions", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $adhesions;
