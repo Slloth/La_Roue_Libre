@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Adherent;
 use App\Repository\SouscriptionAdhesionRepository;
+use App\Repository\AdherentRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -29,10 +30,13 @@ class AdherentCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm()->hideOnIndex(),
             TextField::new('nom','Nom'),
-            TelephoneField::new('telephone', 'Téléphopne'),
+            TelephoneField::new('telephone', 'Téléphone'),
             EmailField::new('email', 'Email'),
-            ArrayField::new('souscriptionAdhesions', 'Adhésions'),
-            DateTimeField::new('CreatedAt', 'Date création adhésion')
+            ArrayField::new(strval(AssociationField::new('souscriptionAdhesions', 'Adhésions')->setQueryBuilder(function ($queryBuilder) {
+                return $queryBuilder
+                                    ->join('entity.adhesions','a')
+                                    ->andWhere('entity.id = 3');
+            })) ),
         ];
     }
 
@@ -48,5 +52,18 @@ class AdherentCrudController extends AbstractCrudController
         return $actions ->add(Crud::PAGE_INDEX, Action::DETAIL)
                         ;
     }
-    
+
+    public function relationAdhe(AdherentRepository $adherentRepository): array
+    {
+        $sql = '
+            SELECT type FROM adhesion
+            JOIN souscription_adhesion ON souscription_adhesion.id = adhesion.id
+            JOIN adherent ON souscription_adhesion.id = adherent.id;
+            ';
+        $stmt = $adherentRepository->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
 }

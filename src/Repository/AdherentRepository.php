@@ -19,7 +19,7 @@ class AdherentRepository extends ServiceEntityRepository
         parent::__construct($registry, Adherent::class);
     }
     
-    /*
+    
     public function findOneBySomeField($value): ?Adherent
     {
         return $this->createQueryBuilder('a')
@@ -29,5 +29,5 @@ class AdherentRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
+    
 }
