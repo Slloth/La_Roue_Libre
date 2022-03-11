@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=SouscriptionAdhesionRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class SouscriptionAdhesion
 {
@@ -73,6 +74,16 @@ class SouscriptionAdhesion
         $this->adhesions = $adhesions;
 
         return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     *
+     * @return void
+     */
+    public function onPrePresist()
+    {
+        $this->InscriptionAt = new \DateTimeImmutable();
     }
 
     public function __toString()

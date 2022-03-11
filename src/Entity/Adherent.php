@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=AdherentRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Adherent
 {
@@ -132,9 +133,19 @@ class Adherent
 
     public function setCreatedAt(\DateTimeImmutable $CreatedAt): self
     {
-        $this->CreatedAt = $CreatedAt;
+        $this->CreatedAt = $CreatedAt;  
 
         return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     *
+     * @return void
+     */
+    public function onPrePresist()
+    {
+        $this->CreatedAt = new \DateTimeImmutable();
     }
 
     public function getPrenom(): ?string
@@ -150,7 +161,7 @@ class Adherent
     }
 
     public function __toString()
-    {
-        return $this->getNom() + " " + $this->getPrenom();
+    { 
+        return $this->getNom() . " " . $this->getPrenom();
     }
 }
