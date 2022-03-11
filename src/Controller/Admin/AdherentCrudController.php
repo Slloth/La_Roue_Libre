@@ -29,22 +29,18 @@ class AdherentCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-       
         //dd($adhesions);
         return [
-            IdField::new('id')->hideOnForm()->hideOnIndex(),
-            TextField::new('nom','Nom'),
-            TextField::new('Prenom','Prénom'),
+            TextField::new('fullName','nom complet'),
             TelephoneField::new('telephone', 'Téléphone'),
             EmailField::new('email', 'Email'),
+            TextField::new('cp','Code Postal'),
             //DateTimeField::new('createdAt'),
-            AssociationField::new('souscriptionAdhesions')->formatValue(function ($value, $entity) {
-                return implode(",",$entity->getSouscriptionAdhesions()->toArray());
-            })->hideOnForm(),
-            AssociationField::new('souscriptionAdhesions')->autocomplete()->hideOnIndex()->formatValue(static function($value){
-                
-            })
-            //->setFormTypeOptions(['by_reference' => false])
+            ArrayField::new('adhesions')->onlyOnDetail(),
+            AssociationField::new('adhesions')->formatValue(function ($value, $entity) {
+                $lastEntity = $entity->getAdhesions()->toArray();
+                return end($lastEntity);
+            })->onlyOnIndex(),
         ];
     }
 

@@ -3,15 +3,17 @@
 namespace App\Entity;
 
 use App\Repository\AdhesionRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Table;
 
 /**
  * @ORM\Entity(repositoryClass=AdhesionRepository::class)
+ * @Table(name="adhesions")
  */
 class Adhesion
 {
+    public const CHOICES = ['12' => 12, '26' => 26, '46' => 46];
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -20,45 +22,28 @@ class Adhesion
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $type;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private $prix;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="datetime_immutable",options={"default":"CURRENT_TIMESTAMP"})
      */
-    private $description;
+    private $inscritedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=SouscriptionAdhesion::class, mappedBy="adhesions")
+     * @ORM\ManyToOne(targetEntity=Adherent::class, inversedBy="adhesions")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $souscriptionAdhesions;
+    private $adherents;
 
-    public function __construct()
-    {
-        $this->souscriptionAdhesions = new ArrayCollection();
+    public function __construct() {
+        $this->inscritedAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): self
-    {
-        $this->type = $type;
-
-        return $this;
     }
 
     public function getPrix(): ?int
@@ -73,50 +58,33 @@ class Adhesion
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getInscritedAt(): ?\DateTimeImmutable
     {
-        return $this->description;
+        return $this->inscritedAt;
     }
 
-    public function setDescription(string $description): self
+    /*public function setInscritedAt(\DateTimeImmutable $inscritedAt): self
     {
-        $this->description = $description;
+        $this->inscritedAt = $inscritedAt;
 
         return $this;
+    }*/
+
+    public function getAdherents(): ?Adherent
+    {
+        return $this->adherents;
     }
 
-    /**
-     * @return Collection|SouscriptionAdhesion[]
-     */
-    public function getSouscriptionAdhesions(): Collection
+    public function setAdherents(?Adherent $adherents): self
     {
-        return $this->souscriptionAdhesions;
-    }
-
-    public function addSouscriptionAdhesion(SouscriptionAdhesion $souscriptionAdhesion): self
-    {
-        if (!$this->souscriptionAdhesions->contains($souscriptionAdhesion)) {
-            $this->souscriptionAdhesions[] = $souscriptionAdhesion;
-            $souscriptionAdhesion->setAdhesions($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSouscriptionAdhesion(SouscriptionAdhesion $souscriptionAdhesion): self
-    {
-        if ($this->souscriptionAdhesions->removeElement($souscriptionAdhesion)) {
-            // set the owning side to null (unless already changed)
-            if ($souscriptionAdhesion->getAdhesions() === $this) {
-                $souscriptionAdhesion->setAdhesions(null);
-            }
-        }
+        $this->adherents = $adherents;
 
         return $this;
     }
 
     public function __toString()
     {
-        return $this->getType();
+        return $this->getInscritedAt()->format('d/m/Y') . ' (' . $this->getPrix() . '€)';
     }
+
 }

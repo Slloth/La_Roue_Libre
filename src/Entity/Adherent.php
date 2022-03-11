@@ -6,10 +6,12 @@ use App\Repository\AdherentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Table;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AdherentRepository::class)
- * @ORM\HasLifecycleCallbacks()
+ * @Table(name="adherents")
  */
 class Adherent
 {
@@ -23,36 +25,40 @@ class Adherent
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $nom;
+    private $fullName;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=10)
      */
+    #[Assert\Regex('/^((\+)33|0)[1-9](\d{2}){4}$/','Votre numéro de téléphone est invalide')]
     private $telephone;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255,unique=true)
      */
+    #[Assert\Email(null,'Votre email est invalide')]
     private $email;
+    
+    /**
+     * @ORM\Column(type="string", length=7, nullable=true)
+     */
+    #[Assert\Regex('/^(([0-8][0-9])|(9[0-5]))[0-9]{3}$/','Votre code postal est invalide')]
+    private $cp;
 
     /**
-     * @ORM\OneToMany(targetEntity=SouscriptionAdhesion::class, mappedBy="adherents")
+     * @ORM\Column(type="datetime_immutable", options={"default":"CURRENT_TIMESTAMP"})
      */
-    private $souscriptionAdhesions;
+    private $createdAt;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\OneToMany(targetEntity=Adhesion::class, mappedBy="adherents", orphanRemoval=true)
      */
-    private $CreatedAt;
+    private $adhesions;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $Prenom;
-
-    public function __construct()
-    {
-        $this->souscriptionAdhesions = new ArrayCollection();
+    public function __construct() {
+        
+        $this->createdAt = new \DateTimeImmutable();
+        $this->adhesions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -60,14 +66,14 @@ class Adherent
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getFullName(): ?string
     {
-        return $this->nom;
+        return $this->fullName;
     }
 
-    public function setNom(string $nom): self
+    public function setFullName(string $fullName): self
     {
-        $this->nom = $nom;
+        $this->fullName = $fullName;
 
         return $this;
     }
@@ -77,7 +83,7 @@ class Adherent
         return $this->telephone;
     }
 
-    public function setTelephone(?string $telephone): self
+    public function setTelephone(string $telephone): self
     {
         $this->telephone = $telephone;
 
@@ -89,79 +95,70 @@ class Adherent
         return $this->email;
     }
 
-    public function setEmail(?string $email): self
+    public function setEmail(string $email): self
     {
         $this->email = $email;
 
         return $this;
     }
 
-    /**
-     * @return Collection|SouscriptionAdhesion[]
-     */
-    public function getSouscriptionAdhesions(): Collection
+    
+    public function getCp(): ?string
     {
-        return $this->souscriptionAdhesions;
+        return $this->cp;
+    }
+    
+    public function setCp(string $cp): self
+    {
+        $this->cp = $cp;
+        
+        return $this;
     }
 
-    public function addSouscriptionAdhesion(SouscriptionAdhesion $souscriptionAdhesion): self
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
-        if (!$this->souscriptionAdhesions->contains($souscriptionAdhesion)) {
-            $this->souscriptionAdhesions[] = $souscriptionAdhesion;
-            $souscriptionAdhesion->setAdherents($this);
+        return $this->createdAt;
+    }
+    
+    /*public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+    
+        return $this;
+    }*/
+
+    /**
+     * @return Collection|Adhesion[]
+     */
+    public function getAdhesions(): Collection
+    {
+        return $this->adhesions;
+    }
+
+    public function addAdhesion(Adhesion $adhesion): self
+    {
+        if (!$this->adhesions->contains($adhesion)) {
+            $this->adhesions[] = $adhesion;
+            $adhesion->setAdherents($this);
         }
 
         return $this;
     }
 
-    public function removeSouscriptionAdhesion(SouscriptionAdhesion $souscriptionAdhesion): self
+    public function removeAdhesion(Adhesion $adhesion): self
     {
-        if ($this->souscriptionAdhesions->removeElement($souscriptionAdhesion)) {
+        if ($this->adhesions->removeElement($adhesion)) {
             // set the owning side to null (unless already changed)
-            if ($souscriptionAdhesion->getAdherents() === $this) {
-                $souscriptionAdhesion->setAdherents(null);
+            if ($adhesion->getAdherents() === $this) {
+                $adhesion->setAdherents(null);
             }
         }
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->CreatedAt;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $CreatedAt): self
-    {
-        $this->CreatedAt = $CreatedAt;  
-
-        return $this;
-    }
-
-    /**
-     * @ORM\PrePersist
-     *
-     * @return void
-     */
-    public function onPrePresist()
-    {
-        $this->CreatedAt = new \DateTimeImmutable();
-    }
-
-    public function getPrenom(): ?string
-    {
-        return $this->Prenom;
-    }
-
-    public function setPrenom(string $Prenom): self
-    {
-        $this->Prenom = $Prenom;
-
-        return $this;
-    }
-
     public function __toString()
-    { 
-        return $this->getNom() . " " . $this->getPrenom();
+    {
+        return $this->getFullName();
     }
 }
