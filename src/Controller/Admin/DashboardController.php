@@ -9,14 +9,12 @@ use App\Entity\Category;
 use App\Entity\Comment;
 use App\Entity\Newsletter;
 use App\Entity\Page;
-use App\Entity\SouscriptionAdhesion;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
-use PhpParser\Node\Expr\Yield_;
 
 class DashboardController extends AbstractDashboardController
 {

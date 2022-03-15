@@ -3,19 +3,13 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Adherent;
-use App\Repository\AdherentRepository;
-use App\Repository\AdhesionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
-use Symfony\Component\Validator\Constraints\Choice;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TelephoneField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -35,7 +29,6 @@ class AdherentCrudController extends AbstractCrudController
             TelephoneField::new('telephone', 'Téléphone'),
             EmailField::new('email', 'Email'),
             TextField::new('cp','Code Postal'),
-            //DateTimeField::new('createdAt'),
             ArrayField::new('adhesions')->onlyOnDetail(),
             AssociationField::new('adhesions')->formatValue(function ($value, $entity) {
                 $lastEntity = $entity->getAdhesions()->toArray();
@@ -54,6 +47,6 @@ class AdherentCrudController extends AbstractCrudController
     public function configureActions(Actions $actions): Actions
     {
         return $actions ->add(Crud::PAGE_INDEX, Action::DETAIL)
-                        ;
+        ;
     }
 }
