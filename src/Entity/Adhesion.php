@@ -12,8 +12,6 @@ use Doctrine\ORM\Mapping\Table;
  */
 class Adhesion
 {
-    public const CHOICES = ['12' => 12, '26' => 26, '46' => 46];
-
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -22,7 +20,7 @@ class Adhesion
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="decimal", precision=5, scale=2)
      */
     private $prix;
 
@@ -37,6 +35,11 @@ class Adhesion
      */
     private $adherents;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $branch;
+
     public function __construct() {
         $this->inscritedAt = new \DateTimeImmutable();
     }
@@ -46,12 +49,12 @@ class Adhesion
         return $this->id;
     }
 
-    public function getPrix(): ?int
+    public function getPrix(): ?string
     {
         return $this->prix;
     }
 
-    public function setPrix(int $prix): self
+    public function setPrix(string $prix): self
     {
         $this->prix = $prix;
 
@@ -62,13 +65,6 @@ class Adhesion
     {
         return $this->inscritedAt;
     }
-
-    /*public function setInscritedAt(\DateTimeImmutable $inscritedAt): self
-    {
-        $this->inscritedAt = $inscritedAt;
-
-        return $this;
-    }*/
 
     public function getAdherents(): ?Adherent
     {
@@ -84,7 +80,19 @@ class Adhesion
 
     public function __toString()
     {
-        return $this->getInscritedAt()->format('d/m/Y') . ' (' . $this->getPrix() . '€)';
+        return $this->getInscritedAt()->format('d/m/Y') . ' (' . $this->getPrix() . '€) à '. $this->getBranch();
+    }
+
+    public function getBranch(): ?string
+    {
+        return $this->branch;
+    }
+
+    public function setBranch(string $branch): self
+    {
+        $this->branch = $branch;
+
+        return $this;
     }
 
 }
