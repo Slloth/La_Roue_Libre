@@ -3,7 +3,6 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Adherent;
-use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -23,7 +22,6 @@ class AdherentCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        //dd($adhesions);
         return [
             TextField::new('fullName','nom complet'),
             TelephoneField::new('telephone', 'Téléphone'),
@@ -40,7 +38,9 @@ class AdherentCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->SetPageTitle('index',"Adherent")
+            ->SetPageTitle('index',"Liste des adherents")
+            ->SetPageTitle('new',"Ajoutez un nouvel adherent")
+            ->SetPageTitle('edit',"Modifiez l'adherent")
         ;
     }
 

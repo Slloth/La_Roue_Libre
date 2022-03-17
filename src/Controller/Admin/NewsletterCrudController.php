@@ -31,7 +31,7 @@ class NewsletterCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->SetPageTitle('index',"inscrits")
+            ->SetPageTitle('index',"inscrits à la newsletter")
         ;
     }
 

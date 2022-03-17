@@ -9,6 +9,7 @@ use App\Entity\Category;
 use App\Entity\Comment;
 use App\Entity\Newsletter;
 use App\Entity\Page;
+use App\Entity\TypeAdhesion;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -35,13 +36,14 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::section("Administration","fas fa-users-cog");
-        yield MenuItem::linkToCrud('Utilisateur', 'fas fa-users', User::class)->setPermission("ROLE_ADMIN");
-        yield MenuItem::section("Adhérents","fas fa-blog");
-        yield MenuItem::linkToCrud('Adherent', 'fas fa-users', Adherent::class)->setPermission("ROLE_ACCUEIL");
-        yield MenuItem::linkToCrud('Ajouter une adhésion', 'fa fa-check-to-slot', Adhesion::class)->setPermission("ROLE_ACCUEIL")->setAction('new');
+        yield MenuItem::linkToCrud('Administration des utilisateurs', 'fas fa-users-cog', User::class)->setPermission("ROLE_ADMIN");
+        yield MenuItem::subMenu("Adhérents","fas fa-users")->setSubItems([
+            MenuItem::linkToCrud('liste des adherents', 'fas fa-user', Adherent::class)->setPermission("ROLE_ACCUEIL"),
+            MenuItem::linkToCrud('Ajouter une adhésion', 'fas fa-edit', Adhesion::class)->setPermission("ROLE_ACCUEIL")->setAction('new'),
+            MenuItem::linkToCrud('Modifier les types d\'adhésions', 'fas fa-money-check-alt', TypeAdhesion::class)->setPermission("ROLE_ACCUEIL")
+        ]);
         yield MenuItem::section("Contenu","fas fa-blog");
-        yield MenuItem::linkToCrud('Newsletter', 'fas fa-users', Newsletter::class)->setPermission("ROLE_REDACTEUR");
+        yield MenuItem::linkToCrud('Inscrit à la newsletter', 'fas fa-user-check', Newsletter::class)->setPermission("ROLE_REDACTEUR");
         yield MenuItem::linkToCrud('Page', 'fas fa-columns', Page::class)->setPermission("ROLE_REDACTEUR");
         yield MenuItem::linkToCrud('Article', 'fas fa-newspaper', Article::class)->setPermission("ROLE_REDACTEUR");
         yield MenuItem::linkToCrud('Categorie', 'fas fa-tag', Category::class)->setPermission("ROLE_REDACTEUR");
