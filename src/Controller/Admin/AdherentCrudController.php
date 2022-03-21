@@ -38,9 +38,9 @@ class AdherentCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->SetPageTitle('index',"Liste des adherents")
-            ->SetPageTitle('new',"Ajoutez un nouvel adherent")
-            ->SetPageTitle('edit',"Modifiez l'adherent")
+            ->setPageTitle('index',"Liste des adherents")
+            ->setPageTitle('new',"Ajoutez un nouvel adherent")
+            ->setPageTitle('edit',"Modifiez l'adherent")
         ;
     }
 

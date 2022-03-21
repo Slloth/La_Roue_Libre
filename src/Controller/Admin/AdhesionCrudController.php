@@ -46,7 +46,7 @@ class AdhesionCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->SetPageTitle('new',"Ajout d'une nouvelle adhesion")
+            ->setPageTitle('new',"Ajout d'une nouvelle adhesion")
         ;
     }
 
