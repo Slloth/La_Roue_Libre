@@ -36,7 +36,7 @@ class CommentCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->SetPageTitle('index',"Commentaires")
+            ->setPageTitle('index',"Commentaires")
         ;
     }
     

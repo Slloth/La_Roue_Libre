@@ -36,7 +36,9 @@ class ArticleCrudController extends AbstractCrudController
             ChoiceField::new('status','Statut')->setChoices(['Publique' => 'Publique','Privé' => 'Privé','Corbeille' => 'Corbeille']),
             SlugField::new('slug')->setTargetFieldName('name'),
             AssociationField::new('user',"Utilisateur")->hideOnForm(),
-            AssociationField::new('category',"Catégorie(s)"),
+            AssociationField::new('category',"Catégorie(s)")->formatValue(function ($value, $entity) {
+                return implode(",",$entity->getCategory()->toArray());
+            }),
             TextField::new('thumbnailFile','Miniature')->setFormType(VichImageType::class)->onlyOnForms(),
             ImageField::new('thumbnail',"Miniature")->setBasePath("/uploads/images")->onlyOnIndex(),
             TextEditorField::new('content','Contenu')->setFormType(CKEditorType::class)
@@ -46,8 +48,8 @@ class ArticleCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->SetPageTitle('index',"Articles")
-            ->SetPageTitle('edit',"Article")
+            ->setPageTitle('index',"Articles")
+            ->setPageTitle('edit',"Article")
             ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig')
         ;
     }

@@ -37,8 +37,8 @@ class PageCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->SetPageTitle('index',"Pages")
-            ->SetPageTitle('edit',"Page")
+            ->setPageTitle('index',"Pages")
+            ->setPageTitle('edit',"Page")
             ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig')
         ;
     }
