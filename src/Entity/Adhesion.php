@@ -23,11 +23,11 @@ class Adhesion
      * @ORM\Column(type="decimal", precision=5, scale=2)
      */
     private $prix;
-
+    
     /**
      * @ORM\Column(type="datetime_immutable",options={"default":"CURRENT_TIMESTAMP"})
      */
-    private $inscritedAt;
+    private $subscribedAt;
 
     /**
      * @ORM\ManyToOne(targetEntity=Adherent::class, inversedBy="adhesions")
@@ -41,7 +41,7 @@ class Adhesion
     private $branch;
 
     public function __construct() {
-        $this->inscritedAt = new \DateTimeImmutable();
+        $this->subscribedAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -61,9 +61,9 @@ class Adhesion
         return $this;
     }
 
-    public function getInscritedAt(): ?\DateTimeImmutable
+    public function getSubscribedAt(): ?\DateTimeImmutable
     {
-        return $this->inscritedAt;
+        return $this->subscribedAt;
     }
 
     public function getAdherents(): ?Adherent
@@ -80,7 +80,7 @@ class Adhesion
 
     public function __toString()
     {
-        return $this->getInscritedAt()->format('d/m/Y') . ' (' . $this->getPrix() . '€) à '. $this->getBranch();
+        return $this->getSubscribedAt()->format('d/m/Y') . ' (' . $this->getPrix() . '€) à '. $this->getBranch();
     }
 
     public function getBranch(): ?string

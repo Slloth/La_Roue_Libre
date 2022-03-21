@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use Exception;
 
 class AdhesionCrudController extends AbstractCrudController
 {
@@ -27,6 +28,9 @@ class AdhesionCrudController extends AbstractCrudController
     {
         //Récupère uniquement les prix des types adhésions
         $choices = $this->typeAdhesionRepository->findAll();
+        if(!$choices){
+            throw new Exception("Attention ! Aucun Prix n'as été trouvé en base de données, rendez vous dans l'onglet \"Modifier les types d'adhésions\" Pour les créers ");
+        }
         foreach($choices as $choice){
             array_push($choices,$choice);
         }
