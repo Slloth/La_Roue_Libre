@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Entity\Email;
+use App\Repository\AdherentRepository;
 use App\Repository\EmailRepository;
 use App\Repository\NewsletterRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,19 +20,14 @@ class EmailService
     (
         private EmailRepository $emailRepository,
         private NewsletterRepository $newsletterRepository,
+        private AdherentRepository $adherentRepository,
         private MailerInterface $mailer,
         private EntityManagerInterface $em,
         private FlashBagInterface $flash,
         private UrlGeneratorInterface $router,
     )
-    {
-        $emailRepository;
-        $newsletterRepository;
-        $mailer;
-        $em;
-        $flash;
-        $router;
-    }
+    {}
+
     /**
      * Enregistre un email en base de données d'un utilisateur pour nous
      *
@@ -70,6 +66,26 @@ class EmailService
         }
         $this->flash->add("success","Votre Newsletter à bien été Enregistré, elle sera envoyé à Minuit.");
     }
+
+    public function persistEmailForAdherents(FormInterface $form): void
+    {
+        //dd($this->adherentRepository->findCurrentsAdherents());
+        foreach($this->adherentRepository->findCurrentsAdherents() as $AdherentEmail)
+        {
+            $email = new Email();
+
+            $email  ->setEmailFrom($_ENV["EMAIL_ADDRESS"])
+                    ->setEmailTo($AdherentEmail->getEmail())
+                    ->setSubject($form->get("subject")->getData())
+                    ->setContent($form->get("content")->getData())
+                    ->setIsSend(false);
+
+            $this->em->persist($email);
+            $this->em->flush();
+        }
+        $this->flash->add("success","Le mail pour les adherents à bien été Enregistré, elle sera envoyé à Minuit.");
+    }
+
     public function sendEmail(int $limitMessage = null): int
     {
         $mails = $this->emailRepository->findBy(["isSend" => false],[],$limitMessage);
@@ -85,17 +101,19 @@ class EmailService
                 ->from($mail->getEmailFrom())
                 ->to($mail->getEmailTo())
                 ->subject($mail->getSubject())
-                ->htmlTemplate("partial/__templatedEmail.html.twig");
-
+                ->htmlTemplate("partial/__templatedEmailNewsletter.html.twig")
+            ;
+            
+            $newsletters = $this->newsletterRepository->findOneBy(["email" => $mail->getEmailTo()]);
             // pass variables
-            if($mail->getEmailFrom() === $_ENV["EMAIL_ADDRESS"])
+            if($mail->getEmailFrom() === $_ENV["EMAIL_ADDRESS"] && $newsletters->getId() != null)
             {
                 $email->context([
                     "body" => $mail->getContent(),
                     "unSubscribe" => $this->router->generate(
                         "newsletter_unsubscribe",
                         [
-                            "id" => $this->newsletterRepository->findOneBy(["email" => $mail->getEmailTo()])->getId()
+                            "id" => $newsletters->getId()
                         ],UrlGeneratorInterface::ABSOLUTE_URL)
                 ]);
             }
