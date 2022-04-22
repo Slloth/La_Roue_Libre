@@ -14,12 +14,11 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PageController extends AbstractController
 {
-    public function __construct(private CommentRepository $commentRepository, private PageRepository $pageRepository, private CommentService $commentService)
-    {
-        $commentRepository;
-        $pageRepository;
-        $commentService;
-    }
+    public function __construct(
+        private CommentRepository $commentRepository,
+        private PageRepository $pageRepository,
+        private CommentService $commentService,)
+    {}
     
     #[Route('/', methods: ['GET','POST'], name: 'home')]
     public function index(Request $request): Response
