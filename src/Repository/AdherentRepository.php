@@ -36,6 +36,17 @@ class AdherentRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findCurrentsAdherentsForExport()
+    {
+        return $this->createQueryBuilder('adhr')
+            ->select('adhr','adhe')
+            ->join('adhr.adhesions',"adhe")
+            ->andWhere("DATE_ADD(adhe.subscribedAt, 1, 'YEAR') > :currentDate")
+            ->setParameter('currentDate', new \DateTime())
+            ->orderBy('adhe.subscribedAt', 'DESC')
+        ;
+    }
+
     /*
     public function findOneBySomeField($value): ?Adherent
     {

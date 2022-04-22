@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e8ad59c98dac1f7c4b8a7353d99c9d96",
+    "content-hash": "67556efb671740a1153accfe098f4a54",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -2298,6 +2298,75 @@
                 "source": "https://github.com/FriendsOfSymfony/FOSCKEditorBundle/tree/2.4.0"
             },
             "time": "2022-01-07T12:34:18+00:00"
+        },
+        {
+            "name": "handcraftedinthealps/goodby-csv",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/handcraftedinthealps/goodby-csv.git",
+                "reference": "ff31e558a87f310d94900ab5e8285002d5482835"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/handcraftedinthealps/goodby-csv/zipball/ff31e558a87f310d94900ab5e8285002d5482835",
+                "reference": "ff31e558a87f310d94900ab5e8285002d5482835",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2",
+                "symfony/polyfill-mbstring": "^1.0"
+            },
+            "replace": {
+                "goodby/csv": "self.version"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "^1.1",
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^8.5",
+                "rector/rector": "^0.12.5",
+                "suin/php-expose": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Goodby\\CSV": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "reoring",
+                    "email": "mori.reo@gmail.com",
+                    "homepage": "https://www.facebook.com/reoring",
+                    "role": "Developer"
+                },
+                {
+                    "name": "suin",
+                    "email": "suinyeze@gmail.com",
+                    "homepage": "https://www.facebook.com/suinyeze",
+                    "role": "Developer, Renaming Specialist"
+                },
+                {
+                    "name": "Handcrafted in the alps contributors",
+                    "homepage": "https://github.com/handcraftedinthealps/goodby-csv/graphs/contributors",
+                    "role": "Contributors"
+                }
+            ],
+            "description": "CSV import/export library",
+            "homepage": "https://github.com/handcraftedinthealps/goodby-csv",
+            "keywords": [
+                "csv",
+                "export",
+                "import"
+            ],
+            "support": {
+                "source": "https://github.com/handcraftedinthealps/goodby-csv/tree/1.4.0"
+            },
+            "time": "2021-11-26T21:56:47+00:00"
         },
         {
             "name": "helios-ag/fm-elfinder-bundle",

@@ -36,4 +36,9 @@ final class Version20220317144111 extends AbstractMigration
         $this->addSql('DROP TABLE newsletters');
         $this->addSql('DROP TABLE type_adhesion');
     }
+
+    public function isTransactional(): bool
+    {
+        return false;
+    }
 }
