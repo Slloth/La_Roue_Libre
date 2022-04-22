@@ -3,10 +3,16 @@
 {% block title %}{{ page.name|raw }}{% endblock title %}
 
 {% block body %}
-    <div class = "container-lg pt-5 pb-5">
-        <section class = "mb-5 pb-5">
+    <div class="container-lg pt-5 pb-5">
+        <section class="mb-5 pb-5">
             {% include "partial/__flashMessages.html.twig" %}
-            {{ page.content|raw}}
+            {% for content in page.contents %}
+                <div class="row {{ content.position }}">
+                    <div>
+                        {{ content.content|raw }}
+                    </div>
+                </div>
+            {% endfor %}
         </section>
         {% include "partial/__comment.html.twig" %}
     </div>

@@ -3,15 +3,17 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Page;
-use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use App\Form\ContentType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 
 class PageCrudController extends AbstractCrudController
 {
@@ -30,7 +32,19 @@ class PageCrudController extends AbstractCrudController
             DateTimeField::new('createdAt','Date de création')->hideOnForm(),
             ChoiceField::new('status','Statut')->setChoices(['Publique' => 'Publique','Privé' => 'Privé','Corbeille' => 'Corbeille']),
             SlugField::new('slug')->setTargetFieldName('name'),
-            TextEditorField::new('content','Contenu')->setFormType(CKEditorType::class)
+            //TextEditorField::new('contents','Contenus')->setFormType(CKEditorType::class),
+            CollectionField::new('contents')
+            ->setFormTypeOptions([
+                'delete_empty' => true,
+                'by_reference' => false,
+            ])
+            ->setEntryIsComplex(false)
+            ->setCustomOptions([
+                'allowAdd' => true,
+                'allowDelete' => true,
+                'entryType' => ContentType::class,
+                'showEntryLabel' => false,
+            ]),
         ];
     }
 
@@ -41,5 +55,10 @@ class PageCrudController extends AbstractCrudController
             ->setPageTitle('edit',"Page")
             ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig')
         ;
+    }
+    
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions->add(Crud::PAGE_INDEX, Action::DETAIL);
     }
 }
