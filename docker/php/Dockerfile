@@ -30,4 +30,4 @@ RUN  curl -sS https://get.symfony.com/cli/installer | bash \
     &&  pecl install apcu && docker-php-ext-enable apcu
 
 
-WORKDIR /var/www/DefautSymfonyApli
+WORKDIR /var/www/La_Roue_Libre
