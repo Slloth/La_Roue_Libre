@@ -74,13 +74,12 @@ class AdherentCrudController extends AbstractCrudController
                         ->add(Crud::PAGE_INDEX, $export);
     }
 
-    public function export(AdminContext $context, CsvExporter $csvExporter, AdherentRepository $adherentRepository)
+    public function export(AdminContext $context, CsvExporter $csvExporter)
     {
         $fields = FieldCollection::new($this->configureFields(Crud::PAGE_INDEX));
         $filters = $this->get(FilterFactory::class)->create($context->getCrud()->getFiltersConfig(), $fields, $context->getEntity());
-        $queryBuilder = $this->createIndexQueryBuilder($context->getSearch(), $context->getEntity(), $fields, $filters);
-                            //->join('adherents', 'categorie');
-
-        return $csvExporter->createResponseFromQueryBuilder($adherentRepository->findCurrentsAdherentsForExport(), $fields, 'adherents.csv');
+        $queryBuilder = $this   ->createIndexQueryBuilder($context->getSearch(), $context->getEntity(), $fields, $filters)
+                                ->leftJoin('entity.adhesions',"adhe");
+        return $csvExporter->createResponseFromQueryBuilder($queryBuilder, $fields, 'adherents.csv');
     }
 }

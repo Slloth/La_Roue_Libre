@@ -1,5 +1,7 @@
 <?php
 namespace App\Service;
+
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
 use Goodby\CSV\Export\Standard\Exporter;
@@ -12,16 +14,38 @@ class CsvExporter
 {
     public function createResponseFromQueryBuilder(QueryBuilder $queryBuilder, FieldCollection $fields, string $filename): Response
     {
-        $result = $queryBuilder->getQuery()->getArrayResult();
-        // Convert DateTime objects into strings
+        $result = $queryBuilder->getQuery()->getResult();
         $data = [];
-        foreach ($result as $index => $row) {
-            foreach ($row as $columnKey => $columnValue) {
-                $data[$index][$columnKey] = $columnValue instanceof \DateTimeInterface
-                    ? $columnValue->format('Y-m-d H:i:s')
-                    : $columnValue;
+        foreach($result as $index => $row) {
+            foreach ((array) $row as $columnKey => $columnValue) {
+                
+                $columnKey = substr($columnKey,21);
+                
+                if($columnValue instanceof \DateTimeInterface){
+                    // Convert DateTime objects into strings
+                    $data[$index][$columnKey] = $columnValue->format('Y-m-d H:i:s');
+                }
+                else if($columnValue instanceof Collection){
+                    $i=1;
+                    foreach($columnValue as $adhesion){
+                        $data[$index]["Adhesion N°". $i] = $adhesion->getPrix();
+                        // Convert DateTime objects into strings
+                        $data[$index]["Souscription N°". $i] = $adhesion->getSubscribedAt()->format('Y-m-d H:i:s');
+                        $data[$index]["Emplacement N°". $i] = $adhesion->getBranch();
+                    
+                        $i++;
+                    }
+                }
+                else{
+                    $data[$index][$columnKey] = $columnValue;
+                }
             }
         }
+
+        // Reorganize the data's array per descending order and reset index of this array 
+        arsort($data);
+        $data = array_values($data);
+
         // Humanize headers based on column labels in EA
         if (isset($data[0])) {
             $headers = [];
@@ -39,6 +63,7 @@ class CsvExporter
             }
             // Add headers to the final data array
             array_unshift($data, $headers);
+            //dd($data);
         }
         $response = new StreamedResponse(function () use ($data) {
             $config = new ExporterConfig();
