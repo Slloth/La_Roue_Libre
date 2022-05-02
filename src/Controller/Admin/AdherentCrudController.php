@@ -3,15 +3,12 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Adherent;
-use App\Repository\AdherentRepository;
 use App\Service\CsvExporter;
-use Symfony\Component\HttpFoundation\Request;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use Symfony\Component\HttpFoundation\RequestStack;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Option\EA;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
@@ -59,7 +56,7 @@ class AdherentCrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
-        $export = Action::new('export', 'actions.export')
+        $export = Action::new('export', 'Exportez les adhérents')
         ->setIcon('fa fa-download')
         ->linkToUrl(function() {
             $request = $this->requestStack->getCurrentRequest();
@@ -70,7 +67,7 @@ class AdherentCrudController extends AbstractCrudController
         ->setCssClass('btn')
         ->createAsGlobalAction();
         
-        return $actions->add(Crud::PAGE_INDEX, Action::DETAIL)
+        return $actions ->add(Crud::PAGE_INDEX, Action::DETAIL)
                         ->add(Crud::PAGE_INDEX, $export);
     }
 

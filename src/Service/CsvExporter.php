@@ -47,8 +47,8 @@ class CsvExporter
         $data = array_values($data);
 
         // Humanize headers based on column labels in EA
+        $headers = [];
         if (isset($data[0])) {
-            $headers = [];
             $properties = array_keys($data[0]);
             foreach ($properties as $property) {
                 $headers[$property] = ucfirst($property);
@@ -63,8 +63,17 @@ class CsvExporter
             }
             // Add headers to the final data array
             array_unshift($data, $headers);
-            //dd($data);
         }
+
+        // Fill data's array with null value for each header
+        for($i=0;$i<count($data);$i++){
+            foreach($headers as $headerkey => $headerValue){
+                if(!isset($data[$i][$headerkey])){
+                    $data[$i][$headerkey] = null;
+                }
+            }
+        }
+
         $response = new StreamedResponse(function () use ($data) {
             $config = new ExporterConfig();
             $exporter = new Exporter($config);
