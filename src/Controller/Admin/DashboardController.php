@@ -2,11 +2,14 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Adherent;
+use App\Entity\Adhesion;
 use App\Entity\Article;
 use App\Entity\Category;
 use App\Entity\Comment;
 use App\Entity\Newsletter;
 use App\Entity\Page;
+use App\Entity\TypeAdhesion;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -33,17 +36,22 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::section("Administration","fas fa-users-cog");
-        yield MenuItem::linkToCrud('Utilisateur', 'fas fa-users', User::class)->setPermission("ROLE_ADMIN");
+        yield MenuItem::linkToCrud('Administration des utilisateurs', 'fas fa-users-cog', User::class)->setPermission("ROLE_ADMIN");
+        yield MenuItem::subMenu("Adhérents","fas fa-users")->setSubItems([
+            MenuItem::linkToCrud('liste des adherents', 'fas fa-user', Adherent::class)->setPermission("ROLE_ACCUEIL"),
+            MenuItem::linkToCrud('Ajouter une adhésion', 'fas fa-edit', Adhesion::class)->setPermission("ROLE_ACCUEIL")->setAction('new'),
+            MenuItem::linkToCrud('Gestion des types d\'adhésions', 'fas fa-money-check-alt', TypeAdhesion::class)->setPermission("ROLE_ACCUEIL")
+        ]);
         yield MenuItem::section("Contenu","fas fa-blog");
-        yield MenuItem::linkToCrud('Newsletter', 'fas fa-users', Newsletter::class);
-        yield MenuItem::linkToCrud('Page', 'fas fa-columns', Page::class);
-        yield MenuItem::linkToCrud('Article', 'fas fa-newspaper', Article::class);
-        yield MenuItem::linkToCrud('Categorie', 'fas fa-tag', Category::class);
-        yield MenuItem::linkToCrud('Commentaire', 'fas fa-comments', Comment::class);
-        yield MenuItem::linkToRoute('Envrionnement', 'fas fa-cogs', 'admin_env');
+        yield MenuItem::linkToCrud('Inscrit à la newsletter', 'fas fa-user-check', Newsletter::class)->setPermission("ROLE_REDACTEUR");
+        yield MenuItem::linkToCrud('Page', 'fas fa-columns', Page::class)->setPermission("ROLE_REDACTEUR");
+        yield MenuItem::linkToCrud('Article', 'fas fa-newspaper', Article::class)->setPermission("ROLE_REDACTEUR");
+        yield MenuItem::linkToCrud('Categorie', 'fas fa-tag', Category::class)->setPermission("ROLE_REDACTEUR");
+        yield MenuItem::linkToCrud('Commentaire', 'fas fa-comments', Comment::class)->setPermission("ROLE_REDACTEUR");
+        yield MenuItem::linkToRoute('Envrionnement', 'fas fa-cogs', 'admin_env')->setPermission("ROLE_REDACTEUR");
         yield MenuItem::section("Application","fas fa-window-maximize");
-        yield MenuItem::linkToRoute("Envoie d'email", 'fas fa-envelope', 'admin_mail');
-        yield MenuItem::linkToRoute('MultiMédias', 'fas fa-images','admin_media');
+        yield MenuItem::linkToRoute("Envoie d'email aux abonnés", 'fas fa-envelope-open', 'admin_mail_newsletter')->setPermission("ROLE_REDACTEUR");
+        yield MenuItem::linkToRoute("Envoie d'email aux adhérents", 'fas fa-envelope-open-text', 'admin_mail_adherent')->setPermission("ROLE_REDACTEUR");
+        yield MenuItem::linkToRoute('MultiMédias', 'fas fa-images','admin_media')->setPermission("ROLE_REDACTEUR");
     }
 }
