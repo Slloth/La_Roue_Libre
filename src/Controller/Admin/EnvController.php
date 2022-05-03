@@ -11,6 +11,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class EnvController extends AbstractController
 {
+    /**
+     * Affiche dans un formulaire le fichier .env.local
+     *
+     * @param Request $request
+     * 
+     * @return Response
+     */
     #[Route('/admin/env', name: 'admin_env')]
     public function index(Request $request): Response
     {
@@ -44,6 +51,7 @@ class EnvController extends AbstractController
      * Le chemin du fichier .env de préférence utiliser le fichier .env.local
      *
      * @param string $path
+     * 
      * @return Array
      */
     private function readEnv($path): Array

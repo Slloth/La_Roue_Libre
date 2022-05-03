@@ -30,7 +30,15 @@ class sendEmailCommand extends Command
         parent::__construct();
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    /**
+     * Utilise le service d'envoi d'email avec une limite de message optionnel
+     *
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * 
+     * @return int
+     */
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input,$output);
        (int) $limitMessage = $input->getArgument('limit-message');

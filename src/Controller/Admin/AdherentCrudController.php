@@ -18,6 +18,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use Symfony\Component\HttpFoundation\Response;
 
 class AdherentCrudController extends AbstractCrudController
 {
@@ -71,7 +72,15 @@ class AdherentCrudController extends AbstractCrudController
                         ->add(Crud::PAGE_INDEX, $export);
     }
 
-    public function export(AdminContext $context, CsvExporter $csvExporter)
+    /**
+     * Exporte les adhérents en fonction des filtres utilisé
+     *
+     * @param AdminContext $context
+     * @param CsvExporter $csvExporter
+     * 
+     * @return Response
+     */
+    public function export(AdminContext $context, CsvExporter $csvExporter): Response
     {
         $fields = FieldCollection::new($this->configureFields(Crud::PAGE_INDEX));
         $filters = $this->get(FilterFactory::class)->create($context->getCrud()->getFiltersConfig(), $fields, $context->getEntity());

@@ -53,16 +53,4 @@ class PageRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-
-    /*
-    public function findOneBySomeField($value): ?Page
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

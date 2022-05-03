@@ -14,6 +14,15 @@ use function PHPUnit\Framework\isNull;
 
 class SitemapController extends AbstractController
 {
+    /**
+     * Génère le sitemap du site web
+     *
+     * @param Request $request
+     * @param PageRepository $pageRepository
+     * @param ArticleRepository $articleRepository
+     * 
+     * @return Response
+     */
     #[Route('/sitemap.xml', name: 'sitemap', format: 'xml')]
     public function index(
         Request $request,

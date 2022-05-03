@@ -12,7 +12,15 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class EnvType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    /**
+     * Génère un formulaire dynamiquement en fonction des lines dans le fichier
+     *
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     * 
+     * @return void
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
                 ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {

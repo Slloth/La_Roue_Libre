@@ -12,6 +12,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MailController extends AbstractController
 {
+    /**
+     * Enregistre les emails pour les inscrit à la newsletter, à envoyer en base de données
+     *
+     * @param Request $request
+     * @param EmailService $emailService
+     * 
+     * @return Response
+     */
     #[Route('/admin/mail/newsletter', name: 'admin_mail_newsletter')]
     public function newsletter(Request $request, EmailService $emailService): Response
     {
@@ -29,6 +37,14 @@ class MailController extends AbstractController
         ]);
     }
 
+    /**
+     * Enregistre les emails pour les adhérents à envoyer en base de données
+     *
+     * @param Request $request
+     * @param EmailService $emailService
+     * 
+     * @return Response
+     */
     #[Route('/admin/mail/adherent', name: 'admin_mail_adherent')]
     public function adherent(Request $request, EmailService $emailService): Response
     {

@@ -29,9 +29,10 @@ class EmailService
     {}
 
     /**
-     * Enregistre un email en base de données d'un utilisateur pour nous
+     * Enregistre un email en base de données d'un utilisateur pour les administrateur du site
      *
      * @param FormInterface $form
+     * 
      * @return void
      */
     public function persistEmailForUs(FormInterface $form): void
@@ -49,6 +50,13 @@ class EmailService
         $this->flash->add("success","Votre email à bien été envoyé");
     }
 
+    /**
+     * Enregistre un email en base de données d'un utilisateur pour les inscrit à la newsletter
+     *
+     * @param FormInterface $form
+     * 
+     * @return void
+     */
     public function persistEmailForNewsletter(FormInterface $form): void
     {
         foreach($this->newsletterRepository->findBy(["isVerify" => true]) as $newsletteEmail)
@@ -67,9 +75,15 @@ class EmailService
         $this->flash->add("success","Votre Newsletter à bien été Enregistré, elle sera envoyé à Minuit.");
     }
 
+    /**
+     * Enregistre un email en base de données d'un utilisateur pour les adhérents
+     *
+     * @param FormInterface $form
+     * 
+     * @return void
+     */
     public function persistEmailForAdherents(FormInterface $form): void
     {
-        //dd($this->adherentRepository->findCurrentsAdherents());
         foreach($this->adherentRepository->findCurrentsAdherents() as $AdherentEmail)
         {
             $email = new Email();
@@ -86,6 +100,13 @@ class EmailService
         $this->flash->add("success","Le mail pour les adherents à bien été Enregistré, elle sera envoyé à Minuit.");
     }
 
+    /**
+     * Crée un email pour chaque mails enregistrer en base de données puis l'envoi et passe la valeur send à vrai en base de données
+     *
+     * @param integer|null $limitMessage
+     * 
+     * @return integer
+     */
     public function sendEmail(int $limitMessage = null): int
     {
         $mails = $this->emailRepository->findBy(["isSend" => false],[],$limitMessage);

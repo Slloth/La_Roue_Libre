@@ -18,12 +18,20 @@ use Symfony\Component\Mailer\MailerInterface;
 class SubscribeNewsletterController extends AbstractController
 {
 
-    public function __construct(private EntityManagerInterface $em ,private NewsletterRepository $newsletterRepository)
-    {
-        $em;
-        $newsletterRepository;
-    }
+    public function __construct(
+        private EntityManagerInterface $em ,
+        private NewsletterRepository $newsletterRepository
+    )
+    {}
 
+    /**
+     * Inscrit une adresse email en base de données pour la newsletter et envoi un email de confirmation
+     *
+     * @param Request $request
+     * @param MailerInterface $mailer
+     * 
+     * @return Response
+     */
     #[Route('/inscription_newsletter', name: 'newsletter_register')]
     public function register(Request $request, MailerInterface $mailer): Response
     {
@@ -68,6 +76,12 @@ class SubscribeNewsletterController extends AbstractController
         ]);
     }
 
+    /**
+     * Vérifie en base de données l'inscrit utilisant cette url
+     *
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/newsletter/verify/email', name: 'newsletter_verify_email')]
     public function verifyUserEmail(Request $request): Response
     {
@@ -84,7 +98,13 @@ class SubscribeNewsletterController extends AbstractController
     }
 
     #[Route('/newsletter/unsubscribe/{id}', name: 'newsletter_unsubscribe')]
-    public function unSubscribe($id){
+    /**
+     * Supprime l'adresse email correspondant à l'id des inscrit à la newsletter
+     *
+     * @param integer $id
+     * @return Response
+     */
+    public function unSubscribe(int $id): Response{
         $emailNewsletter = $this->newsletterRepository->find($id);
         $this->em->remove($emailNewsletter);
         $this->em->flush();
