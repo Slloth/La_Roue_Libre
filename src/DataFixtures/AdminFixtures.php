@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Page;
+use App\Entity\TypeAdhesion;
 use App\Entity\User;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -20,7 +21,7 @@ class AdminFixtures extends Fixture implements FixtureGroupInterface
     {
         $user = new User();
         $user   ->setEmail($_ENV["ADMIN_EMAIL"])
-                ->setRoles(["ROLE_ADMIN"])
+                ->setRoles(["ROLE_ADMIN","ROLE_REDACTEUR","ROLE_ACCUEIL"])
                 ->setCreatedAt(new \DateTimeImmutable())
                 ->setIsVerified(true);
         $password = $this->hasher->hashPassword($user,$_ENV["ADMIN_PLAIN_PASSWORD"]);
@@ -36,6 +37,25 @@ class AdminFixtures extends Fixture implements FixtureGroupInterface
                         ->setPublicatedAt(new \DateTime())
                         ;
         $manager->persist($page);
+
+        $typeAdhesions = ["Etudiant et chercheur d'emploi",12,"Salarié",26,"Famille",46];
+            $adhesionType = new TypeAdhesion();
+            $adhesionType   ->setTypeAdhesion($typeAdhesions[0])
+                            ->setPrix($typeAdhesions[1])
+                            ;
+            $manager->persist($adhesionType);
+
+            $adhesionType = new TypeAdhesion();
+            $adhesionType   ->setTypeAdhesion($typeAdhesions[2])
+                            ->setPrix($typeAdhesions[3])
+                            ;
+            $manager->persist($adhesionType);
+
+            $adhesionType = new TypeAdhesion();
+            $adhesionType   ->setTypeAdhesion($typeAdhesions[4])
+                            ->setPrix($typeAdhesions[5])
+                            ;
+            $manager->persist($adhesionType);
 
         $manager->flush();
 
