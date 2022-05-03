@@ -25,7 +25,14 @@ class ArticleUserSubscriber implements EventSubscriberInterface
         ];
     }
 
-    public function setArticleCreatedUser(BeforeEntityPersistedEvent $event)
+    /**
+     * Avant chaque persistance d'un article en base de données, inscrit l'utilisateur qui l'as crée
+     *
+     * @param BeforeEntityPersistedEvent $event
+     * 
+     * @return void
+     */
+    public function setArticleCreatedUser(BeforeEntityPersistedEvent $event): void
     {
         $entity = $event->getEntityInstance();
 
@@ -36,7 +43,14 @@ class ArticleUserSubscriber implements EventSubscriberInterface
 
     }
     
-    public function setArticleUpdatedUser(BeforeEntityUpdatedEvent $event)
+    /**
+     * Avant chaque modification d'un article en base de données, modifi l'utilisateur qui l'as modifié
+     *
+     * @param BeforeEntityUpdatedEvent $event
+     * 
+     * @return void
+     */
+    public function setArticleUpdatedUser(BeforeEntityUpdatedEvent $event): void
     {
         $entity = $event->getEntityInstance();
 

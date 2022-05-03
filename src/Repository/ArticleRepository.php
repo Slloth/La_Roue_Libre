@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Article;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Form\Form;
 
 /**
  * @method Article|null find($id, $lockMode = null, $lockVersion = null)
@@ -53,7 +54,14 @@ class ArticleRepository extends ServiceEntityRepository
         ;
     }
 
-    public function searchArticle($search)
+    /**
+     * Recherche un article avec un match against en base de données, mais aussi par rapport aux categories selectionnées
+     *
+     * @param Form $search
+     * 
+     * @return Array|null
+     */
+    public function searchArticle(Form $search): ?Array
     {
         if($search){
             $query = $this->createQueryBuilder("a")
@@ -81,16 +89,4 @@ class ArticleRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
         }
     }
-
-    /*
-    public function findOneBySomeField($value): ?Article
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

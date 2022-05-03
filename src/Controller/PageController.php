@@ -14,13 +14,19 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PageController extends AbstractController
 {
-    public function __construct(private CommentRepository $commentRepository, private PageRepository $pageRepository, private CommentService $commentService)
-    {
-        $commentRepository;
-        $pageRepository;
-        $commentService;
-    }
+    public function __construct(
+        private CommentRepository $commentRepository, 
+        private PageRepository $pageRepository, 
+        private CommentService $commentService)
+    {}
     
+    /**
+     * Affiche La page par defaut du site Web
+     *
+     * @param Request $request
+     * 
+     * @return Response
+     */
     #[Route('/', methods: ['GET','POST'], name: 'home')]
     public function index(Request $request): Response
     {
@@ -32,12 +38,12 @@ class PageController extends AbstractController
             throw new NotFoundHttpException("Aucune page Accueil n'as été trouvé, veulliez vous rendre sur " .$adminRoute . " Pour en créer une.");
         }
 
-        $form = $this->createForm(CommentType::class);
+        $commentForm = $this->createForm(CommentType::class);
 
-        $formRequest = $form->handleRequest($request);
+        $commentFormRequest = $commentForm->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
-            $this->commentService->persistComment($formRequest,$home);
+        if($commentForm->isSubmitted() && $commentForm->isValid()){
+            $this->commentService->persistComment($commentFormRequest,$home);
             return $this->redirectToRoute('home');
         }
         $currentURL = "accueil";
@@ -45,22 +51,29 @@ class PageController extends AbstractController
         return $this->render('page/index.html.twig', [
             'page' => $home,
             'commentsList' => $this->commentRepository->findBy(["page" => $home,"isChecked" => true]),
-            'form' => $form->createView(),
+            'form' => $commentForm->createView(),
             'currentURL' => $currentURL
         ]);
     }
 
+    /**
+     * Affiche La page correspondant à un slug en base de données
+     * 
+     * @param String $slug
+     * @param Request $request
+     * 
+     * @return Response
+     */
     #[Route('/page/{slug}', methods: ['GET','POST'], name: 'page')]
     public function renderPage(string $slug, Request $request): Response
     {
         $page = $this->pageRepository->findOnePublic($slug);
-        
-        $form = $this->createForm(CommentType::class);
+        $commentForm = $this->createForm(CommentType::class);
 
-        $formRequest = $form->handleRequest($request);
+        $commentFormRequest = $commentForm->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
-            $this->commentService->persistComment($formRequest,$page);
+        if($commentForm->isSubmitted() && $commentForm->isValid()){
+            $this->commentService->persistComment($commentFormRequest,$page);
             return $this->redirectToRoute('page',["slug" => $page->getSlug()]);
         }
 
@@ -69,7 +82,7 @@ class PageController extends AbstractController
         return $this->render('page/index.html.twig', [
             'page' => $page,
             'commentsList' => $this->commentRepository->findBy(["page" => $page,"isChecked" => true]),
-            'form' => $form->createView(),
+            'form' => $commentForm->createView(),
             'currentURL' => $currentURL
         ]);
     }
