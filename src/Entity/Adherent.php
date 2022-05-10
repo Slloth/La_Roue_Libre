@@ -34,7 +34,7 @@ class Adherent
     private $telephone;
 
     /**
-     * @ORM\Column(type="string", length=255,unique=true)
+     * @ORM\Column(type="string", length=255,unique=true,nullable=true)
      */
     #[Assert\Email(null,'Votre email est invalide')]
     private $email;

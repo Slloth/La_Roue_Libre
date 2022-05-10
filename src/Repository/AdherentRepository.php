@@ -23,11 +23,12 @@ class AdherentRepository extends ServiceEntityRepository
     /**
      * @return Adherent[] Returns an array of Adherent objects
      */
-    public function findCurrentsAdherents(): Adherent
+    public function findCurrentsAdherents()
     {
         return $this->createQueryBuilder('adhr')
             ->select('adhr','adhe')
             ->join('adhr.adhesions',"adhe")
+            ->andWhere('adhr.email IS NOT NULL')
             ->andWhere("DATE_ADD(adhe.subscribedAt, 1, 'YEAR') > :currentDate")
             ->setParameter('currentDate', new \DateTime())
             ->orderBy('adhe.subscribedAt', 'DESC')
