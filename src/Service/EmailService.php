@@ -84,12 +84,12 @@ class EmailService
      */
     public function persistEmailForAdherents(FormInterface $form): void
     {
-        foreach($this->adherentRepository->findCurrentsAdherents() as $AdherentEmail)
+        foreach($this->adherentRepository->findCurrentsAdherents() as $adherentEmail)
         {
             $email = new Email();
 
             $email  ->setEmailFrom($_ENV["EMAIL_ADDRESS"])
-                    ->setEmailTo($AdherentEmail->getEmail())
+                    ->setEmailTo($adherentEmail->getEmail())
                     ->setSubject($form->get("subject")->getData())
                     ->setContent($form->get("content")->getData())
                     ->setIsSend(false);
@@ -122,24 +122,28 @@ class EmailService
                 ->from($mail->getEmailFrom())
                 ->to($mail->getEmailTo())
                 ->subject($mail->getSubject())
-                ->htmlTemplate("partial/__templatedEmailNewsletter.html.twig")
             ;
             
             $newsletters = $this->newsletterRepository->findOneBy(["email" => $mail->getEmailTo()]);
             // pass variables
-            if($mail->getEmailFrom() === $_ENV["EMAIL_ADDRESS"] && $newsletters->getId() != null)
+            if ($newsletters)
             {
-                $email->context([
-                    "body" => $mail->getContent(),
-                    "unSubscribe" => $this->router->generate(
-                        "newsletter_unsubscribe",
-                        [
-                            "id" => $newsletters->getId()
-                        ],UrlGeneratorInterface::ABSOLUTE_URL)
-                ]);
+                if($mail->getEmailFrom() === $_ENV["EMAIL_ADDRESS"] && $newsletters->getId() != null)
+                {
+                    $email->htmlTemplate("partial/__templatedEmailNewsletter.html.twig");
+                    $email->context([
+                        "body" => $mail->getContent(),
+                        "unSubscribe" => $this->router->generate(
+                            "newsletter_unsubscribe",
+                            [
+                                "id" => $newsletters->getId()
+                            ],UrlGeneratorInterface::ABSOLUTE_URL)
+                    ]);
+                }
             }
             else
             {
+                $email->htmlTemplate("partial/__templatedEmailAdherent.html.twig");
                 $email->context(["body" => $mail->getContent()]);    
             }
             $this->mailer->send($email);

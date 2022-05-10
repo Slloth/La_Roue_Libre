@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use Exception;
 
 class AdhesionCrudController extends AbstractCrudController
@@ -40,6 +41,7 @@ class AdhesionCrudController extends AbstractCrudController
         return [
             ChoiceField::new('prix','Adhesion')->setChoices($choices),
             ChoiceField::new('branch','Antenne')->setChoices($branch),
+            DateTimeField::new('subscirbedAt',"Date d'adhésions"),
             AssociationField::new('adherents')
         ];
     }
