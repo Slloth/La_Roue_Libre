@@ -11,6 +11,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ContactController extends AbstractController
 {
+    /**
+     * Affiche le formulaire de contact
+     *
+     * @param Request $request
+     * @param EmailService $emailService
+     * 
+     * @return Response
+     */
     #[Route('/contact', name: 'contact')]
     public function index(Request $request, EmailService $emailService): Response
     {

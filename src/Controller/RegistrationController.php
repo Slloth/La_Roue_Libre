@@ -23,6 +23,15 @@ class RegistrationController extends AbstractController
         $this->emailVerifier = $emailVerifier;
     }
 
+    /**
+     * Permet l'inscription en base de de données d'un nouvel utilisateur en plus de crypter son mdp
+     * et d'envoyer un email de confimartion
+     *
+     * @param Request $request
+     * @param UserPasswordHasherInterface $passwordHasher
+     * 
+     * @return Response
+     */
     #[Route('/inscription', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $passwordHasher): Response
     {
@@ -61,6 +70,13 @@ class RegistrationController extends AbstractController
         ]);
     }
 
+    /**
+     * Vérifie l'utilisateur utilisant cette url
+     *
+     * @param Request $request
+     * 
+     * @return Response
+     */
     #[Route('/verify/email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request): Response
     {

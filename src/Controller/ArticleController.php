@@ -16,6 +16,14 @@ use Symfony\Component\HttpFoundation\Request;
 class ArticleController extends AbstractController
 {
 
+    /**
+     * Affiche tout les articles
+     *
+     * @param ArticleRepository $articleRepository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/articles',methods: ['GET'], name: 'articles')]
     public function index(
         ArticleRepository $articleRepository,
@@ -43,6 +51,17 @@ class ArticleController extends AbstractController
         ]);
     }
 
+    /**
+     * Affiche un article en fonction du slug passé dans l'URL
+     *
+     * @param string $slug
+     * @param ArticleRepository $articleRepository
+     * @param CommentRepository $commentRepository
+     * @param CommentService $commentService
+     * @param Request $request
+     * 
+     * @return Response
+     */
     #[Route('/article/{slug}',methods: ['GET','POST'], name: 'article')]
     public function show(
         string $slug, 

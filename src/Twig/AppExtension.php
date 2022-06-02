@@ -24,7 +24,7 @@ class AppExtension extends AbstractExtension
     }
 
     /**
-     * Undocumented function
+     * Retourne toutes les pages publiques en une fonction twig
      *
      * @return array<Page>|null
      */

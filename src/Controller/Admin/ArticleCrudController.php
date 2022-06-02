@@ -66,6 +66,7 @@ class ArticleCrudController extends AbstractCrudController
         ;
     }
 
+    /*
     public function configureActions(Actions $actions): Actions
     {
         $export = Action::new('export', 'actions.export')
@@ -91,4 +92,5 @@ class ArticleCrudController extends AbstractCrudController
 
         return $csvExporter->createResponseFromQueryBuilder($queryBuilder, $fields, 'articles.csv');
     }
+    */
 }

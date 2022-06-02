@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Adherent;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder as ORMQueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -27,6 +28,7 @@ class AdherentRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('adhr')
             ->select('adhr','adhe')
             ->join('adhr.adhesions',"adhe")
+            ->andWhere('adhr.email IS NOT NULL')
             ->andWhere("DATE_ADD(adhe.subscribedAt, 1, 'YEAR') > :currentDate")
             ->setParameter('currentDate', new \DateTime())
             ->orderBy('adhe.subscribedAt', 'DESC')
@@ -36,7 +38,7 @@ class AdherentRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findCurrentsAdherentsForExport()
+    public function findCurrentsAdherentsForExport(): ORMQueryBuilder
     {
         return $this->createQueryBuilder('adhr')
             ->select('adhr','adhe')
@@ -46,16 +48,4 @@ class AdherentRepository extends ServiceEntityRepository
             ->orderBy('adhe.subscribedAt', 'DESC')
         ;
     }
-
-    /*
-    public function findOneBySomeField($value): ?Adherent
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

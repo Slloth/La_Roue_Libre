@@ -29,9 +29,10 @@ class EmailService
     {}
 
     /**
-     * Enregistre un email en base de données d'un utilisateur pour nous
+     * Enregistre un email en base de données d'un utilisateur pour les administrateur du site
      *
      * @param FormInterface $form
+     * 
      * @return void
      */
     public function persistEmailForUs(FormInterface $form): void
@@ -49,6 +50,13 @@ class EmailService
         $this->flash->add("success","Votre email à bien été envoyé");
     }
 
+    /**
+     * Enregistre un email en base de données d'un utilisateur pour les inscrit à la newsletter
+     *
+     * @param FormInterface $form
+     * 
+     * @return void
+     */
     public function persistEmailForNewsletter(FormInterface $form): void
     {
         foreach($this->newsletterRepository->findBy(["isVerify" => true]) as $newsletteEmail)
@@ -67,15 +75,21 @@ class EmailService
         $this->flash->add("success","Votre Newsletter à bien été Enregistré, elle sera envoyé à Minuit.");
     }
 
+    /**
+     * Enregistre un email en base de données d'un utilisateur pour les adhérents
+     *
+     * @param FormInterface $form
+     * 
+     * @return void
+     */
     public function persistEmailForAdherents(FormInterface $form): void
     {
-        //dd($this->adherentRepository->findCurrentsAdherents());
-        foreach($this->adherentRepository->findCurrentsAdherents() as $AdherentEmail)
+        foreach($this->adherentRepository->findCurrentsAdherents() as $adherentEmail)
         {
             $email = new Email();
 
             $email  ->setEmailFrom($_ENV["EMAIL_ADDRESS"])
-                    ->setEmailTo($AdherentEmail->getEmail())
+                    ->setEmailTo($adherentEmail->getEmail())
                     ->setSubject($form->get("subject")->getData())
                     ->setContent($form->get("content")->getData())
                     ->setIsSend(false);
@@ -86,6 +100,13 @@ class EmailService
         $this->flash->add("success","Le mail pour les adherents à bien été Enregistré, elle sera envoyé à Minuit.");
     }
 
+    /**
+     * Crée un email pour chaque mails enregistrer en base de données puis l'envoi et passe la valeur send à vrai en base de données
+     *
+     * @param integer|null $limitMessage
+     * 
+     * @return integer
+     */
     public function sendEmail(int $limitMessage = null): int
     {
         $mails = $this->emailRepository->findBy(["isSend" => false],[],$limitMessage);
@@ -101,24 +122,28 @@ class EmailService
                 ->from($mail->getEmailFrom())
                 ->to($mail->getEmailTo())
                 ->subject($mail->getSubject())
-                ->htmlTemplate("partial/__templatedEmailNewsletter.html.twig")
             ;
             
             $newsletters = $this->newsletterRepository->findOneBy(["email" => $mail->getEmailTo()]);
             // pass variables
-            if($mail->getEmailFrom() === $_ENV["EMAIL_ADDRESS"] && $newsletters->getId() != null)
+            if ($newsletters)
             {
-                $email->context([
-                    "body" => $mail->getContent(),
-                    "unSubscribe" => $this->router->generate(
-                        "newsletter_unsubscribe",
-                        [
-                            "id" => $newsletters->getId()
-                        ],UrlGeneratorInterface::ABSOLUTE_URL)
-                ]);
+                if($mail->getEmailFrom() === $_ENV["EMAIL_ADDRESS"] && $newsletters->getId() != null)
+                {
+                    $email->htmlTemplate("partial/__templatedEmailNewsletter.html.twig");
+                    $email->context([
+                        "body" => $mail->getContent(),
+                        "unSubscribe" => $this->router->generate(
+                            "newsletter_unsubscribe",
+                            [
+                                "id" => $newsletters->getId()
+                            ],UrlGeneratorInterface::ABSOLUTE_URL)
+                    ]);
+                }
             }
             else
             {
+                $email->htmlTemplate("partial/__templatedEmailAdherent.html.twig");
                 $email->context(["body" => $mail->getContent()]);    
             }
             $this->mailer->send($email);

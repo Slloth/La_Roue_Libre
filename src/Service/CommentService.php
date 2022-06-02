@@ -18,11 +18,7 @@ class CommentService
         private FlashBagInterface $flash, 
         private CommentRepository $commentRepository
         )
-    {
-        $em;
-        $flash;
-        $commentRepository;
-    }
+    {}
 
     /**
      * Effectue l'enregistrement des données du formulaire de commentaire en base de données
@@ -30,9 +26,10 @@ class CommentService
      * @param FormInterface $commentForm
      * @param Page $page
      * @param Article $article
+     * 
      * @return void
      */
-    public function persistComment(FormInterface $commentForm, Page $page = null, Article $article = null)
+    public function persistComment(FormInterface $commentForm, Page $page = null, Article $article = null): void
     {
         $parentId = $commentForm->get("parentId")->getData();
         $comment = new Comment();
