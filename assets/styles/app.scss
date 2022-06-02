@@ -2,25 +2,84 @@
 @import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
 @import "~@fortawesome/fontawesome-free/scss/brands.scss";
+@import url('//db.onlinewebfonts.com/c/d97281294b63b449a93162fccd6121ec?family=Swis721+BT');
+@import url('//db.onlinewebfonts.com/c/d58f65c7b063b8d1f4ed247e47e37e5b?family=Swis721+BT');
 
-.grid-articles{
-    display:grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 20px;
-}
-
-.categories-article{
-    color:black; 
-    width: max-content;
-    font-size: x-small;
-}
-
-#subscribe_agreeTerms{
-    border-color: black;
+body{
+    background-color: #fffbea;
+    background-position: center;
+    background-repeat: repeat;
+    background-size: 7%;
+    overflow-x: hidden;
+    transition: all 200ms linear;
+    height: 200vh;
+    margin: 0%;
 }
 
 tbody, td, tfoot, th, thead, tr
 {
     border: solid;
     border-color: inherit;
+}
+
+.bg-light {
+background-color: white !important;
+transition: all 200ms linear;
+}
+
+main{
+    margin-top: 130px;
+}
+
+.absolute-center {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 100%;
+	transform: translateY(-50%);
+}
+
+h1{
+    font-family: "Swis721 BT";
+	font-size: 48px;
+	line-height: 1.2;
+	font-weight: 700;
+	color: #212112;
+	text-align: center;
+}
+
+h1 span{
+	display: inline-block;
+    transition: all 300ms linear;
+	opacity: 1;
+	transform: translate(0);
+}
+
+p{
+	text-align: center;
+	margin: 0;
+	padding-top: -220px;
+	opacity: 1;
+	transform: translate(0);
+    transition: all 300ms linear;
+    transition-delay: 1700ms;
+}
+
+p.blocktext {
+    margin-block: initial;
+    margin-top: 5%;
+    width: 25%;
+    text-align: justify;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+img.blocktext {
+    width: 400px;
+}
+
+.container-1 {
+    display: flex;
+    margin-top: 90px;
+    margin-bottom: 125px;
+    justify-content: space-evenly;
 }

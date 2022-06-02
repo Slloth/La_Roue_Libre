@@ -7,12 +7,13 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.scss';
+import './styles/article.scss';
+import './styles/nav.scss';
+import './styles/subscribeNewsletter.scss';
 
 // start the Stimulus application
 import './bootstrap';
 
 import './comment';
-import './images/banniere2v5.png';
-//import './images/bandeau.png';
 import './images/favicon.ico';
 import './images/Logo.png';

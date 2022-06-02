@@ -1,0 +1,11 @@
+.grid-articles{
+    display:grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+}
+
+.categories-article{
+    color:black; 
+    width: max-content;
+    font-size: x-small;
+}
