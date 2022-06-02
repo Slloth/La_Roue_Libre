@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\AdhesionRepository;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Table;
 
@@ -64,6 +65,13 @@ class Adhesion
     public function getSubscribedAt(): ?\DateTimeImmutable
     {
         return $this->subscribedAt;
+    }
+
+    public function setSubscribedAt(?DateTimeImmutable $date): self
+    {
+        $this->subscribedAt = $date;
+        
+        return $this;
     }
 
     public function getAdherents(): ?Adherent
