@@ -1,17 +1,14 @@
  <section class="mt-5 pt-5" id="addComment">
-    <h4>Commentaires</h4>
-    {{ form_start(form) }}
+    <h1>Commentaires</h1>
     {% include "partial/__flashMessages.html.twig" %}
-    <div class="row justify-content-lg-center">
-        <div class="col-lg-4">
-            <p id="replyAt"></p>
-            {{ form_row(form.content) }}
-        </div>
-        <div class="col-lg-2 align-self-end">
-            {{ form_row(form.envoyer) }}
-        </div>
-    </div>
-    {{ form_end(form) }}
+    {{form_start(form)}}
+<div class="form-display">
+    {{form_row(form.content)}}
+    {{form_row(form.envoyer)}}
+</div>
+    {{form_row(form.parentId)}}
+
+    {{form_end(form)}}
     <div class="mt-5">
         {% if commentsList is not empty %}
 

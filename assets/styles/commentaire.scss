@@ -1,0 +1,25 @@
+.form-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-control{
+    width: 25vw;
+    height: 3vh;
+    margin-right: 40px;
+}
+
+.btn{
+    color: white;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    border-radius: 5px;
+    padding: 5px 25px;
+}
+
+.btn-success{
+    background-color: green;
+}
