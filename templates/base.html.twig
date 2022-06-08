@@ -17,6 +17,11 @@
     <body>
         {% include "base/nav.html.twig" %}
         <main>
+        <div>
+        <img class="roue1" src="{{ asset('build/images/roue-site.png') }}" alt="">
+             <img class="roue2" src="{{ asset('build/images/roue-site.png') }}" alt="">
+             <img class="roue3" src="{{ asset('build/images/roue-site.png') }}" alt="">
+        </div>
             {% block body %}{% endblock %}
         </main>
         {% include "base/footer.html.twig" %}

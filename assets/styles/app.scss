@@ -93,10 +93,6 @@ img.blocktext {
     z-index: -1;
 }
 
-#footer {
-    animation-delay: 10s;
-}
-
 .footerbg {
     padding-top: 825px;
     display: flex;
@@ -117,8 +113,7 @@ img.blocktext {
 }
 
 #copyright {
-    position: fixed;
-    bottom: 0;
+    position: absolute;
     width: 100%;
     text-align: center;
 }
@@ -139,4 +134,24 @@ img.blocktext {
 .btn-outline-orange:hover {
     background-color: #ffa200;
     color: #fffbea;
+}
+
+.roue1 {
+    position: absolute;
+    width: 500px;
+    margin-top: 70px;
+    margin-left: -270px;
+}
+
+.roue2 {
+    position: absolute;
+    width: 100px;
+    margin-left: 200px;
+}
+
+.roue3 {
+    position: absolute;
+    width: 300px;
+    margin-left: 1600px;
+    margin-top: 572px;
 }
