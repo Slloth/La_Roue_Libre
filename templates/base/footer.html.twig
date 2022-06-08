@@ -1,33 +1,36 @@
 <!-- Footer -->
-<footer class="text-center txt-lg-start bg-light">
+<footer class="text-center txt-lg-start">
+<div id="footer">
+<img id="footergif" src="{{asset("build/images/footergif.gif")}}" alt="">
+</div> 
   <!-- Grid container -->
-  <div class="container p-4">
+  <div class="footerbg">
     <!-- Section: Social media -->
     <section class="mb-4">
       <!-- Facebook -->
-      <a class="btn btn-outline-dark btn-floating m-1" href="https://fr-fr.facebook.com/rouelibre.lehavre/" role="button"
-        ><i class="fab fa-facebook-f"></i
-      ></a>
+      <a class="btn" href="https://fr-fr.facebook.com/rouelibre.lehavre/">
+      <img src="{{ asset('build/images/fb-white.png') }}">
+      </a>
 
       <!-- Twitter -->
-      <a class="btn btn-outline-dark btn-floating m-1" href="https://twitter.com/larouelibre_lh" role="button"
-        ><i class="fab fa-twitter"></i
-      ></a>
+      <a class="btn" href="https://twitter.com/larouelibre_lh">
+      <img src="{{ asset('build/images/twitter-white.png') }}">
+      </a>
 
       <!-- Instagram -->
-      <a class="btn btn-outline-dark btn-floating m-1" href="https://www.instagram.com/larouelibre_lh/?hl=fr" role="button"
-        ><i class="fab fa-instagram"></i
-      ></a>
+      <a class="btn" href="https://www.instagram.com/larouelibre_lh/?hl=fr">
+      <img src="{{ asset('build/images/insta-white.png') }}">
+      </a>
 
       <!-- Linkedin -->
-      <a class="btn btn-outline-dark btn-floating m-1" href="https://fr.linkedin.com/company/la-roue-libre" role="button"
-        ><i class="fab fa-linkedin-in"></i
-      ></a>
+      <a class="btn" href="https://fr.linkedin.com/company/la-roue-libre">
+      <img src="{{ asset('build/images/Linked-white.png') }}">
+      </a>
     </section>
     <!-- Section: Social media -->
 
     <!-- Section: Form -->
-    <section class="">
+    <section class="newsletter">
       {{ render(controller("App\\Controller\\SubscribeNewsletterController::register")) }}
     </section>
     <!-- Section: Form -->
@@ -36,7 +39,7 @@
   <!-- Grid container -->
 
   <!-- Copyright -->
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+  <div id="copyright" style="background-color: rgba(0, 0, 0, 0.2);">
     © 2022 Copyright:
     <a class="text-dark" href="">la-roue-libre.com</a>
   </div>

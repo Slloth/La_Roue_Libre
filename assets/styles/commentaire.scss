@@ -12,12 +12,13 @@
 
 .btn{
     color: white;
-    border: none;
+    
     text-decoration: none;
     display: inline-block;
     font-size: 20px;
     border-radius: 5px;
     padding: 5px 25px;
+    cursor: pointer;
 }
 
 .btn-success{

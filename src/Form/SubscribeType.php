@@ -16,7 +16,10 @@ class SubscribeType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class,[
-                'label' => "Adresse Email"
+                "label" => false,
+                'attr' => [
+                    "placeholder" => "Adresse Mail"
+                ]
             ])
             ->add('agreeTerms', CheckboxType::class,[
                 "mapped" => false,
@@ -24,7 +27,7 @@ class SubscribeType extends AbstractType
             ])
             ->add('Souscrire', SubmitType::class,[
                 'attr' => [
-                    "class" => "btn btn-outline-dark mb-4"
+                    "class" => "btn btn-outline-orange"
                 ]
             ]);
         ;

@@ -18,3 +18,8 @@ import './bootstrap';
 import './comment';
 import './images/favicon.ico';
 import './images/Logo.png';
+import './images/footergif.gif';
+import './images/fb-white.png';
+import './images/insta-white.png';
+import './images/twitter-white.png';
+import './images/Linked-white.png';
