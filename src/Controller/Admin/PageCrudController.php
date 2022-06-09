@@ -4,16 +4,17 @@ namespace App\Controller\Admin;
 
 use App\Entity\Page;
 use App\Form\ContentType;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class PageCrudController extends AbstractCrudController
 {
@@ -32,8 +33,10 @@ class PageCrudController extends AbstractCrudController
             DateTimeField::new('createdAt','Date de création')->hideOnForm(),
             ChoiceField::new('status','Statut')->setChoices(['Publique' => 'Publique','Privé' => 'Privé','Corbeille' => 'Corbeille']),
             SlugField::new('slug')->setTargetFieldName('name'),
-            //TextEditorField::new('contents','Contenus')->setFormType(CKEditorType::class),
-            CollectionField::new('contents')
+            TextEditorField::new('contents','Contenus')->setFormType(CKEditorType::class)->formatValue(function ($value, $entity){
+                return implode(",",$entity->getContents()->toArray());
+            })->onlyOnIndex(),
+            CollectionField::new('contents')->onlyOnForms()
             ->setFormTypeOptions([
                 'delete_empty' => true,
                 'by_reference' => false,
