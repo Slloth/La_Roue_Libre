@@ -12,7 +12,6 @@ body{
     background-size: 7%;
     overflow-x: hidden;
     transition: all 200ms linear;
-    height: 200vh;
     margin: 0%;
 }
 
@@ -29,6 +28,7 @@ transition: all 200ms linear;
 
 main{
     margin-top: 130px;
+    min-height: 100vh;
 }
 
 .absolute-center {
@@ -86,41 +86,8 @@ img.blocktext {
     justify-content: center;
 }
 
-#footergif {
-    animation-delay: 10s;
-    width: 100%;
-    position: absolute;
-    z-index: -1;
-}
-
-.footerbg {
-    padding-top: 825px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
 .btn img{
     width: 40px;
-}
-
-.newsletter {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 355px;
-    justify-content: space-evenly;
-}
-
-#copyright {
-    position: absolute;
-    width: 100%;
-    text-align: center;
-}
-
-.newsletter h3 {
-    font-size: 22px;
-    color: #fffbea;
 }
 
 .btn-outline-orange {
