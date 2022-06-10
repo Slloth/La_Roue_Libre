@@ -1,10 +1,10 @@
+
 <!-- Footer -->
 <footer>
-  <img id="footergif" src="{{asset("build/images/footergif.gif")}}" alt="">
-  <!-- Grid container -->
-  <div class="footerbg">
+  <img id="footerGif" src="{{asset("build/images/footergif.gif")}}" alt="">
+  <div id="footer-content">
     <!-- Section: Social media -->
-    <section class="mb-4">
+    <section id="socialMedia">
       <!-- Facebook -->
       <a class="btn" href="https://fr-fr.facebook.com/rouelibre.lehavre/">
       <img src="{{ asset('build/images/fb-white.png') }}">
@@ -28,18 +28,16 @@
     <!-- Section: Social media -->
 
     <!-- Section: Form -->
-    <section class="newsletter">
+    <section id="newsletter">
       {{ render(controller("App\\Controller\\SubscribeNewsletterController::register")) }}
     </section>
     <!-- Section: Form -->
 
   </div>
-  <!-- Grid container -->
-
   <!-- Copyright -->
   <div id="copyright" style="background-color: rgba(0, 0, 0, 0.2);">
     © 2022 Copyright:
-    <a class="text-dark" href="">la-roue-libre.com</a>
+    <a href="">la-roue-libre.com</a>
   </div>
   <!-- Copyright -->
 </footer>
