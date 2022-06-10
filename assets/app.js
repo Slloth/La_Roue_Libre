@@ -13,6 +13,7 @@ import './styles/page.scss'
 import './styles/subscribeNewsletter.scss';
 import './styles/commentaire.scss';
 import './styles/footer.scss';
+import './styles/flashMessage.scss';
 
 // start the Stimulus application
 import './bootstrap';
