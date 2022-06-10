@@ -24,6 +24,9 @@ class SubscribeType extends AbstractType
             ->add('agreeTerms', CheckboxType::class,[
                 "mapped" => false,
                 "label" => "Acceptez les terms",
+                "label_attr" => [
+                    "style" => "color: white;"
+                ]
             ])
             ->add('Souscrire', SubmitType::class,[
                 'attr' => [
