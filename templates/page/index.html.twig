@@ -3,53 +3,25 @@
 {% block title %}{{ page.name|raw }}{% endblock title %}
 
 {% block body %}
-    <div>
-            {% include "partial/__flashMessages.html.twig" %}
-            <section>
-                <h1>
-                    <span>Qui</span>
-                    <span></span>
-                    <span>Sommes</span>
-                    <span></span>
-                    <span>Nous</span>
-                    <span>?</span>
-                </h1>
-                <div class="container-1">
-                    <p class="blocktext">
-                        L'association La Roue Libre (association de la loi 1901) a été créée en 2013 avec
-                        l’envie d’offrir à tous les havraises et havrais un lieu de ressource, d’entraide et de partage orienté sur le vélo.
-                        Peu à peu l'organisme a su grandir et s'implanter comme un acteur de la vie cycliste au Havre, 
-                        toujours au service de ses 750 adhérentes et adhérents (chiffres de l'année 2019).
-                        Depuis juillet 2019, La Roue Libre a développé un second pôle : PHaMA, situé à la forêt de Montgeon.
-                    </p>
-                    <img class="blocktext" src="{{ asset('build/images/Logo.png') }}" alt="">
-                </div>
-            </section>
-            <section> 
-                <h1>Nos objectifs</h1>
-                <div class="container-1">
-                    <img class="blocktext" src="{{ asset('build/images/Logo.png') }}" alt="">
-                    <p class="blocktext">
-                        Notre objectif premier est de promouvoir et défendre la pratique du vélo au Havre et son agglomération. Notre but est de répondre 
-                        aux besoins de tous afin de faciliter l'utilisation du vélo avant tout comme moyen de mobilité, mais aussi de loisirs ou de pratique sportive.
-                    </p>
-                </div>
-            </section>
-             <section>
-                <h1>Nos Antennes</h1>
-                <div class="container-1">
-<iframe src="https://www.google.com/maps/d/u/0/embed?mid=11JAbMf43wPJOupdjKubK3hCNsfQMioU&ehbc=2E312F" width="640" height="480"></iframe>
-                </div>
-            </section>
-            
-            {% for content in page.contents %}
-                <div>
-                    <div>
-                        {{ content.content|raw }}
-                    </div>
-                </div>
-            {% endfor %}
-        {% include "partial/__comment.html.twig" %}
-    </div>
-
+{% include "partial/__flashMessages.html.twig" %}
+<section>
+    <h1>
+        <span>Qui</span>
+        <span></span>
+        <span>Sommes</span>
+        <span></span>
+        <span>Nous</span>
+        <span>?</span>
+    </h1>
+    {% for content in page.contents %}
+        <div class="content">
+            {{ content.content|raw }}
+        </div>
+    {% endfor %}
+</section>
+<section>
+    <h1>Nos Antennes</h1>
+    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=11JAbMf43wPJOupdjKubK3hCNsfQMioU&ehbc=2E312F" width="75%" height="756"></iframe>
+</section>
+{% include "partial/__comment.html.twig" %}
 {% endblock body %}

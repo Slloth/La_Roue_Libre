@@ -1,0 +1,21 @@
+p{
+	text-align: center;
+	margin: 0;
+	padding-top: -220px;
+	opacity: 1;
+	transform: translate(0);
+    transition: all 300ms linear;
+    transition-delay: 1700ms;
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+    margin-top: 75px;
+    margin-bottom: 80px;
+    align-items: center;
+}
+
+.content{
+    flex-direction: row;
+}
