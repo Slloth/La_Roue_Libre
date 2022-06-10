@@ -9,8 +9,10 @@
 import './styles/app.scss';
 import './styles/article.scss';
 import './styles/nav.scss';
+import './styles/page.scss'
 import './styles/subscribeNewsletter.scss';
 import './styles/commentaire.scss';
+import './styles/footer.scss';
 
 // start the Stimulus application
 import './bootstrap';
