@@ -23,6 +23,10 @@ tbody, td, tfoot, th, thead, tr
     border-color: inherit;
 }
 
+ul{
+    list-style: none;
+}
+
 .bg-light {
     background-color: white !important;
     transition: all 200ms linear;
@@ -69,8 +73,25 @@ h1 span{
     transition-duration: 0.4s;
 }
 
+.btn-outline-success {
+    background-color: transparent;
+    color: #0e8944aa;
+    border: 3px solid #0e8944aa;
+    border-color: #0e8944aa;
+    transition-duration: 0.4s;
+}
+
+.btn-success{
+    background-color: #0e8944aa;
+}
+
 .btn-outline-orange:hover {
     background-color: #ffa200;
+    color: #fffbea;
+}
+
+.btn-outline-success:hover {
+    background-color: #0e8944aa;
     color: #fffbea;
 }
 

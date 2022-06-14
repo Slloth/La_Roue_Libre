@@ -1,42 +1,32 @@
- <section class="mt-5 pt-5" id="addComment">
+<section id="addComment">
     <h1>Commentaires</h1>
     {% include "partial/__flashMessages.html.twig" %}
     {{form_start(form)}}
-<div class="form-display">
-    {{form_row(form.content)}}
-    {{form_row(form.envoyer)}}
-</div>
-    {{form_row(form.parentId)}}
-
+        <div class="form-display">
+            {{form_row(form.content)}}
+            {{form_row(form.envoyer)}}
+        </div>
+        {{form_row(form.parentId)}}
     {{form_end(form)}}
-    <div class="mt-5">
+    <div>
         {% if commentsList is not empty %}
-
-            <ul style="list-style: none;">
+            <ul id="commentaires">
                 {% for comment in commentsList %}
                 
                     {% if comment.parent == null %}
 
                         <h5>Commentaire N°{{ loop.index }}</h5>
-                            <li class="mb-4">
-                                <div class="card bg-secondary text-dark">
-                                    <div class="card-header">
-                                        <span class="align-middle">
-                                            {% if comment.user == null %}
-                                                Utilisateur anonyme
-                                            {% endif %}
-                                            {{ comment.user }}
-                                        </span>
-                                        <span style="float: right;">
-                                            {{ comment.createdAt|ago }}
-                                            <a href="#addComment" data-reply="" data-id="{{ comment.id }}"><button class="btn btn-outline-warning btn-sm">Répondre</button></a>
-                                        </span>
-                                    </div>
-                                    <div class="card-body">
-                                        <p class="card-text col-10" id="commentContent_{{ comment.id }}">{{ comment.content|raw }}</p>
-                                    </div>
-                                </div>
+                            <li class="commentaire">
+                                {% if comment.user == null %}
+                                    Utilisateur anonyme
+                                {% endif %}
+                                {{ comment.user }}
+                                <p id="commentContent_{{ comment.id }}">{{ comment.content|raw }}</p>
                                 
+                                <div>
+                                    <span>{{ comment.createdAt|ago }}</span>
+                                    <a href="#addComment" data-reply="" data-id="{{ comment.id }}"><button class="btn btn-outline-success">Répondre</button></a>
+                                </div>
                                 <!-- Les Réponses des commentaires -->
                                 {% for reply in comment.replies %}
 
