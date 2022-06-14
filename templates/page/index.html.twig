@@ -5,10 +5,11 @@
 {% block body %}
 {% include "partial/__flashMessages.html.twig" %}
 <section>
-    <div class="content">
-        {{  page.contents[0].content|raw }}
-        <img src="{{ asset("build/images/Logo.png") }}" alt="">
-    </div>
+    {% for content in page.contents %}
+        <div class="content">
+            {{  content.content|raw }}
+        </div>
+    {% endfor %}
 </section>
 <img class="wave-svg" src="{{ asset('build/images/wave.svg' )}}" alt="">
 <section>

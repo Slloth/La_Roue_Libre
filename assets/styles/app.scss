@@ -13,6 +13,8 @@ body{
     overflow-x: hidden;
     transition: all 200ms linear;
     margin: 0%;
+    text-align: justify;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 tbody, td, tfoot, th, thead, tr
@@ -22,12 +24,12 @@ tbody, td, tfoot, th, thead, tr
 }
 
 .bg-light {
-background-color: white !important;
-transition: all 200ms linear;
+    background-color: white !important;
+    transition: all 200ms linear;
 }
 
 main{
-    margin-top: 130px;
+    margin-top: 8vh;
     min-height: 100vh;
 }
 
@@ -55,37 +57,6 @@ h1 span{
 	transform: translate(0);
 }
 
-p{
-	text-align: center;
-	margin: 0;
-	padding-top: -220px;
-	opacity: 1;
-	transform: translate(0);
-    transition: all 300ms linear;
-    transition-delay: 1700ms;
-}
-
-p.blocktext {
-    margin-block: initial;
-    margin-top: 5%;
-    width: 25%;
-    text-align: justify;
-    font-family: 'Source Sans Pro', sans-serif;
-    margin-left: 85px;
-}
-
-img.blocktext {
-    width: 400px;
-    margin-left: 85px;
-}
-
-.container-1 {
-    display: flex;
-    margin-top: 75px;
-    margin-bottom: 80px;
-    justify-content: center;
-}
-
 .btn img{
     width: 40px;
 }
@@ -103,23 +74,26 @@ img.blocktext {
     color: #fffbea;
 }
 
-.roue1 {
+#roue1 {
     position: absolute;
     width: 500px;
     margin-top: 70px;
     margin-left: -270px;
+    z-index: -1;
 }
 
-.roue2 {
+#roue2 {
     position: absolute;
     width: 100px;
+    z-index: -1;
     margin-left: 200px;
 }
 
-.roue3 {
+#roue3 {
     position: absolute;
+    z-index: -1;
     width: 300px;
-    margin-left: 1600px;
+    margin-left: 70vw;
     margin-top: 572px;
 }
 
