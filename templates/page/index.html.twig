@@ -5,20 +5,12 @@
 {% block body %}
 {% include "partial/__flashMessages.html.twig" %}
 <section>
-    <h1>
-        <span>Qui</span>
-        <span></span>
-        <span>Sommes</span>
-        <span></span>
-        <span>Nous</span>
-        <span>?</span>
-    </h1>
-    {% for content in page.contents %}
-        <div class="content">
-            {{ content.content|raw }}
-        </div>
-    {% endfor %}
+    <div class="content">
+        {{  page.contents[0].content|raw }}
+        <img src="{{ asset("build/images/Logo.png") }}" alt="">
+    </div>
 </section>
+<img class="wave-svg" src="{{ asset('build/images/wave.svg' )}}" alt="">
 <section>
     <h1>Nos Antennes</h1>
     <iframe src="https://www.google.com/maps/d/u/0/embed?mid=11JAbMf43wPJOupdjKubK3hCNsfQMioU&ehbc=2E312F" width="75%" height="756"></iframe>

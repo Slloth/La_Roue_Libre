@@ -27,4 +27,4 @@ import './images/insta-white.png';
 import './images/twitter-white.png';
 import './images/Linked-white.png';
 import './images/roue-site.png';
-
+import './images/wave.svg';

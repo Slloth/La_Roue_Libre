@@ -16,6 +16,23 @@ section{
     align-items: center;
 }
 
-.content{
-    flex-direction: row;
+.content {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20vh;
+}
+
+.content div {
+    width: 35%;
+}
+.content img {
+    width: 35vw;
+}
+
+.wave-svg{
+    width: 100%;
+}
+
+#visual {
+    padding-bottom: 60px;
 }
