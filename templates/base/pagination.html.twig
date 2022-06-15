@@ -16,25 +16,25 @@
         <ul class="pagination{{ classAlign }}{{ classSize }}">
 
             {% if previous is defined %}
-                <li class="page-item">
+                <li class="page-item btn btn-success">
                     <a class="page-link" rel="prev" href="{{ path(route, query|merge({(pageParameterName): previous})) }}">&laquo;&nbsp;{{ 'label_previous'|trans({}, 'KnpPaginatorBundle') }}</a>
                 </li>
             {% else %}
-                <li class="page-item disabled">
+                <li class="page-item btn btn-success disabled">
                     <span class="page-link">&laquo;&nbsp;{{ 'label_previous'|trans({}, 'KnpPaginatorBundle') }}</span>
                 </li>
             {% endif %}
 
             {% if startPage > 1 %}
-                <li class="page-item">
+                <li class="page-item btn btn-outline-success">
                     <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): 1})) }}">1</a>
                 </li>
                 {% if startPage == 3 %}
-                    <li class="page-item">
+                    <li class="page-item btn btn-outline-success">
                         <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): 2})) }}">2</a>
                     </li>
                 {% elseif startPage != 2 %}
-                    <li class="page-item disabled">
+                    <li class="page-item btn btn-outline-success disabled">
                         <span class="page-link">&hellip;</span>
                     </li>
                 {% endif %}
@@ -42,11 +42,11 @@
 
             {% for page in pagesInRange %}
                 {% if page != current %}
-                    <li class="page-item">
+                    <li class="page-item btn btn-outline-success">
                         <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a>
                     </li>
                 {% else %}
-                    <li class="page-item active">
+                    <li class="page-item btn btn-outline-success active">
                         <span class="page-link">{{ page }}</span>
                     </li>
                 {% endif %}
@@ -56,26 +56,26 @@
             {% if pageCount > endPage %}
                 {% if pageCount > (endPage + 1) %}
                     {% if pageCount > (endPage + 2) %}
-                        <li class="page-item disabled">
+                        <li class="page-item btn btn-outline-success disabled">
                             <span class="page-link">&hellip;</span>
                         </li>
                     {% else %}
-                        <li class="page-item">
+                        <li class="page-item btn btn-outline-success">
                             <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): (pageCount - 1)})) }}">{{ pageCount -1 }}</a>
                         </li>
                     {% endif %}
                 {% endif %}
-                <li class="page-item">
+                <li class="page-item btn btn-outline-success">
                     <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): pageCount})) }}">{{ pageCount }}</a>
                 </li>
             {% endif %}
 
             {% if next is defined %}
-                <li class="page-item">
+                <li class="page-item btn btn-success">
                     <a class="page-link" rel="next" href="{{ path(route, query|merge({(pageParameterName): next})) }}">{{ 'label_next'|trans({}, 'KnpPaginatorBundle') }}&nbsp;&raquo;</a>
                 </li>
             {% else %}
-                <li  class="page-item disabled">
+                <li  class="page-item btn btn-success disabled">
                     <span class="page-link">{{ 'label_next'|trans({}, 'KnpPaginatorBundle') }}&nbsp;&raquo;</span>
                 </li>
             {% endif %}
