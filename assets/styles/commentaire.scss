@@ -26,6 +26,11 @@
     cursor: pointer;
 }
 
+.commentaire p{
+    inline-size: 60%;
+    overflow-wrap: break-word;
+}
+
 .commentaire{
     width: 75vw;
     background-color: #d3d3d388;
