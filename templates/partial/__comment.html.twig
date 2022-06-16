@@ -9,6 +9,9 @@
         {{form_row(form.parentId)}}
     {{form_end(form)}}
     <div>
+        {{ knp_pagination_render(commentsList,'base/pagination.html.twig') }}
+    </div>
+    <div>
         {% if commentsList is not empty %}
             <ul id="commentaires">
                 {% for comment in commentsList %}
@@ -28,29 +31,21 @@
                                     <a href="#addComment" data-reply="" data-id="{{ comment.id }}"><button class="btn btn-outline-success">Répondre</button></a>
                                 </div>
                                 <!-- Les Réponses des commentaires -->
-                                {% for reply in comment.replies %}
+                                <div class="card-reply">
+                                    {% for reply in comment.replies %}
 
-                                    {% if reply.isChecked %}
+                                        {% if reply.isChecked %}
 
-                                        <li class="mb-4 d-flex justify-content-end">
-                                            <div class="card bg-secondary text-dark" style="width:95%;">
-                                                <div class="card-header">
-                                                    <span class="align-middle">
-                                                        Réponse de {{ reply.user }}
-                                                    </span>
-                                                    <span style="float: right;">
-                                                        {{ reply.createdAt|ago }}
-                                                    </span>
-                                                </div>
-                                                <div class="card-body">
-                                                    <p class="card-text col-10">{{ reply.content|raw }}</p>
-                                                </div>
-                                            </div>
-                                        </li>
+                                            <li class="commentaire reply">
+                                                Réponse de {{ reply.user }}
+                                                <p>{{ reply.content|raw }}</p>
+                                                {{ reply.createdAt|ago }}
+                                            </li>
 
-                                    {% endif %}
+                                        {% endif %}
 
-                                {% endfor %}
+                                    {% endfor %}
+                                </div>
                             </li>
                     {% endif %}
 

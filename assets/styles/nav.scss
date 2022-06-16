@@ -1,4 +1,4 @@
-nav{
+.navbar{
     display: flex;
     position: fixed;
     width: 100%;
@@ -13,19 +13,19 @@ nav{
     transition : all 0.3s ease-out;
 }
 
-nav a img{
+.navbar a img{
     width: 100px;
 }
-nav ul{
+.navbar ul{
     display: flex;
     width: 50vw;
     justify-content: space-evenly;
     align-items: center;
 }
-nav ul li a{
+.navbar ul li a{
     text-decoration: none;
 }
-nav ul li {
+.navbar ul li {
     list-style: none;
 
 }
