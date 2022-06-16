@@ -5,8 +5,23 @@
 @import url('//db.onlinewebfonts.com/c/d97281294b63b449a93162fccd6121ec?family=Swis721+BT');
 @import url('//db.onlinewebfonts.com/c/d58f65c7b063b8d1f4ed247e47e37e5b?family=Swis721+BT');
 
+$light-background: #fffbea;
+$red-background: red;
+
+@mixin theme-colors($light-theme: true) {
+    @if $light-theme {
+        background-color: $light-background;
+    }
+    @else{
+        background-color: $red-background;
+    }
+}
+
+body.red{
+    @include theme-colors($light-theme: false);
+}
+
 body{
-    background-color: #fffbea;
     background-position: center;
     background-repeat: repeat;
     background-size: 7%;
@@ -74,8 +89,8 @@ h1 span{
 }
 
 .btn-outline-success {
+    color: black !important;
     background-color: transparent;
-    color: #0e8944aa;
     border: 3px solid #0e8944aa;
     border-color: #0e8944aa;
     transition-duration: 0.4s;
@@ -92,7 +107,7 @@ h1 span{
 
 .btn-outline-success:hover {
     background-color: #0e8944aa;
-    color: #fffbea;
+    color: #fffbea !important;
 }
 
 #roue1 {
@@ -151,4 +166,5 @@ h1 span{
 
 .wave-svg{
     width: 100%;
+    border-radius: 5px;
 }
