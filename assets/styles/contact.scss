@@ -9,11 +9,11 @@
 }
 
 .mail1 {
-    box-shadow: 10px 10px rgba(0, 0, 255, .2);
+    box-shadow: 10px 10px white;
 }
 
 .mail2 {
-    box-shadow: 10px 10px rgba(0, 0, 255, .2),;
+    box-shadow: 10px 10px white;
 }
 
 .form-control {
@@ -29,3 +29,9 @@
     box-shadow: 10px 10px rgba(0, 0, 255, .2);
 }
 
+.fond-contact {
+    width: 100%;
+    position: absolute;
+    margin-top: -671px;
+    z-index: -10;
+}
