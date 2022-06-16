@@ -31,3 +31,4 @@ import './images/Linked-white.png';
 import './images/roue-site.png';
 import './images/wave.svg';
 import './images/wave-contact.svg';
+import './images/fond-vague-rouge.png'
