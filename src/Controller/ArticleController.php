@@ -15,37 +15,42 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ArticleController extends AbstractController
 {
-
     /**
-     * Affiche tout les articles
+     * Constructor
      *
      * @param ArticleRepository $articleRepository
      * @param PaginatorInterface $paginator
+     */
+    public function __construct(
+        private ArticleRepository $articleRepository,
+        private PaginatorInterface $paginator,
+    )
+    {}
+
+    /**
+     * Affiche tout les articles
      * @param Request $request
+     * 
      * @return Response
      */
     #[Route('/articles',methods: ['GET'], name: 'articles')]
-    public function index(
-        ArticleRepository $articleRepository,
-        PaginatorInterface $paginator,
-        Request $request
-        ): Response
+    public function index(Request $request): Response
     {
 
-        $articles = $articleRepository->findAllPublic();
+        $articles = $this->articleRepository->findAllPublic();
 
         $form = $this->createForm(SearchArticleType::class);
         $search = $form->handleRequest($request);
         
         if($form->isSubmitted() && $form->isValid()){
             if($search->get("search")->getData() !== null || !empty($search->get("categories")->getData()[0]) ){
-                $articles = $articleRepository->searchArticle($search);
+                $articles = $this->articleRepository->searchArticle($search);
             }
         }
 
         $currentURL = "articles";
         return $this->render('article/index.html.twig', [
-            'articles' => $paginator->paginate($articles,$request->query->getInt('page',1),12),
+            'articles' => $this->paginator->paginate($articles,$request->query->getInt('page',1),66),
             'form' => $form->createView(),
             'currentURL' => $currentURL
         ]);
@@ -55,8 +60,6 @@ class ArticleController extends AbstractController
      * Affiche un article en fonction du slug passé dans l'URL
      *
      * @param string $slug
-     * @param ArticleRepository $articleRepository
-     * @param CommentRepository $commentRepository
      * @param CommentService $commentService
      * @param Request $request
      * 
@@ -64,14 +67,13 @@ class ArticleController extends AbstractController
      */
     #[Route('/article/{slug}',methods: ['GET','POST'], name: 'article')]
     public function show(
-        string $slug, 
-        ArticleRepository $articleRepository, 
-        CommentRepository $commentRepository, 
-        CommentService $commentService, 
+        string $slug,
+        CommentService $commentService,
+        CommentRepository $commentRepository,
         Request $request
         ): Response
     {
-        $article = $articleRepository->findOnePublic($slug);
+        $article = $this->articleRepository->findOnePublic($slug);
 
         $form = $this->createForm(CommentType::class);
 
@@ -82,10 +84,11 @@ class ArticleController extends AbstractController
             return $this->redirectToRoute('article',["slug" => $article->getSlug()]);
         }
 
+        $comments = $commentRepository->findBy(["article" => $article,"isChecked" => true]);
 
         return $this->render('article/show.html.twig', [
             'article' => $article,
-            'commentsList' => $commentRepository->findBy(["article" => $article,"isChecked" => true]),
+            'commentsList' => $this->paginator->paginate($comments,$request->query->getInt('page',1),1),
             'form' => $form->createView(),
         ]);
     }
