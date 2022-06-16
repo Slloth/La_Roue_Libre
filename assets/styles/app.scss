@@ -6,7 +6,7 @@
 @import url('//db.onlinewebfonts.com/c/d58f65c7b063b8d1f4ed247e47e37e5b?family=Swis721+BT');
 
 $light-background: #fffbea;
-$red-background: red;
+$red-background: #f04f3eaa;
 
 @mixin theme-colors($light-theme: true) {
     @if $light-theme {
@@ -167,4 +167,9 @@ h1 span{
 .wave-svg{
     width: 100%;
     border-radius: 5px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
 }
