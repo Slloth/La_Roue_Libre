@@ -74,8 +74,8 @@ h1 span{
 }
 
 .btn-outline-success {
+    color: black !important;
     background-color: transparent;
-    color: #0e8944aa;
     border: 3px solid #0e8944aa;
     border-color: #0e8944aa;
     transition-duration: 0.4s;
@@ -92,7 +92,7 @@ h1 span{
 
 .btn-outline-success:hover {
     background-color: #0e8944aa;
-    color: #fffbea;
+    color: #fffbea !important;
 }
 
 #roue1 {
@@ -147,4 +147,5 @@ h1 span{
     padding: 5px 25px;
     cursor: pointer;
     margin-top: 20px;
+    border-radius: 5px;
 }
