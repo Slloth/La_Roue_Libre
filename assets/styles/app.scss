@@ -5,8 +5,23 @@
 @import url('//db.onlinewebfonts.com/c/d97281294b63b449a93162fccd6121ec?family=Swis721+BT');
 @import url('//db.onlinewebfonts.com/c/d58f65c7b063b8d1f4ed247e47e37e5b?family=Swis721+BT');
 
+$light-background: #fffbea;
+$red-background: red;
+
+@mixin theme-colors($light-theme: true) {
+    @if $light-theme {
+        background-color: $light-background;
+    }
+    @else{
+        background-color: $red-background;
+    }
+}
+
+body.red{
+    @include theme-colors($light-theme: false);
+}
+
 body{
-    background-color: #fffbea;
     background-position: center;
     background-repeat: repeat;
     background-size: 7%;
