@@ -18,18 +18,12 @@ class ContactType extends AbstractType
         $builder
             ->add('emailFrom', EmailType::class,[
                 "label" => false,
-                "row_attr" => [
-                    "class" => "mb-3"
-                ],
                 "attr" =>[
                     "placeholder" => "Votre email"
                 ]
             ])
             ->add('subject', TextType::class,[
                 "label" => false,   
-                "row_attr" => [
-                    "class" => "mb-3"
-                ],
                 "attr" =>[
                     "placeholder" => "Le sujet de votre mail"
                 ]

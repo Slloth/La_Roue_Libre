@@ -14,6 +14,7 @@ import './styles/subscribeNewsletter.scss';
 import './styles/commentaire.scss';
 import './styles/footer.scss';
 import './styles/flashMessage.scss';
+import './styles/contact.scss';
 
 // start the Stimulus application
 import './bootstrap';
@@ -28,3 +29,4 @@ import './images/twitter-white.png';
 import './images/Linked-white.png';
 import './images/roue-site.png';
 import './images/wave.svg';
+import './images/wave-contact.svg';

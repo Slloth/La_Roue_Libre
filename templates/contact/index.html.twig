@@ -3,16 +3,16 @@
 {% block title %}Contact{% endblock %}
 
 {% block body %}
-    <div class="container pt-5">
+    <div class="container-5">
         {% include "partial/__flashMessages.html.twig" %}
         <h1 class="text-center mb-5">Contactez nous et envoyez nous vos avis !</h1>
         {{ form_start(form) }}
-        <div class="row mb-3">
-            <div class="col-6">{{ form_row(form.emailFrom) }}</div>
-            <div class="col-6">{{ form_row(form.subject) }}</div>
+        <div class="mail">
+            <div class="mail1">{{ form_row(form.emailFrom) }}</div>
+            <div class="mail2">{{ form_row(form.subject) }}</div>
         </div>
         {{ form_widget(form) }}
         {{ form_end(form) }}
     </div>
+     <img class="wave-svg" src="{{ asset('build/images/wave-contact.svg' )}}" alt="">
 {% endblock %}
-
