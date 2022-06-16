@@ -1,18 +1,18 @@
 <div>
     <a href="{{ path('article', {'slug': article.slug })}}" target="_blank">
-    <div class="card bg-dark text-white">
-        <img class="card-img img-thumbnail" style="min-height:360px;" src="{{ vich_uploader_asset(article,'thumbnailFile')}}" alt="{{article.thumbnail}}">
-            <div class="card-img-overlay" style="background-color:#0007;">
-                <h5 class="card-title">{{article.name|raw}}</h5>
-                <p class="card-text">Publié {{article.publicatedAt|ago}}</p>
-                <p class="card-text">Dernière mise à jours {{article.createdAt|ago}}</p>
-            </div>
+    <div>
+        <img class="thumbnail-article" src="{{ vich_uploader_asset(article,'thumbnailFile')}}" alt="{{article.thumbnail}}">
+        <div class="article-content">
+            <h5>{{article.name|raw}}</h5>
+            <p>Publié {{article.publicatedAt|ago}}</p>
+            <p>Dernière mise à jours {{article.createdAt|ago}}</p>
         </div>
+    </div>
     </a>
     {% if article.category is not empty %}
-        <div class="bg-light d-flex flex-wrap rounded justify-content-evenly">
+        <div>
             {% for category in article.category %}
-                <div class="rounded px-1 categories-article" style="border:3px solid {{ category.color }}">
+                <div style="border:3px solid {{ category.color }}">
                     {{ category.name }}
                 </div>
             {% endfor %}
