@@ -50,7 +50,7 @@ class ArticleController extends AbstractController
 
         $currentURL = "articles";
         return $this->render('article/index.html.twig', [
-            'articles' => $this->paginator->paginate($articles,$request->query->getInt('page',1),66),
+            'articles' => $this->paginator->paginate($articles,$request->query->getInt('page',1),6),
             'form' => $form->createView(),
             'currentURL' => $currentURL
         ]);

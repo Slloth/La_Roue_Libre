@@ -3,23 +3,21 @@
 {% block title %}Articles{% endblock %}
 
 {% block body %}
-<section id="articles">
-    {% include "article/__navbarSearch.html.twig" %}
-    <div>
-        {% if articles is not empty %}
-            <div id="grid-articles">
-                {% for article in articles %}
-                    {% include "article/__card.html.twig" with {article:article} only %}
-                {% endfor %}
-            </div>
-        {% else %}
-            <div>
-                <p>Désolé, mais votre recherche, ne correspond à aucun enregistrement dans notre base de données !</p>
-            </div>
-        {% endif %}
-        <div>
-            {{ knp_pagination_render(articles,'base/pagination.html.twig') }}
+<div id="pagination">
+    {{ knp_pagination_render(articles,'base/pagination.html.twig') }}
+</div>
+{% if articles is not empty %}
+    <section id="articles">
+        <div id="grid-articles">
+            {% for article in articles %}
+                {% include "article/__card.html.twig" with {article:article,loop:loop} only %}
+            {% endfor %}
         </div>
+    {% include "article/__navbarSearch.html.twig" %}
+    </section>
+{% else %}
+    <div>
+        <p>Désolé, mais votre recherche, ne correspond à aucun enregistrement dans notre base de données !</p>
     </div>
-</section>
+{% endif %}
 {% endblock %}

@@ -1,7 +1,10 @@
-<div class="article">
+<div    class="article"
+        style="{% if loop.index is divisible by(2) %}grid-area: {{ loop.index }} / 1;{% else %}grid-area: {{ loop.index }} / 2;{% endif %}">
     <div class="article-content">
         <a href="{{ path('article', {'slug': article.slug })}}" target="_blank">
-            <img class="article-thumbnail" src="{{ vich_uploader_asset(article,'thumbnailFile')}}" alt="{{article.thumbnail}}">
+            <img    class="article-thumbnail {% if loop.index is divisible by(2) %}shadow-right{% else %}shadow-left{% endif %}"
+                    src="{{ vich_uploader_asset(article,'thumbnailFile')}}"
+                    alt="{{article.thumbnail}}">
             <div class="article-overlay">
                 <h3>{{ article.name|raw }}</h3>
                 <div>
@@ -14,9 +17,9 @@
     {% if article.category is not empty %}
         <div class="article-categories">
             {% for category in article.category %}
-                <span style="border:3px solid {{ category.color }}">
+                <div style="color: {{ category.color }};">
                     {{ category.name }}
-                </span>
+                </div>
             {% endfor %}
         </div>
     {% endif %}
