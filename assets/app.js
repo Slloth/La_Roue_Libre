@@ -19,8 +19,9 @@ import './styles/pagination.scss';
 
 // start the Stimulus application
 import './bootstrap';
-
 import './comment';
+import './nav';
+
 import './images/favicon.ico';
 import './images/Logo.png';
 import './images/footergif.gif';
