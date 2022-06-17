@@ -5,7 +5,7 @@
 }
 
 .container-5 {
-    margin-top :665px;
+    margin-top : 389px;
 }
 
 .mail1 {
@@ -26,12 +26,42 @@
 #contact_content {
     width: 55%;
     height: 237px;
-    box-shadow: 10px 10px rgba(0, 0, 255, .2);
+    box-shadow: 10px 10px white;
 }
 
 .fond-contact {
     width: 100%;
     position: absolute;
-    margin-top: -671px;
+    margin-top: -745px;
     z-index: -10;
+}
+
+.text-center5 {
+    font-family: "Swis721 BT";
+    font-size: 48px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+}
+
+.titrecontact {
+    font-family: "Swis721 BT";
+    font-size: 48px;
+    color: red;
+    margin-top: 296px;
+    margin-left: -730px;
+}
+
+.roue1 {
+    position: absolute;
+    width: 29%;
+    margin-top: -179px;
+    margin-left: -240px;
+}
+
+.rouerouge1 {
+    position: absolute;
+    margin-top: -226px;
+    margin-left: 888px;
 }
