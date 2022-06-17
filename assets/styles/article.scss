@@ -100,6 +100,10 @@ section#articles form{
     display: none;
 }
 
+#search_article_categories .form-check input[type="checkbox"].form-check-input + label{
+    font-size: large;
+}
+
 #search_article_categories .form-check input[type="checkbox"].form-check-input + label::after{
     content:'';
     border: 0.2rem solid #0e8944aa;
