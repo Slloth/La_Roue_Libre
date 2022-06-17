@@ -3,9 +3,14 @@
 {% block title %}Contact{% endblock %}
 
 {% block body %}
+<img class="roue1" src="{{ asset('build/images/roue-site.png' )}}" alt="">
+<img class="rouerouge1" src="{{ asset('build/images/roue-rouge-12.png' )}}" alt="">
+<div class="container-4">
+    <h1 class="titrecontact">Contact<h1>
+</div>
     <div class="container-5">
         {% include "partial/__flashMessages.html.twig" %}
-        <h1 class="text-center mb-5">Contactez nous et envoyez nous vos avis !</h1>
+        <h1 class="text-center5">Contactez nous et envoyez nous vos avis !</h1>
         {{ form_start(form) }}
         <div class="mail">
             <div class="mail1">{{ form_row(form.emailFrom) }}</div>
