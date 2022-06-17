@@ -1,12 +1,12 @@
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
-    let header = document.querySelector("header");
-    if(window.scrollY > 1000){
+    let navbar = document.querySelector("#navbar");
+    if(window.scrollY < 1000 && document.querySelector("video")){
         console.log(window.scrollY);
-        document.querySelector("#navbar").classList.add("bg-light");
+        navbar.classList.remove("bg-light");
     }
     else{
-        document.querySelector("#navbar").classList.remove("bg-light");
+        navbar.classList.add("bg-light");
     }
 }

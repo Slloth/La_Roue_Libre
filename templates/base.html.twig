@@ -16,13 +16,15 @@
     </head>
     <body>
         <header>
-            {% if currentURL == "accueil" %}
-                <video width="100%" muted autoplay>
-                    <source src="videos/video-bienvenue.mp4"
-                            type="video/mp4">
+            {% if currentURL is defined %}
+                {% if currentURL == "accueil" %}    
+                    <video width="100%" muted autoplay>
+                        <source src="videos/video-bienvenue.mp4"
+                                type="video/mp4">
 
-                    Sorry, your browser doesn't support embedded videos.
-                </video>
+                        Sorry, your browser doesn't support embedded videos.
+                    </video>
+                {% endif %}
             {% endif %}
             {% include "base/nav.html.twig" %}
         </header>
