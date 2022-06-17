@@ -1,20 +1,22 @@
-<div>
-    <a href="{{ path('article', {'slug': article.slug })}}" target="_blank">
-    <div>
-        <img class="thumbnail-article" src="{{ vich_uploader_asset(article,'thumbnailFile')}}" alt="{{article.thumbnail}}">
-        <div class="article-content">
-            <h5>{{article.name|raw}}</h5>
-            <p>Publié {{article.publicatedAt|ago}}</p>
-            <p>Dernière mise à jours {{article.createdAt|ago}}</p>
-        </div>
-    </div>
-    </a>
-    {% if article.category is not empty %}
-        <div>
-            {% for category in article.category %}
-                <div style="border:3px solid {{ category.color }}">
-                    {{ category.name }}
+<div class="article">
+    <div class="article-content">
+        <a href="{{ path('article', {'slug': article.slug })}}" target="_blank">
+            <img class="article-thumbnail" src="{{ vich_uploader_asset(article,'thumbnailFile')}}" alt="{{article.thumbnail}}">
+            <div class="article-overlay">
+                <h3>{{ article.name|raw }}</h3>
+                <div>
+                    <p>Publié {{article.publicatedAt|ago}}</p>
+                    <p>Dernière mise à jours {{article.createdAt|ago}}</p>
                 </div>
+            </div>
+        </a>
+    </div>
+    {% if article.category is not empty %}
+        <div class="article-categories">
+            {% for category in article.category %}
+                <span style="border:3px solid {{ category.color }}">
+                    {{ category.name }}
+                </span>
             {% endfor %}
         </div>
     {% endif %}

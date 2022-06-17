@@ -4,9 +4,7 @@
 
 {% block body %}
 <section id="articles">
-    <div>
-        {% include "article/__navbarSearch.html.twig" %}
-    </div>
+    {% include "article/__navbarSearch.html.twig" %}
     <div>
         {% if articles is not empty %}
             <div id="grid-articles">
