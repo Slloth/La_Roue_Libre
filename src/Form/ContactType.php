@@ -33,11 +33,8 @@ class ContactType extends AbstractType
                 "config_name" => "public_config",
             ])
             ->add('Envoyer',SubmitType::class,[
-                'row_attr' => [
-                    "class" =>"d-grid gap-2 mt-5"
-                ],
                 'attr' =>[
-                    'class' => "btn btn-success py-3"
+                    'class' => "btn btn-success"
                 ]
             ])
         ;

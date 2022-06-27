@@ -1,6 +1,6 @@
 
 <!-- Footer -->
-<footer>
+<footer {% if red is defined %} style="background-color: {{ red }}"{% endif %}>
   <img id="footerGif" src="{{asset("build/images/footergif.gif")}}" alt="">
   <div id="footer-content">
     <!-- Section: Social media -->

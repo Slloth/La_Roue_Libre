@@ -32,7 +32,8 @@ class ContactController extends AbstractController
         $currentURL = "contact";
         return $this->render('contact/index.html.twig', [
             'form' => $form->createView(),
-            'currentURL' => $currentURL
+            'currentURL' => $currentURL,
+            'red' => "#f04f3e"
         ]);
     }
 }

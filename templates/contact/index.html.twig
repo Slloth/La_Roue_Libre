@@ -3,21 +3,33 @@
 {% block title %}Contact{% endblock %}
 
 {% block body %}
-<img class="roue1" src="{{ asset('build/images/roue-site.png' )}}" alt="">
-<img class="rouerouge1" src="{{ asset('build/images/roue-rouge-12.png' )}}" alt="">
-<div class="container-4">
-    <h1 class="titrecontact">Contact<h1>
+{% include "partial/__flashMessages.html.twig" %}
+<div>
+    <img id="roue1" src="{{ asset('build/images/roue-site.png' )}}" alt="">
+    <img id="rouerouge1" src="{{ asset('build/images/roue-rouge-12.png' )}}" alt="">
+    <h1 class="titrecontact">Contact</h1>
 </div>
-    <div class="container-5">
-        {% include "partial/__flashMessages.html.twig" %}
+<div id="contact-relative">
+    <img id="fond-contact" src="{{ asset('build/images/fond-contact.png') }}" alt="">
+    <div id="contact-content">
         <h1 class="text-center5">Contactez nous et envoyez nous vos avis !</h1>
         {{ form_start(form) }}
-        <div class="mail">
-            <div class="mail1">{{ form_row(form.emailFrom) }}</div>
-            <div class="mail2">{{ form_row(form.subject) }}</div>
+        <div id="header-form">
+            {{ form_row(form.emailFrom) }}
+            {{ form_row(form.subject) }}
         </div>
         {{ form_widget(form) }}
         {{ form_end(form) }}
+        <div id="horraire-contact">
+            <div>
+                <img class="horraire-contact-logo" src="{{ asset('build/images/picto-telephone.png')}}" alt="">
+                <div>09 84 11 52 95</div>
+            </div>
+            <div>
+                <img class="horraire-contact-logo" src="{{ asset('build/images/horloge.png')}}" alt="">
+                <div>10h-18h du Mardi au Samedi</div>
+            </div>
+        </div>
     </div>
-     <img class="fond-contact" src="{{ asset('build/images/fond-vague-rouge.png' )}}" alt="">
+</div>
 {% endblock %}
