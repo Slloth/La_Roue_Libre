@@ -3,7 +3,7 @@
 {% block title %}{{article.name|raw}}{% endblock %}
 
 {% block body %}
-<div class="container pt-5 pb-5">
+<div class="article-content" style="margin-top: 30vh;">
     {{ article.content|raw}}
     {% include "partial/__comment.html.twig" %}
 </div>
