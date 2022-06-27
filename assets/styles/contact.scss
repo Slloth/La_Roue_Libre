@@ -17,8 +17,12 @@
 }
 
 #rouerouge1 {
-    
+    position: absolute;
+    z-index: -1;
+    left: 50vw;
+    bottom: -400px;
 }
+
 #contact-relative{
     position: relative;
     margin-bottom: -6px;

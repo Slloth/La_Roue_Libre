@@ -27,6 +27,12 @@
                 {% endif %}
             {% endif %}
             {% include "base/nav.html.twig" %}
+            <div>
+                <img id="roue1" src="{{ asset('build/images/roue-site.png' )}}" alt="">
+                <img id="roue2" src="{{ asset('build/images/roue-site.png' )}}" alt="">
+                <img id="roue3" src="{{ asset('build/images/roue-site.png' )}}" alt="">
+                {% if red is defined %} <img id="rouerouge1" src="{{ asset('build/images/roue-rouge-12.png' )}}" alt=""> {% endif %}
+            </div>
         </header>
         <main>
             {% block body %}{% endblock %}

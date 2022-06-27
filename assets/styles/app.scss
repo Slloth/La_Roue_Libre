@@ -22,6 +22,10 @@ tbody, td, tfoot, th, thead, tr
     border-color: inherit;
 }
 
+header{
+    position: relative;
+}
+
 ul{
     list-style: none;
 }
@@ -97,25 +101,24 @@ h1 span{
 #roue1 {
     position: absolute;
     width: 500px;
-    margin-top: 70px;
-    margin-left: -270px;
+    left: -15vw;
     z-index: -1;
 }
-/*
+
 #roue2 {
     position: absolute;
     width: 100px;
     z-index: -1;
-    margin-left: 200px;
+    left: 10vw;
 }
 
 #roue3 {
     position: absolute;
     z-index: -1;
     width: 300px;
-    margin-left: 70vw;
-    margin-top: 572px;
-}*/
+    left: 75vw;
+    bottom: -780px;
+}
 
 .form-control {
     width: 25vw;
