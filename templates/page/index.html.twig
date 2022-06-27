@@ -7,15 +7,19 @@
 <section>
     {% for content in page.contents %}
         <div class="content">
-            {{  content.content|raw }}
+            {{ content.content|raw }}
         </div>
     {% endfor %}
 </section>
-<img class="wave-svg" src="{{ asset('build/images/wave.svg' )}}" alt="">
-<section>
-    <h1>Nos Antennes</h1>
-    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=11JAbMf43wPJOupdjKubK3hCNsfQMioU&ehbc=2E312F" width="75%" height="756"></iframe>
-</section>
+{% if currentURL is defined %}
+    {% if currentURL == "accueil" %}    
+        <img class="wave-svg" src="{{ asset('build/images/wave.svg' )}}" alt="">
+        <section>
+            <h1>Nos Antennes</h1>
+            <iframe src="https://www.google.com/maps/d/u/0/embed?mid=11JAbMf43wPJOupdjKubK3hCNsfQMioU&ehbc=2E312F" width="75%" height="756"></iframe>
+        </section>
+    {% endif %}
+{% endif %}
 <img class="wave-svg" src="{{ asset('build/images/wave.svg' )}}" alt="">
 {% include "partial/__comment.html.twig" %}
 <img class="wave-svg" src="{{ asset('build/images/wave.svg' )}}" alt="">
