@@ -26,16 +26,20 @@ footer{
 }
 
 #newsletter {
-    padding-left: 100px;
+    justify-content: space-evenly;
+}
+
+.newsletter{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
+    align-items: stretch;
+    width: 500px;
 }
 
 .newsletter h3 {
     font-size: 22px;
     color: #fffbea;
+    text-align: center;
 }
 
 #copyright {

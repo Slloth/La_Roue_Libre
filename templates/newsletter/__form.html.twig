@@ -4,30 +4,20 @@
 {{ form_start(form, {'action': path('newsletter_register'), 'method': 'POST'}) }}
     <div class="newsletter">
         <!--Grid column-->
-            <h3>S'inscrire à notre newsletter</h3>
+        <h3>S'inscrire à notre newsletter</h3>
         <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-md-5 col-12">
         <!-- Email input -->
-            <div class="form-outline form-white mb-4">
-                {{ form_widget(form.email) }}
-                {{ form_label(form.email) }}
-            </div>
-        </div>
+        {{ form_widget(form.email) }}
+        {{ form_label(form.email) }}
         <!--Grid column-->
 
         <!--Grid column-->
-        <div class="col-auto">
         <!-- Agree button -->
             {{ form_row(form.agreeTerms) }}
-        </div>
 
         <!--Grid column-->
-        <div>
         <!-- Submit button -->
             {{ form_row(form.Souscrire) }}
-        </div>
         <!--Grid column-->
     </div>
 {{ form_end(form) }}

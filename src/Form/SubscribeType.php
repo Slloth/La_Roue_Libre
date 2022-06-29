@@ -30,7 +30,7 @@ class SubscribeType extends AbstractType
             ])
             ->add('Souscrire', SubmitType::class,[
                 'attr' => [
-                    "class" => "btn btn-outline-orange"
+                    "class" => "btn btn-outline-orange",
                 ]
             ]);
         ;
