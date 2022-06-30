@@ -62,7 +62,7 @@
 
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 650px) and (min-height: 500px){
     nav#navbar.navbar{
         position: static;
     }
@@ -75,5 +75,26 @@
     }
     ul.navbar-nav li{
         padding: 5px 0;
+    }
+    #addComment form{
+        width: 100%;
+    }
+    .pagination{
+        flex-direction: column;
+        height: inherit;
+    }
+    .form-display{
+        flex-direction: column;
+        margin-left: 50px;
+    }
+    .form-display div.form-group{
+        width: 100%;
+    }
+    input#comment_content,
+    button#comment_envoyer{
+        width: 85%;
+    }
+    .commentaire{
+        flex-direction: column;
     }
 }

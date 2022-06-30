@@ -8,9 +8,7 @@
         </div>
         {{form_row(form.parentId)}}
     {{form_end(form)}}
-    <div>
-        {{ knp_pagination_render(commentsList,'base/pagination.html.twig') }}
-    </div>
+    {{ knp_pagination_render(commentsList,'base/pagination.html.twig') }}
     <div>
         {% if commentsList is not empty %}
             <ul id="commentaires">
