@@ -17,6 +17,7 @@ import './styles/flashMessage.scss';
 import './styles/contact.scss';
 import './styles/pagination.scss';
 import './styles/media.scss';
+import './styles/security.scss';
 
 // start the Stimulus application
 import './bootstrap';
