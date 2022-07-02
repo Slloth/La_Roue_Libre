@@ -41,7 +41,7 @@ class AdhesionCrudController extends AbstractCrudController
         return [
             ChoiceField::new('prix','Adhesion')->setChoices($choices),
             ChoiceField::new('branch','Antenne')->setChoices($branch),
-            DateTimeField::new('subscirbedAt',"Date d'adhésions"),
+            DateTimeField::new('subscribedAt',"Date d'adhésions"),
             AssociationField::new('adherents')
         ];
     }

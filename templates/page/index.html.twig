@@ -3,12 +3,24 @@
 {% block title %}{{ page.name|raw }}{% endblock title %}
 
 {% block body %}
-    <div class = "container-lg pt-5 pb-5">
-        <section class = "mb-5 pb-5">
-            {% include "partial/__flashMessages.html.twig" %}
-            {{ page.content|raw}}
+{% include "partial/__flashMessages.html.twig" %}
+<section>
+    {% for content in page.contents %}
+        <div class="content">
+            {{ content.content|raw }}
+        </div>
+    {% endfor %}
+</section>
+{% if currentURL is defined %}
+    {% if currentURL == "accueil" %}    
+        <img class="wave-svg" src="{{ asset('build/images/wave.svg' )}}" alt="">
+        <section>
+            <h1>Nos Antennes</h1>
+            <iframe src="https://www.google.com/maps/d/u/0/embed?mid=11JAbMf43wPJOupdjKubK3hCNsfQMioU&ehbc=2E312F" width="75%" height="756"></iframe>
         </section>
-        {% include "partial/__comment.html.twig" %}
-    </div>
-
+    {% endif %}
+{% endif %}
+<img class="wave-svg" src="{{ asset('build/images/wave.svg' )}}" alt="">
+{% include "partial/__comment.html.twig" %}
+<img class="wave-svg" src="{{ asset('build/images/wave.svg' )}}" alt="">
 {% endblock body %}

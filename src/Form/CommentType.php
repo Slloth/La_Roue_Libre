@@ -16,14 +16,11 @@ class CommentType extends AbstractType
     {
         $builder
             ->add('content',TextType::class,[
-                'label' => false
+                'label' => false,
             ])
             ->add('envoyer',SubmitType::class,[
-                'row_attr' => [
-                    "class" =>"d-grid gap-2"
-                ],
                 'attr' =>[
-                    'class' => "btn btn-outline-success"
+                    'class' => "btn btn-success"
                 ]
             ])
             ->add('parentId', HiddenType::class,[

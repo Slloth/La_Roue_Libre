@@ -1,11 +1,10 @@
-<h1>Salut! S'il vous plait confirmez votre Email!</h1>
+<div style="display:flex;flex-direction:column;align-items:center">
+    <img style="width:100px;height:100px;justify-content:center;" src="{{ absolute_url(asset('build/images/Logo.png')) }}" alt="Logo de La Roue Libre"/>
+    <h1>Bonjour! S'il vous plait confirmez votre Email!</h1>
 
-<p>
-    S'il vous plait confirmez votre adresse Email en cliquant sur le lien suivant: <br><br>
-    <a href="{{ signedUrl }}">Je confirme mon email</a>.
-    Ce liens expiera dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
-</p>
-
-<p>
-    Bisous!
-</p>
+    <p>
+        S'il vous plait confirmez votre adresse Email en cliquant sur le lien suivant: <br><br>
+        <a href="{{ signedUrl }}">Je confirme mon email</a>.
+        Ce liens expiera dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+    </p>
+</div>

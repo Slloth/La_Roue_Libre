@@ -44,11 +44,6 @@ class Page
     private string $slug;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private string $content;
-
-    /**
      * @ORM\Column(type="string", length=15)
      * @Assert\NotBlank
      */
@@ -76,9 +71,15 @@ class Page
      */
     private $comments;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Content::class, mappedBy="page", orphanRemoval=true,cascade={"persist","remove"})
+     */
+    private $contents;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->contents = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -106,18 +107,6 @@ class Page
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
-
-        return $this;
-    }
-
-    public function getContent(): ?string
-    {
-        return $this->content;
-    }
-
-    public function setContent(?string $content): self
-    {
-        $this->content = $content;
 
         return $this;
     }
@@ -213,6 +202,36 @@ class Page
             // set the owning side to null (unless already changed)
             if ($comment->getPage() === $this) {
                 $comment->setPage(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Content>
+     */
+    public function getContents(): Collection
+    {
+        return $this->contents;
+    }
+
+    public function addContent(Content $content): self
+    {
+        if (!$this->contents->contains($content)) {
+            $this->contents[] = $content;
+            $content->setPage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContent(Content $content): self
+    {
+        if ($this->contents->removeElement($content)) {
+            // set the owning side to null (unless already changed)
+            if ($content->getPage() === $this) {
+                $content->setPage(null);
             }
         }
 

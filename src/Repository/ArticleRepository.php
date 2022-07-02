@@ -59,7 +59,7 @@ class ArticleRepository extends ServiceEntityRepository
      *
      * @param Form $search
      * 
-     * @return Array|null
+     * @return Article[]|null
      */
     public function searchArticle(Form $search): ?Array
     {

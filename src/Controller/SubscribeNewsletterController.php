@@ -67,7 +67,7 @@ class SubscribeNewsletterController extends AbstractController
                     ->htmlTemplate('newsletter/confirmation_email.html.twig')
             );
             // do anything else you need here, like send an email
-            $this->addFlash('success', 'Un email de confimation à été envoyé sur votre boite mail.');
+            $this->addFlash('success', 'Un email de confimation a été envoyé sur votre boite mail.');
             return $this->redirectToRoute('home');
         }
 
@@ -92,7 +92,7 @@ class SubscribeNewsletterController extends AbstractController
         $this->em->flush();
 
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
-        $this->addFlash('success', 'Votre email à été vérifié avec succès.');
+        $this->addFlash('success', 'Votre email a été vérifié avec succès.');
 
         return $this->redirectToRoute('home');
     }

@@ -1,0 +1,116 @@
+@media screen and (max-width: 1295px) {
+    #footer-content{
+        flex-direction: column;
+        bottom: 10%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    #roue1,#roue2,#roue3,#rouerouge1{
+        display: none;
+    }
+    .text-center5{
+        color: black;
+    }
+    img#fond-contact{
+        display: none !important;
+    }
+    footer{
+        background-color: inherit !important;
+    }
+    #contact-content{
+        position: static;
+    }
+    #socialMedia{
+        margin-top: 0;
+        padding-right: 0;
+    }
+    #newsletter{
+        margin-top: 0;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .text-center5{
+        padding: 0 30px;
+    }
+    #contact-content form{
+        padding: 0 30px;
+    }
+    .titrecontact{
+        margin-top: 0;
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .content{
+        font-size: 24px;
+    }
+    .newsletter{
+        width: 100%;
+        margin-bottom: 50px;
+    }
+    #footer-content{
+        left: 0;
+        background-color: #0e8944aa;
+        position: static;
+    }
+    #footerGif{
+        display: none;
+    }
+
+}
+
+@media screen and (max-width: 650px) and (min-height: 500px){
+    nav#navbar.navbar{
+        position: static;
+    }
+    a.navbar-brand img{
+        width: 50px;
+        height: 50px;
+    }
+    ul.navbar-nav{
+        flex-direction: column;
+    }
+    ul.navbar-nav li{
+        padding: 5px 0;
+    }
+    #addComment form{
+        width: 100%;
+    }
+    .pagination{
+        flex-direction: column;
+        height: inherit;
+    }
+    .form-display{
+        flex-direction: column;
+        margin-left: 50px;
+    }
+    .form-display div.form-group{
+        width: 100%;
+    }
+    input#comment_content,
+    button#comment_envoyer{
+        width: 85%;
+    }
+    .commentaire{
+        flex-direction: column;
+    }
+    section#articles{
+        flex-direction: column-reverse;
+        align-items: center;
+        margin-bottom: 50px;
+    }
+    section#articles form{
+        position: static;
+        width: 100%;
+        margin-bottom: 25px;
+    }
+    #grid-articles{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    #grid-articles div.article{
+        grid-area: inherit !important;
+    }
+}
