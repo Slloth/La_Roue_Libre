@@ -78,6 +78,6 @@ class Content
 
     public function __toString()
     {
-        return $this->getContent();
+        return "Contenu N°" . $this->getId();
     }
 }
