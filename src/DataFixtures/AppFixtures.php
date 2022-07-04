@@ -7,6 +7,7 @@ use App\Entity\Page;
 use App\Entity\User;
 use DateTimeImmutable;
 use App\Entity\Article;
+use App\Entity\Content;
 use App\Entity\Category;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -34,10 +35,17 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
 
         $manager->persist($user);
 
+        $content = new Content();
+        $content    ->setContent("Helo World")
+                    ->setPosition("center")
+        ;
+
+        $manager->persist($content);
+
         $page = new Page();
         $page           ->setName("Accueil")
                         ->setSlug("accueil")
-                        ->setContent("Hello World")
+                        ->addContent($content)
                         ->setStatus("Publique")
                         ->setPublicatedAt(new \DateTime())
                         ;
@@ -45,13 +53,21 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
 
         for($i=0;$i<5;$i++){
             $page = new Page();
-            $page           ->setName($this->faker->word())
-                            ->setSlug($this->faker->slug())
-                            ->setContent($this->faker->text())
-                            ->setStatus("Publique")
-                            ->setPublicatedAt(new \DateTime())
-                            ;
+            $page   ->setName($this->faker->word())
+                    ->setSlug($this->faker->slug())
+                    ->setStatus("Publique")
+                    ->setPublicatedAt(new \DateTime())
+            ;
             $manager->persist($page);
+
+            for($j=0;$j<3;$j++){
+                $content = new Content();
+                $content    ->setContent($this->faker->text())
+                            ->setPosition("center")
+                            ->setPage($page)
+                ;
+                $manager->persist($content);
+            }
         }
 
         $categories = [];
