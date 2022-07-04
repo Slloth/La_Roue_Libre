@@ -43,6 +43,22 @@
     }
 }
 
+@media screen and (max-width: 950px){
+    nav#navbar.navbar{
+        position: static;
+    }
+    a.navbar-brand img{
+        width: 50px;
+        height: 50px;
+    }
+    ul.navbar-nav{
+        flex-direction: column;
+    }
+    ul.navbar-nav li{
+        padding: 5px 0;
+    }
+}
+
 @media screen and (max-width: 800px) {
     .content{
         font-size: 24px;
@@ -63,19 +79,6 @@
 }
 
 @media screen and (max-width: 650px) and (min-height: 500px){
-    nav#navbar.navbar{
-        position: static;
-    }
-    a.navbar-brand img{
-        width: 50px;
-        height: 50px;
-    }
-    ul.navbar-nav{
-        flex-direction: column;
-    }
-    ul.navbar-nav li{
-        padding: 5px 0;
-    }
     #addComment form{
         width: 100%;
     }
