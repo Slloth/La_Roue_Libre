@@ -22,7 +22,11 @@ footer{
 
 #socialMedia {
     padding-right: 100px;
-    flex-direction: row;
+    transition: .3s;
+}
+
+#socialMedia a:hover{
+    text-decoration: underline;
 }
 
 #newsletter {
