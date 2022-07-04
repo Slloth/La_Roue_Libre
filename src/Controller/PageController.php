@@ -93,4 +93,14 @@ class PageController extends AbstractController
             'currentURL' => $currentURL
         ]);
     }
+
+    #[Route('/page/mentions-legals', methods: ['GET'], name: 'mentions-legals')]
+    public function privacyPolicy(): Response
+    {
+        $page = $this->pageRepository->findOneBy(['slug'=> 'mentions-legals', 'status' => 'Publique']);
+        
+        return $this->render('page/index.html.twig', [
+            'page' => $page,
+        ]);
+    }
 }
