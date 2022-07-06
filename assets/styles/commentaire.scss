@@ -1,0 +1,58 @@
+#commentaires{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-control{
+    width: 25vw;
+    height: 3vh;
+    margin-right: 40px;
+}
+
+.commentaire div a .btn{
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    padding: 5px 25px;
+}
+
+.commentaire p{
+    inline-size: 60%;
+    overflow-wrap: break-word;
+}
+
+.commentaire{
+    width: 75vw;
+    background-color: #d3d3d388;
+    border: 3px solid darkslategrey;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 15px;
+    padding-right: 15px;
+    align-items: center;
+}
+
+.commentaire + .reply{
+    margin-top: 25px;
+    width: 65vw;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.card-reply{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.commentaire .btn {
+    margin: 10px;
+}

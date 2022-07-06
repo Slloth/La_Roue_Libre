@@ -2,36 +2,22 @@
     <div class="alert alert-danger" role="alert">{{ flashError }}</div>
 {% endfor %}
 {{ form_start(form, {'action': path('newsletter_register'), 'method': 'POST'}) }}
-    <div class="row d-flex justify-content-center">
+    <div class="newsletter">
         <!--Grid column-->
-        <div class="col-auto">
-        <p class="pt-2">
-            <strong>Souscrire à notre newsletter</strong>
-        </p>
-        </div>
+        <h3>S'inscrire à notre newsletter</h3>
         <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-md-5 col-12">
         <!-- Email input -->
-            <div class="form-outline form-white mb-4">
-                {{ form_widget(form.email) }}
-                {{ form_label(form.email) }}
-            </div>
-        </div>
+        {{ form_widget(form.email) }}
+        {{ form_label(form.email) }}
         <!--Grid column-->
 
         <!--Grid column-->
-        <div class="col-auto">
         <!-- Agree button -->
             {{ form_row(form.agreeTerms) }}
-        </div>
 
         <!--Grid column-->
-        <div class="col-auto">
         <!-- Submit button -->
             {{ form_row(form.Souscrire) }}
-        </div>
         <!--Grid column-->
     </div>
 {{ form_end(form) }}

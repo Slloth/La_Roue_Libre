@@ -28,10 +28,11 @@ class PageRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.slug != :accueil')
+            ->andWhere('p.slug != :policyPrivacy')
             ->andWhere('p.status = :status')
-            ->andWhere('p.publicatedAt >= :date')
+            ->andWhere('p.publicatedAt <= :date')
             ->addOrderBy('p.name','ASC')
-            ->setParameters(['status' => 'Publique','date' => new \DateTime(),'accueil' => 'accueil'])
+            ->setParameters(['status' => 'Publique','date' => new \DateTime(),'accueil' => 'accueil','policyPrivacy' => 'mentions-legals'])
             ->getQuery()
             ->getResult()
         ;
@@ -47,7 +48,7 @@ class PageRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')
             ->andWhere('p.slug = :slug')
             ->andWhere('p.status = :status')
-            ->andWhere('p.publicatedAt >= :date')
+            ->andWhere('p.publicatedAt <= :date')
             ->setParameters(['slug' => $slug ,'status' => 'Publique','date' => new \DateTime()])
             ->getQuery()
             ->getOneOrNullResult()

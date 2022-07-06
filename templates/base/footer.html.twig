@@ -1,151 +1,47 @@
+
 <!-- Footer -->
-<footer class="text-center txt-lg-start bg-light">
-  <!-- Grid container -->
-  <div class="container p-4">
+<footer {% if red is defined %} style="background-color: {{ red }};"{% endif %}>
+  <img id="footerGif" src="{{asset("build/images/footergif.gif")}}" alt="">
+  <div id="footer-content">
     <!-- Section: Social media -->
-    <section class="mb-4">
-      <!-- Facebook -->
-      <a class="btn btn-outline-dark btn-floating m-1" href="https://fr-fr.facebook.com/rouelibre.lehavre/" role="button"
-        ><i class="fab fa-facebook-f"></i
-      ></a>
+    <section id="socialMedia">
+      <div>
+        <!-- Facebook -->
+        <a class="btn" href="https://fr-fr.facebook.com/rouelibre.lehavre/">
+        <img src="{{ asset('build/images/fb-white.png') }}">
+        </a>
 
-      <!-- Twitter -->
-      <a class="btn btn-outline-dark btn-floating m-1" href="https://twitter.com/larouelibre_lh" role="button"
-        ><i class="fab fa-twitter"></i
-      ></a>
+        <!-- Twitter -->
+        <a class="btn" href="https://twitter.com/larouelibre_lh">
+        <img src="{{ asset('build/images/twitter-white.png') }}">
+        </a>
 
-      <!-- Instagram -->
-      <a class="btn btn-outline-dark btn-floating m-1" href="https://www.instagram.com/larouelibre_lh/?hl=fr" role="button"
-        ><i class="fab fa-instagram"></i
-      ></a>
+        <!-- Instagram -->
+        <a class="btn" href="https://www.instagram.com/larouelibre_lh/?hl=fr">
+        <img src="{{ asset('build/images/insta-white.png') }}">
+        </a>
 
-      <!-- Linkedin -->
-      <a class="btn btn-outline-dark btn-floating m-1" href="https://fr.linkedin.com/company/la-roue-libre" role="button"
-        ><i class="fab fa-linkedin-in"></i
-      ></a>
+        <!-- Linkedin -->
+        <a class="btn" href="https://fr.linkedin.com/company/la-roue-libre">
+        <img src="{{ asset('build/images/Linked-white.png') }}">
+        </a>
+      </div>
+      <a href="{{ path('mentions-legals')}}">Mentions Légals</a>
+      <a href="{{ path(('sitemap')) }}">Sitemap</a>
     </section>
     <!-- Section: Social media -->
 
     <!-- Section: Form -->
-    <section class="">
+    <section id="newsletter">
       {{ render(controller("App\\Controller\\SubscribeNewsletterController::register")) }}
     </section>
     <!-- Section: Form -->
 
-    <!-- Section: Text -->
-    <section class="mb-4">
-    </section>
-    <!-- Section: Text -->
-
-    <!-- Section: Links -->
-    <section class="">
-      <!--Grid row-->
-      <div class="row justify-content-md-center">
-        <!--Grid column-->
-        <div class="mb-4 mb-md-0">
-          <h5 class="text-uppercase">La Roue Libre</h5>
-
-          <ul class="list-unstyled mb-0">
-            <li>
-              <a href="{{ path('home') }}" class="text-dark">Accueil</a>
-            </li>
-            {% for page in pages() %}
-            <li>
-              <a href="{{ path('page', {'slug': page.slug }) }}" class="text-dark">{{ page.name }}</a>
-            </li>
-            {% endfor %}
-            <li>
-              <a href="{{ path('articles') }}" class="text-dark">Articles</a>
-            </li>
-            <li>
-              <a href="{{ path('contact') }}" class="text-dark">Contact</a>
-            </li>
-            <!--<li>
-              <a href="" target="_blank" class="text-white">site_map</a>
-            </li>-->
-            <li>
-              <a href="{{ path('app_register') }}" class="text-dark">Inscription</a>
-            </li>
-            <li>
-              <a href="{{ path('app_login') }}" class="text-dark">connexion</a>
-            </li>
-          </ul>
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase">Links</h5>
-
-          <ul class="list-unstyled mb-0">
-            <li>
-              <a href="#!" class="text-dark">Link 1</a>
-            </li>
-            <li>
-              <a href="#!" class="text-dark">Link 2</a>
-            </li>
-            <li>
-              <a href="#!" class="text-dark">Link 3</a>
-            </li>
-            <li>
-              <a href="#!" class="text-dark">Link 4</a>
-            </li>
-          </ul>
-        </div>
-        Grid column-->
-
-        <!--Grid column
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase">Links</h5>
-
-          <ul class="list-unstyled mb-0">
-            <li>
-              <a href="#!" class="text-dark">Link 1</a>
-            </li>
-            <li>
-              <a href="#!" class="text-dark">Link 2</a>
-            </li>
-            <li>
-              <a href="#!" class="text-dark">Link 3</a>
-            </li>
-            <li>
-              <a href="#!" class="text-dark">Link 4</a>
-            </li>
-          </ul>
-        </div>
-        Grid column-->
-
-        <!--Grid column
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase">Links</h5>
-
-          <ul class="list-unstyled mb-0">
-            <li>
-              <a href="#!" class="text-dark">Link 1</a>
-            </li>
-            <li>
-              <a href="#!" class="text-dark">Link 2</a>
-            </li>
-            <li>
-              <a href="#!" class="text-dark">Link 3</a>
-            </li>
-            <li>
-              <a href="#!" class="text-dark">Link 4</a>
-            </li>
-          </ul>
-        </div>
-        Grid column-->
-      </div>
-      <!--Grid row-->
-    </section>
-    <!-- Section: Links -->
   </div>
-  <!-- Grid container -->
-
   <!-- Copyright -->
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+  <div id="copyright" style="background-color: rgba(0, 0, 0, 0.2);">
     © 2022 Copyright:
-    <a class="text-dark" href="">la-roue-libre.com</a>
+    <a href="">la-roue-libre.com</a>
   </div>
   <!-- Copyright -->
 </footer>

@@ -6,6 +6,7 @@ use App\Form\CommentType;
 use App\Repository\CommentRepository;
 use App\Repository\PageRepository;
 use App\Service\CommentService;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,7 +18,8 @@ class PageController extends AbstractController
     public function __construct(
         private CommentRepository $commentRepository, 
         private PageRepository $pageRepository, 
-        private CommentService $commentService)
+        private CommentService $commentService,
+        private PaginatorInterface $paginator)
     {}
     
     /**
@@ -46,11 +48,14 @@ class PageController extends AbstractController
             $this->commentService->persistComment($commentFormRequest,$home);
             return $this->redirectToRoute('home');
         }
+
+        $comments = $this->commentRepository->findBy(["page" => $home,"isChecked" => true]);
+
         $currentURL = "accueil";
 
         return $this->render('page/index.html.twig', [
             'page' => $home,
-            'commentsList' => $this->commentRepository->findBy(["page" => $home,"isChecked" => true]),
+            'commentsList' => $this->paginator->paginate($comments,$request->query->getInt('page',1),6),
             'form' => $commentForm->createView(),
             'currentURL' => $currentURL
         ]);
@@ -77,13 +82,25 @@ class PageController extends AbstractController
             return $this->redirectToRoute('page',["slug" => $page->getSlug()]);
         }
 
+        $comments = $this->commentRepository->findBy(["page" => $page,"isChecked" => true]);
+
         $currentURL = substr($request->getRequestUri(),6);
         
         return $this->render('page/index.html.twig', [
             'page' => $page,
-            'commentsList' => $this->commentRepository->findBy(["page" => $page,"isChecked" => true]),
+            'commentsList' => $this->paginator->paginate($comments,$request->query->getInt('page',1),6),
             'form' => $commentForm->createView(),
             'currentURL' => $currentURL
+        ]);
+    }
+
+    #[Route('/page/mentions-legals', methods: ['GET'], name: 'mentions-legals')]
+    public function privacyPolicy(): Response
+    {
+        $page = $this->pageRepository->findOneBy(['slug'=> 'mentions-legals', 'status' => 'Publique']);
+        
+        return $this->render('page/index.html.twig', [
+            'page' => $page,
         ]);
     }
 }

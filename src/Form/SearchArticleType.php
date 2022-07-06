@@ -21,7 +21,6 @@ class SearchArticleType extends AbstractType
                 "label" => false,
                 "required" => false,
                 'attr' => [
-                    'class' => "form-control mr-sm-2",
                     'placeholder' => "Effectuez une recherche"
                 ]
             ])
@@ -37,7 +36,7 @@ class SearchArticleType extends AbstractType
             ])
             ->add("Rechercher", SubmitType::class,[
                 'attr' =>[
-                    'class' => "btn btn-outline-success my-2 my-sm-0"
+                    'class' => "btn btn-outline-success"
                 ]
             ])
         ;

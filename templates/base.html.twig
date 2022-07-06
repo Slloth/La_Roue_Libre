@@ -13,11 +13,29 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
         <link rel="shortcut icon" href="{{ asset('build/images/favicon.ico') }}" type="image/x-icon">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
     </head>
-    <body class="bg-light">
-        {% include "base/nav.html.twig" %}
-        <img class="mw-100" src="{{ asset('build/images/banniere2v5.png') }}"/>
-        <main class="min-vh-100 text-break">
+    <body>
+        <header>
+            {% if currentURL is defined %}
+                {% if currentURL == "accueil" %}    
+                    <video width="100%" muted autoplay>
+                        <source src="videos/video-bienvenue.mp4"
+                                type="video/mp4">
+
+                        Sorry, your browser doesn't support embedded videos.
+                    </video>
+                {% endif %}
+            {% endif %}
+            {% include "base/nav.html.twig" %}
+            <div id="roue">
+                <img id="roue1" src="{{ asset('build/images/roue-site.png' )}}" alt="">
+                <img id="roue2" src="{{ asset('build/images/roue-site.png' )}}" alt="">
+                <img id="roue3" src="{{ asset('build/images/roue-site.png' )}}" alt="">
+                {% if red is defined %} <img id="rouerouge1" src="{{ asset('build/images/roue-rouge-12.png' )}}" alt=""> {% endif %}
+            </div>
+        </header>
+        <main>
             {% block body %}{% endblock %}
         </main>
         {% include "base/footer.html.twig" %}

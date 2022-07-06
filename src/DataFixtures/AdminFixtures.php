@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Content;
 use App\Entity\Page;
 use App\Entity\TypeAdhesion;
 use App\Entity\User;
@@ -29,33 +30,40 @@ class AdminFixtures extends Fixture implements FixtureGroupInterface
 
         $manager->persist($user);
 
+        $content = new Content();
+        $content    ->setContent("Helo World")
+                    ->setPosition("center")
+        ;
+
+        $manager->persist($content);
+
         $page = new Page();
         $page           ->setName("Accueil")
                         ->setSlug("accueil")
-                        ->setContent("Hello World")
+                        ->addContent($content)
                         ->setStatus("Publique")
                         ->setPublicatedAt(new \DateTime())
                         ;
         $manager->persist($page);
 
         $typeAdhesions = ["Etudiant et chercheur d'emploi",12,"Salarié",26,"Famille",46];
-            $adhesionType = new TypeAdhesion();
-            $adhesionType   ->setTypeAdhesion($typeAdhesions[0])
+        $adhesionType = new TypeAdhesion();
+        $adhesionType   ->setTypeAdhesion($typeAdhesions[0])
                             ->setPrix($typeAdhesions[1])
-                            ;
-            $manager->persist($adhesionType);
+        ;
+        $manager->persist($adhesionType);
 
-            $adhesionType = new TypeAdhesion();
-            $adhesionType   ->setTypeAdhesion($typeAdhesions[2])
-                            ->setPrix($typeAdhesions[3])
-                            ;
-            $manager->persist($adhesionType);
+        $adhesionType = new TypeAdhesion();
+        $adhesionType   ->setTypeAdhesion($typeAdhesions[2])
+                        ->setPrix($typeAdhesions[3])
+                        ;
+        $manager->persist($adhesionType);
 
-            $adhesionType = new TypeAdhesion();
-            $adhesionType   ->setTypeAdhesion($typeAdhesions[4])
-                            ->setPrix($typeAdhesions[5])
-                            ;
-            $manager->persist($adhesionType);
+        $adhesionType = new TypeAdhesion();
+        $adhesionType   ->setTypeAdhesion($typeAdhesions[4])
+                        ->setPrix($typeAdhesions[5])
+                        ;
+        $manager->persist($adhesionType);
 
         $manager->flush();
 

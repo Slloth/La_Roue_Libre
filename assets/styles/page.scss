@@ -1,0 +1,38 @@
+p{
+	text-align: center;
+	margin: 0;
+	padding-top: -220px;
+	opacity: 1;
+	transform: translate(0);
+    transition: all 300ms linear;
+    transition-delay: 1700ms;
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+    margin-top: 75px;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20vh;
+}
+
+.content div {
+    width: 35%;
+}
+.content img {
+    width: 35vw;
+}
+
+.wave-svg{
+    width: 100%;
+}
+
+#visual {
+    padding-bottom: 120px;
+}
+
