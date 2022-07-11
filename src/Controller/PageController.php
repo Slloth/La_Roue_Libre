@@ -94,10 +94,10 @@ class PageController extends AbstractController
         ]);
     }
 
-    #[Route('/page/mentions-legals', methods: ['GET'], name: 'mentions-legals')]
+    #[Route('/page/mentions-legales', methods: ['GET'], name: 'mentions-legales')]
     public function privacyPolicy(): Response
     {
-        $page = $this->pageRepository->findOneBy(['slug'=> 'mentions-legals', 'status' => 'Publique']);
+        $page = $this->pageRepository->findOneBy(['slug'=> 'mentions-legales', 'status' => 'Publique']);
         
         return $this->render('page/index.html.twig', [
             'page' => $page,
