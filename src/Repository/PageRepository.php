@@ -32,7 +32,7 @@ class PageRepository extends ServiceEntityRepository
             ->andWhere('p.status = :status')
             ->andWhere('p.publicatedAt <= :date')
             ->addOrderBy('p.name','ASC')
-            ->setParameters(['status' => 'Publique','date' => new \DateTime(),'accueil' => 'accueil','policyPrivacy' => 'mentions-legals'])
+            ->setParameters(['status' => 'Publique','date' => new \DateTime(),'accueil' => 'accueil','policyPrivacy' => 'mentions-legales'])
             ->getQuery()
             ->getResult()
         ;
