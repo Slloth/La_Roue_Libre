@@ -1,3 +1,8 @@
-<form>
-  {{ form(form) }}
-</form>
+{{ form_start(form) }}
+
+  <button class="navbar-toggler" type="button">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  {{ form_widget(form) }}
+
+{{ form_end(form) }}

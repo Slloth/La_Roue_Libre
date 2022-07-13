@@ -14,13 +14,4 @@
             </div>
         </a>
     </div>
-    {% if article.category is not empty %}
-        <div class="article-categories">
-            {% for category in article.category %}
-                <div style="color: {{ category.color }};">
-                    {{ category.name }}
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
 </div>
