@@ -56,8 +56,8 @@ font-weight: 400;
 .nav-item:hover .nav-link{
 color: #e8590c !important;
 }
-.nav-item.active .nav-link{
-color: #777 !important;
+.nav-item .nav-link.active{
+color: #e8590c !important;
 }
 
 .nav-item:hover:after{
