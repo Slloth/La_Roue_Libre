@@ -70,16 +70,17 @@ section#articles{
 /////////// FORM ///////////
 
 section#articles form{
-    position: sticky;
-    top: 25vh;
+    transition: all .4s;
 }
 
 #search_article{
-    display: flex;
+    display: none;
+}
+.show-nav{
+    display: flex !important;
     flex-direction: column;
     justify-content: center;
 }
-
 #search_article_search{
     width: 100%;
     padding: 12px 20px;
@@ -121,4 +122,52 @@ section#articles form{
     width: 100%;
 }
 
+.navbar-toggler{
+    display: block;
+    position: relative;
+    padding: 0;
+    width: 45px;
+    height: 45px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.navbar-toggler-icon-click {
+    width: 0 !important;
+    background: transparent !important;
+}
+.navbar-toggler-icon{
+    display: block;
+    width: 45px;
+    height: 4px;
+    background: #000000;
+    border-radius: 3px;
+    transition: all .5s ease-in-out;
+}
+
+.navbar-toggler-icon::before,.navbar-toggler-icon::after{
+    content: '';
+    width: 45px;
+    height: 4px;
+    position: absolute;
+    left: 0;
+    background: #000000;
+    border-radius: 3px;
+    transition: all .5s ease-in-out;
+}
+.navbar-toggler-icon::before{
+    transform: translateY(-12px);
+}
+.navbar-toggler-icon::after{
+    transform: translateY(12px);
+}
+
+.navbar-toggler-icon-click::before{
+    transform: rotate(45deg);
+}
+
+.navbar-toggler-icon-click::after{
+    transform: rotate(-45deg);
+}
 /////////// FORM ///////////

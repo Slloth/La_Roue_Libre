@@ -23,6 +23,7 @@ import './styles/security.scss';
 import './bootstrap';
 import './comment';
 import './nav';
+import './searchArticle';
 
 import './images/favicon.ico';
 import './images/Logo.png';
@@ -47,4 +48,4 @@ import './images/roue-vert-4.png';
 import './images/tableau-rouge-1.png';
 import './images/tableau-rouge-2.png';
 import './images/tableau-rouge-3.png';
-import './images/fond-contact.png';
+import './images/fond-contact.svg';
