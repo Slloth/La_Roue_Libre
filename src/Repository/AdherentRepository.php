@@ -23,7 +23,7 @@ class AdherentRepository extends ServiceEntityRepository
     /**
      * @return Adherent[] Returns an array of Adherent objects
      */
-    public function findCurrentsAdherents()
+    public function findCurrentsAdherentsForEmail()
     {
         return $this->createQueryBuilder('adhr')
             ->select('adhr','adhe')
