@@ -2,15 +2,16 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Page;
+use App\Entity\User;
+use App\Entity\Article;
+use App\Entity\Comment;
 use App\Entity\Adherent;
 use App\Entity\Adhesion;
-use App\Entity\Article;
 use App\Entity\Category;
-use App\Entity\Comment;
 use App\Entity\Newsletter;
-use App\Entity\Page;
 use App\Entity\TypeAdhesion;
-use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -53,5 +54,10 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToRoute("Envoie d'email aux abonnés", 'fas fa-envelope-open', 'admin_mail_newsletter')->setPermission("ROLE_REDACTEUR");
         yield MenuItem::linkToRoute("Envoie d'email aux adhérents", 'fas fa-envelope-open-text', 'admin_mail_adherent')->setPermission("ROLE_REDACTEUR");
         yield MenuItem::linkToRoute('MultiMédias', 'fas fa-images','admin_media')->setPermission("ROLE_REDACTEUR");
+    }
+
+    public function configureAssets(): Assets
+    {
+        return Assets::new()->addWebpackEncoreEntry('admin');
     }
 }
