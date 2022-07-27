@@ -4,11 +4,11 @@
     <div id="jumbotron">
         <h1 id="display-4">Administration</h1>
         <p id="lead">Bienvenu sur l'interface d'administration.</p>
-        <div>
-            <p>
-                <a href="{{ path("home") }}">Quitter l'interface d'administration</a>
-            </p>
+        <div id="stats-container">
+            <p>nombre d'adhérents à jour <span>{{ totalCurrentAdherent() }} Adhérents</span></p>
+            <canvas id="chartCp" class="dataForStat" data-type="doughnut" data-stats="{{ adherentsPerBranch()|json_encode() }}"></canvas>
+            <canvas id="chartPrix" class="dataForStat" data-type="bar" data-stats="{{ adherentsPerAdhesion()|json_encode() }}"></canvas>
+            <p>Somme total des adhésions à jours <span>{{ sumAdhesions() }}€</span></p>
         </div>
     </div>
-    
 {% endblock %}

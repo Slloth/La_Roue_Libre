@@ -1,0 +1,27 @@
+#stats-container{
+    display:grid;
+    grid-template-columns: repeat(2,1fr);
+    width: 40vw;
+    //justify-content: center;
+    align-items: center;
+}
+#stats-container p {
+    text-align: center;
+    font-size: 40px;
+}
+
+#stats-container p span {
+    font-weight: bold;
+    font-size: 70px;
+    white-space: pre;
+}
+
+@media screen and (max-width: 800px) {
+    #stats-container{
+        display: block !important;
+        width: 100%;
+    }
+    #stats-container > *{
+        margin: 100px 0;
+    }
+}
