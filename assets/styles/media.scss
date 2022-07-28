@@ -1,3 +1,10 @@
+@media screen and (max-width: 1800px) {
+    .horraire-contact{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
 @media screen and (max-width: 1295px) {
     #footer-content{
         flex-direction: column;
@@ -20,6 +27,15 @@
     }
     #contact-content{
         position: static;
+    }
+    #group-horraire-contact{
+        background-color: initial;
+    }
+    .horraire-contact * {
+        color: black;
+    }
+    .horraire-contact-logo{
+        display: none;
     }
     #socialMedia{
         margin-top: 0;
