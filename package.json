@@ -20,6 +20,7 @@
         "@fortawesome/fontawesome-free": "^5.15.4",
         "@popperjs/core": "^2.9.3",
         "autoprefixer": "^10.3.1",
+        "chart.js": "^3.8.2",
         "postcss-loader": "^6.1.1",
         "sass-loader": "^12.1.0"
     }

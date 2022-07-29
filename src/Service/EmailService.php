@@ -84,7 +84,7 @@ class EmailService
      */
     public function persistEmailForAdherents(FormInterface $form): void
     {
-        foreach($this->adherentRepository->findCurrentsAdherents() as $adherentEmail)
+        foreach($this->adherentRepository->findCurrentsAdherentsForEmail() as $adherentEmail)
         {
             $email = new Email();
 

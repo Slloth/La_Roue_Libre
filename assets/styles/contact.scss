@@ -50,20 +50,25 @@
     width: 100%;
 }
 
-#horraire-contact{
+#group-horraire-contact{
+    background-color: #f04f3e;
+    margin-bottom: -4px;
+}
+
+.horraire-contact{
     display: flex;
     flex-direction: row;
-    width: 75%;
-    margin-top: 130px;
+    width: 100%;
+    padding: 65px 0;
     justify-content: space-around;
 }
 
-#horraire-contact div{
+.horraire-contact div{
     display: flex;
     align-items: center;
 }
 
-#horraire-contact div div{
+.horraire-contact *{
     color: #fffbea;
     font-size: 36px;
     padding-left: 15px;

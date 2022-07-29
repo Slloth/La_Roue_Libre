@@ -37,7 +37,7 @@ class AdhesionCrudController extends AbstractCrudController
         }
         // Fait en sorte que les clées et les valeurs du tableau soit identique
         $choices = array_combine($choices,$choices);
-        $branch = ["Le Havre" => "Le Havre", "Montivillers" => "Montivillers", "Harfleur" => "Harfleur"];
+        $branch = ["Le Havre" => "Le Havre", "Montivilliers" => "Montivilliers", "Harfleur" => "Harfleur"];
         return [
             ChoiceField::new('prix','Adhesion')->setChoices($choices),
             ChoiceField::new('branch','Antenne')->setChoices($branch),

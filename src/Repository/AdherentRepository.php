@@ -23,7 +23,7 @@ class AdherentRepository extends ServiceEntityRepository
     /**
      * @return Adherent[] Returns an array of Adherent objects
      */
-    public function findCurrentsAdherents()
+    public function findCurrentsAdherentsForEmail()
     {
         return $this->createQueryBuilder('adhr')
             ->select('adhr','adhe')
@@ -47,5 +47,74 @@ class AdherentRepository extends ServiceEntityRepository
             ->setParameter('currentDate', new \DateTime())
             ->orderBy('adhe.subscribedAt', 'DESC')
         ;
+    }
+
+
+
+    /* STATS REPOSITORY */
+
+
+    /**
+     * @return int
+     */
+    public function findCountAdherents()
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = "SELECT COUNT(*) FROM `adherentsWithLastSub`";
+
+        $stmt = $conn->prepare($sql);
+
+        $resultSet = $stmt->executeQuery();
+
+        return $resultSet->fetchOne();
+    }
+
+    /**
+     * @return Adherent[]
+     */
+    public function countAdherentsPerBranch()
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = "SELECT COUNT(branch) AS value, branch AS label FROM `adherentsWithLastSub` GROUP BY branch";
+
+        $stmt = $conn->prepare($sql);
+
+        $resultSet = $stmt->executeQuery();
+
+        return $resultSet->fetchAllAssociative();
+    }
+
+    /**
+     * @return Adherent[]
+     */
+    public function countAdherentsPerAdhesion()
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = "SELECT COUNT(prix) AS value, prix AS label FROM `adherentsWithLastSub` GROUP BY prix";
+
+        $stmt = $conn->prepare($sql);
+
+        $resultSet = $stmt->executeQuery();
+
+        return $resultSet->fetchAllAssociative();
+    }
+
+    /**
+     * @return int
+     */
+    public function sumAdhesions()
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = "SELECT SUM(prix) AS value, lastSub AS label FROM `adherentsWithLastSub`";
+
+        $stmt = $conn->prepare($sql);
+
+        $resultSet = $stmt->executeQuery();
+
+        return $resultSet->fetchOne();
     }
 }
